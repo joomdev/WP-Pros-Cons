@@ -129,8 +129,8 @@
     list-style: outside none none !important;
 }
 
-.wp-pros-cons .wp-pros-cons-col .joomdev_wpc_cons_list,
-.wp-pros-cons .wp-pros-cons-col .joomdev_wpc_pros_list {
+.wp-pros-cons .wp-pros-cons-col .wpc_cons_list,
+.wp-pros-cons .wp-pros-cons-col .wpc_pros_list {
     margin: 0 !important;
     padding: 0 0 0 10px !important;
     list-style-type: none !important;
@@ -144,8 +144,8 @@
     word-break: break-word;
 }
 
-.wp-pros-cons .wp-pros-cons-col .joomdev_wpc_cons_list li,
-.wp-pros-cons .wp-pros-cons-col .joomdev_wpc_pros_list li {
+.wp-pros-cons .wp-pros-cons-col .wpc_cons_list li,
+.wp-pros-cons .wp-pros-cons-col .wpc_pros_list li {
      margin: 12px 0 !important;
      padding-left: 30px !important;
 }
@@ -159,14 +159,14 @@
     padding-left: 30px;
     background-size: 18px 17px;
 	list-style: outside none none !important;
-    background: url('../img/check.png') no-repeat top 8px left;
+    background: url('../images/check.png') no-repeat top 8px left;
 }
 
 .wp-pros-cons .cons-section ul li {
     padding-left: 30px;
     background-size: 18px 17px;
 	list-style: outside none none !important;
-    background: url('../img/cros.png') no-repeat top 8px left;
+    background: url('../images/cross.png') no-repeat top 8px left;
 }
 
 .wp-pros-cons .wp-pros-cons-btn-wrap {
@@ -184,6 +184,13 @@
     padding: 12px 25px;
     border-radius: 60px;
     display: inline-block;
+}
+
+.wpc-top-icons {
+    color: 'white';
+	font-size: 35px;
+	vertical-align: 'middle';
+	margin-top: 30px;
 }
 
 @media (min-width:768px) {

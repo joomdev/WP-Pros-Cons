@@ -5,13 +5,6 @@ import './editor.scss';
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
 
-const topIcons = {
-	color: 'white',
-	fontSize: 35,
-	verticalAlign: 'middle',
-	marginTop: 30,
-};
-
 registerBlockType( 'tc/block-prosandcons', {
 	title: __( 'Pros And Cons' ),
 	icon: 'schedule',
@@ -38,23 +31,32 @@ registerBlockType( 'tc/block-prosandcons', {
 						<div className="pros-section section">
 							<div className="wp-pros-cons-img-wrap">
 								<div className="wp-pros-cons-img-container bg-green">
-									<i style={topIcons} className="far fa-thumbs-up wpc-top-icons"></i>
+									<i className="far fa-thumbs-up wpc-top-icons"></i>
 								</div>
 							</div>
 							<div className="section-title">Pros</div>
 							{/* Here comes all the pros */}
+							<ul class="wpc_pros_list">
+								<li class="wpc_pro_single">Lorem</li>
+								<li class="wpc_pro_single">Ipsum</li>
+								<li class="wpc_pro_single">Dolor</li>
+							</ul>
 						</div>
 					</div>
 					<div className="wp-pros-cons-col">
 						<div className="cons-section section">
 							<div className="wp-pros-cons-img-wrap">
 								<div className="wp-pros-cons-img-container bg-red">
-									<i style={topIcons} className="far fa-thumbs-down wpc-top-icons"></i>
+									<i className="far fa-thumbs-down wpc-top-icons"></i>
 								</div>
 							</div>
 							<div className="section-title">Cons</div>
 							{/* Here comes all the cons */}
-							
+							<ul class="wpc_cons_list">
+								<li class="wpc_con_single">Dolor</li>
+								<li class="wpc_con_single">Ipsum</li>
+								<li class="wpc_con_single">Lorem</li>
+							</ul>
 						</div>
 					</div>
 				</div>
