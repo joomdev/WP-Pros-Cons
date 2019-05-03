@@ -174,7 +174,7 @@
     margin-top: 30px;
 }
 
-.wp-pros-cons a {
+.wp-pros-cons a.cta-btn {
     text-decoration: none;
     font-size: 24px;
     line-height: 1.2;
@@ -184,6 +184,7 @@
     padding: 12px 25px;
     border-radius: 60px;
     display: inline-block;
+    width: 50%;
 }
 
 .wpc-top-icons {
@@ -249,7 +250,7 @@
         margin-top: 25px;
     }
 
-    .wp-pros-cons a {
+    .wp-pros-cons a.cta-btn {
         font-size: 24px;
         padding: 15px 35px;
         line-height: 1;
