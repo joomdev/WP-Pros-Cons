@@ -138,14 +138,12 @@
 .wp-pros-cons .pros-section ul li {
   padding-left: 30px;
   background-size: 18px 17px;
-  list-style: outside none none !important;
-  background: url("../images/check.png") no-repeat top 8px left; }
+  list-style: outside none none !important; }
 
 .wp-pros-cons .cons-section ul li {
   padding-left: 30px;
   background-size: 18px 17px;
-  list-style: outside none none !important;
-  background: url("../images/cross.png") no-repeat top 8px left; }
+  list-style: outside none none !important; }
 
 .wp-pros-cons .wp-pros-cons-btn-wrap {
   text-align: center;
@@ -163,9 +161,10 @@
   display: inline-block; }
 
 .wpc-top-icons {
-  color: 'white';
-  font-size: 35px;
-  vertical-align: 'middle';
+  color: white;
+  font-size: 36px;
+  font-weight: normal;
+  vertical-align: middle;
   margin-top: 30px; }
 
 @media (min-width: 768px) {
