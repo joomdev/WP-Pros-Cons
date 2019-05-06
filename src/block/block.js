@@ -22,8 +22,18 @@ registerBlockType( 'tc/block-prosandcons', {
 	attributes: {
 		title: {
 			source: 'text',
-			selector: 'h3.wpc-title'
+			selector: 'h3.wpc-title',
 		},
+		prosTitle: {
+            type: 'array',
+			source: 'children',
+			default: 'Pros'
+		},
+		consTitle: {
+            type: 'array',
+			source: 'children',
+			default: 'Cons'
+        },
 		prosValues: {
 			type: 'array',
 			selector: '.wpc_pros_list',
@@ -69,12 +79,12 @@ registerBlockType( 'tc/block-prosandcons', {
 		},
 		borderColor: {
 			type: 'string',
-			default: '#28b914'
+			default: ''
 		},
 	},
 
 	edit({attributes, setAttributes, className, focus}) {
-		const { prosValues, consValues, title, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, boxBorder, borderColor } = attributes;
+		const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, boxBorder, borderColor } = attributes;
 
 		// Button Rel values
 		const buttonRelOptions = [
@@ -135,6 +145,18 @@ registerBlockType( 'tc/block-prosandcons', {
 		function onBorderColorChange(changes) {
 			setAttributes({
 				borderColor: changes
+			})
+		}
+
+		function onProsTitleChange(changes) {
+			setAttributes({
+				prosTitle: changes
+			})
+		}
+
+		function onConsTitleChange(changes) {
+			setAttributes({
+				consTitle: changes
 			})
 		}
 
@@ -231,7 +253,16 @@ registerBlockType( 'tc/block-prosandcons', {
 									<i className="far fa-thumbs-up wpc-top-icons"></i>
 								</div>
 							</div>
-							<div className="section-title">Pros</div>
+							
+								{/* Pros Title */}
+								<RichText
+									tagName="div"
+									className="section-title"
+									value={ prosTitle }
+									onChange={ onProsTitleChange }
+									placeholder="Enter title here!"
+								/>
+							
 								{/* Here comes all the pros */}
 								<RichText
 									tagName="ul"
@@ -252,7 +283,15 @@ registerBlockType( 'tc/block-prosandcons', {
 									<i className="far fa-thumbs-down wpc-top-icons"></i>
 								</div>
 							</div>
-							<div className="section-title">Cons</div>
+								{/* Cons Title */}
+								<RichText
+									tagName="div"
+									className="section-title"
+									value={ consTitle }
+									onChange={ onConsTitleChange }
+									placeholder="Enter title here!"
+								/>
+
 								{/* Here comes all the cons */}
 								<RichText
 									tagName="ul"
@@ -307,7 +346,7 @@ registerBlockType( 'tc/block-prosandcons', {
 
 	save({ attributes, className }) {
 		
-		const { prosValues, consValues, title, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, boxBorder, borderColor } = attributes;
+		const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, boxBorder, borderColor } = attributes;
 		
 		return (
 			<div style={{ backgroundColor: boxBackgroundColor, border: boxBorder, borderColor: borderColor }} className="wp-pros-cons">
@@ -322,7 +361,14 @@ registerBlockType( 'tc/block-prosandcons', {
 									<i className="far fa-thumbs-up wpc-top-icons"></i>
 								</div>
 							</div>
-							<div className="section-title">Pros</div>
+								{/* Pros title */}
+								<RichText.Content
+									tagName="div"
+									className="section-title"
+									value={ prosTitle }
+								/>
+								
+								{/* Pros goes here */}
 								<RichText.Content
 									tagName="ul"
 									// multiline="li"
@@ -338,7 +384,14 @@ registerBlockType( 'tc/block-prosandcons', {
 									<i className="far fa-thumbs-down wpc-top-icons"></i>
 								</div>
 							</div>
-							<div className="section-title">Cons</div>
+								{/* Cons title */}
+								<RichText.Content
+									tagName="div"
+									className="section-title"
+									value={ consTitle }
+								/>
+
+								{/* Cons goes here */}
 								<RichText.Content
 									tagName="ul"
 									// multiline="li"
