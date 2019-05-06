@@ -23,3 +23,15 @@ i.wpc-top-icons {
   font-weight: normal;
   vertical-align: middle;
   margin-top: 30px; }
+
+.wp-pros-cons-btn-wrap a.cta-btn {
+  background: black;
+  color: white;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none; }
+
+.components-autocomplete a.cta-btn {
+  background: red; }

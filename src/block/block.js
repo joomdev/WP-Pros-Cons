@@ -5,17 +5,18 @@ import { RawHTML } from '@wordpress/element';
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
-const { Button, Dashicon, IconButton } = wp.components;
-const { RichText, URLInput } = wp.editor;
+const { IconButton, PanelBody } = wp.components;
+const { RichText, URLInput, ColorPalette, InspectorControls, PanelColorSettings } = wp.editor;
 
 registerBlockType( 'tc/block-prosandcons', {
-	title: __( 'Pros And Cons' ),
+	title: __( 'Pros And Cons', 'themescamp-blocks' ),
+	description: __( 'Pros & Cons for your website.', 'themescamp-blocks' ),
 	icon: 'thumbs-up',
 	category: 'common',
 	keywords: [
 		__( 'Pros And Cons' ),
 		__( 'ThemesCamp' ),
-		__( 'Pros&Cons' ),
+		__( 'Pros & Cons' ),
 	],
 
 	attributes: {
@@ -42,21 +43,68 @@ registerBlockType( 'tc/block-prosandcons', {
             selector: 'a',
             attribute: 'href',
 		},
+		buttonBackgroundColor: {
+			type: 'string',
+			default: 'black',
+		},
+		buttonTextColor: {
+			type: 'string',
+			default: 'white',
+		},
+		
 	},
 
-	edit({attributes, setAttributes, onReplace, className}) {
-		const { prosValues, consValues, title, buttonText, buttonUrl } = attributes;
-		
-		return (
-			<div className="wp-pros-cons">
-				<h3 className="wp-pros-cons-title">
-					<RichText
-						onChange={ content => setAttributes({ title: content }) }
-						value={ title }
-						placeholder="Title goes here.."
-						className="heading"
-					/>
-				</h3>
+	edit({attributes, setAttributes, className, focus}) {
+		const { prosValues, consValues, title, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor } = attributes;
+
+		function onButtonBackgroundChange(changes) {
+			setAttributes({
+				buttonBackgroundColor: changes
+			})
+		}
+
+		function onButtonTextColorChange(changes) {
+			setAttributes({
+				buttonTextColor: changes
+			})
+		}
+
+		return ([
+			<InspectorControls>
+
+				<PanelColorSettings 
+					title={ __( 'Button Background Color', 'themescamp-blocks' ) }
+					initialOpen={ false }
+					colorSettings={ [ {
+						value: buttonBackgroundColor,
+						onChange: onButtonBackgroundChange,
+						label: __( 'Button Background Color', 'themescamp-block' ),
+					} ] }
+				>
+				</PanelColorSettings>
+
+				<PanelColorSettings 
+					title={ __( 'Button Color', 'themescamp-blocks' ) }
+					initialOpen={ false }
+					colorSettings={ [ {
+						value: buttonTextColor,
+						onChange: onButtonTextColorChange,
+						label: __( 'Button Color', 'themescamp-block' ),
+					} ] }
+				>
+				</PanelColorSettings>
+				
+			</InspectorControls>
+			,
+			<div className="wp-pros-cons">				
+				<RichText
+					tagName="h3"
+					onChange={ content => setAttributes({ title: content }) }
+					value={ title }
+					placeholder="Title goes here.."
+					className="wp-pros-cons-title"
+				/>
+				
 				<div className="wp-pros-cons-sections">
 					<div className="wp-pros-cons-col">
 						<div className="pros-section section">
@@ -95,7 +143,7 @@ registerBlockType( 'tc/block-prosandcons', {
 									keepPlaceholderOnFocus
 									value={ consValues }
 									formattingControls={ [ 'bold', 'italic', 'strikethrough', 'link' ] }
-									className='wpc_cons_list'
+									className="wpc_cons_list"
 									onChange={ ( value ) => setAttributes( { consValues: value } ) }
 								/>							
 						</div>
@@ -109,34 +157,39 @@ registerBlockType( 'tc/block-prosandcons', {
 						value={ buttonText }
 						className='cta-btn'
 						onChange={ (value) => setAttributes( { buttonText: value } ) }
+						style={{ backgroundColor: buttonBackgroundColor, color: buttonTextColor }}
 					/>
 					
-						<form
-							key="form-link"
-							className={ `blocks-button__inline-link`}
-							onSubmit={ event => event.preventDefault() }
-						>
-							
-							<URLInput
-								className="button-url"
-								value={ buttonUrl }
-								onChange={ ( value ) => setAttributes( { buttonUrl: value } ) }
-							/>
-							<IconButton
-								icon="editor-break"
-								label={ __( 'Apply', 'themescamp-blocks' ) }
-								type="submit"
-							/>
-						</form>
+					<form
+						key="form-link"
+						onSubmit={ event => event.preventDefault() }
+					>
+						<ul class="list-inline">
+							<li class="list-inline-item">
+								<URLInput
+									className="button-url btn-onclick-url"
+									value={ buttonUrl }
+									onChange={ ( value ) => setAttributes( { buttonUrl: value } ) }
+								/>
+							</li>
+							<li class="list-inline-item">
+								<IconButton
+									icon="editor-break"
+									label={ __( 'Apply', 'themescamp-blocks' ) }
+									type="submit"
+								/>
+							</li>
+						</ul>
+					</form>
 					
 				</div>
 			</div>
-		);
+		]);
 	},
 
-	save({ attributes }) {
+	save({ attributes, className }) {
 		
-		const { prosValues, consValues, title, buttonText, buttonUrl } = attributes;
+		const { prosValues, consValues, title, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor } = attributes;
 		
 		return (
 			<div className="wp-pros-cons">
@@ -177,22 +230,24 @@ registerBlockType( 'tc/block-prosandcons', {
 						</div>
 					</div>
 				</div>
-				<div className="wp-pros-cons-btn-wrap">
+
 				{
-					buttonText && ( 
-					<a
-						href={ buttonUrl }
-						target="_blank"
-						rel="#"
-						className="cta-btn"
-					>
-						<RichText.Content
-							value={ buttonText }
-						/>
-					</a>
+					buttonText && (
+						<div className="wp-pros-cons-btn-wrap">							
+							<a
+								href={ buttonUrl }
+								target='_blank'
+								style={{ backgroundColor: buttonBackgroundColor, color: buttonTextColor }}
+								rel="#"
+								className="cta-btn"
+							>
+								<RichText.Content
+									value={ buttonText }
+								/>
+							</a>							
+						</div>
 					)
 				}
-				</div>
 			</div>
 		);
 	},

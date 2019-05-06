@@ -20,3 +20,14 @@ i.wpc-top-icons {
   vertical-align: middle;
   margin-top: 30px;  
 }
+
+.wp-pros-cons-btn-wrap a.cta-btn {
+  background: black;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+}
+
+.components-autocomplete a.cta-btn {
+  background: red;
+}

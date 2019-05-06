@@ -172,6 +172,7 @@
 .wp-pros-cons .wp-pros-cons-btn-wrap {
     text-align: center;
     margin-top: 30px;
+    color: white;
 }
 
 .wp-pros-cons a.cta-btn {
@@ -255,4 +256,12 @@
         padding: 15px 35px;
         line-height: 1;
     }
+}
+
+.btn-onclick-url {
+    margin: 10px;
+}
+
+.wp-pros-cons-btn-wrap a.cta-btn {
+    cursor: text;
 }
