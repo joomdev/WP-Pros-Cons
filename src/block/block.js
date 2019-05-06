@@ -5,7 +5,7 @@ import { RawHTML } from '@wordpress/element';
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
-const { IconButton, PanelBody, ToggleControl } = wp.components;
+const { IconButton, PanelBody, ToggleControl, SelectControl } = wp.components;
 const { RichText, URLInput, ColorPalette, InspectorControls, PanelColorSettings } = wp.editor;
 
 registerBlockType( 'tc/block-prosandcons', {
@@ -59,10 +59,26 @@ registerBlockType( 'tc/block-prosandcons', {
 			type: 'boolean',
 			default: false
 		},
+		buttonRel: {
+			type: 'string',
+			default: 'Dofollow'
+		}
 	},
 
 	edit({attributes, setAttributes, className, focus}) {
-		const { prosValues, consValues, title, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget } = attributes;
+		const { prosValues, consValues, title, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel } = attributes;
+
+		// Button Rel values
+		const buttonRelOptions = [
+			{ value: 'Dofollow', label: __( 'Dofollow', 'themescamp-blocks' ) },
+			{ value: 'Nofollow', label: __( 'Nofollow', 'themescamp-blocks' ) },
+			{ value: 'Noreferrer', label: __( 'Noreferrer', 'themescamp-blocks' ) },
+			{ value: 'Noopener', label: __( 'Noopener', 'themescamp-blocks' ) },
+			{ value: 'External', label: __( 'External', 'themescamp-blocks' ) },
+			{ value: 'Help', label: __( 'Help', 'themescamp-blocks' ) },
+			{ value: 'Alternate', label: __( 'Alternate', 'themescamp-blocks' ) },
+			{ value: 'Author', label: __( 'Author', 'themescamp-blocks' ) },
+		];
 
 		function onButtonBackgroundChange(changes) {
 			setAttributes({
@@ -88,6 +104,12 @@ registerBlockType( 'tc/block-prosandcons', {
 			})
 		}
 
+		function onButtonRelChange(changes) {
+			setAttributes({
+				buttonRel: changes
+			})
+		}
+
 		return ([
 			<InspectorControls>
 
@@ -97,6 +119,16 @@ registerBlockType( 'tc/block-prosandcons', {
 					onChange={ onChangeButtonTarget }
 				>
 				</ToggleControl>
+
+				<SelectControl
+					label={ __( 'Button Rel Attribute', 'themescamp-blocks' ) }
+					value={ buttonRel }
+					options={ buttonRelOptions.map( ({ value, label }) => ( {
+						value: value,
+						label: label,
+					} ) ) }
+					onChange={ onButtonRelChange }
+				/>
 
 				<PanelColorSettings 
 					title={ __( 'Button Background Color', 'themescamp-blocks' ) }
@@ -226,7 +258,7 @@ registerBlockType( 'tc/block-prosandcons', {
 
 	save({ attributes, className }) {
 		
-		const { prosValues, consValues, title, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget } = attributes;
+		const { prosValues, consValues, title, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel } = attributes;
 		
 		return (
 			<div style={{ backgroundColor: boxBackgroundColor }} className="wp-pros-cons">
@@ -274,7 +306,7 @@ registerBlockType( 'tc/block-prosandcons', {
 							<a
 								href={ buttonUrl }
 								style={{ backgroundColor: buttonBackgroundColor, color: buttonTextColor }}
-								rel="#"
+								rel={ buttonRel }
 								className="cta-btn"
 								target={ buttonTarget ? '_blank' : null }
 							>
