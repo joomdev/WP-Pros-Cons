@@ -62,11 +62,19 @@ registerBlockType( 'tc/block-prosandcons', {
 		buttonRel: {
 			type: 'string',
 			default: 'Dofollow'
-		}
+		},
+		boxBorder: {
+			type: 'string',
+			default: 'None'
+		},
+		borderColor: {
+			type: 'string',
+			default: '#28b914'
+		},
 	},
 
 	edit({attributes, setAttributes, className, focus}) {
-		const { prosValues, consValues, title, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel } = attributes;
+		const { prosValues, consValues, title, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, boxBorder, borderColor } = attributes;
 
 		// Button Rel values
 		const buttonRelOptions = [
@@ -78,6 +86,14 @@ registerBlockType( 'tc/block-prosandcons', {
 			{ value: 'Help', label: __( 'Help', 'themescamp-blocks' ) },
 			{ value: 'Alternate', label: __( 'Alternate', 'themescamp-blocks' ) },
 			{ value: 'Author', label: __( 'Author', 'themescamp-blocks' ) },
+		];
+
+		// Box border type
+		const boxBorderOptions = [
+			{ value: 'None', label: __( 'None', 'themescamp-blocks' ) },
+			{ value: 'Dotted', label: __( 'Dotted', 'themescamp-blocks' ) },
+			{ value: 'Solid', label: __( 'Solid', 'themescamp-blocks' ) },
+			{ value: 'Dashed', label: __( 'Dashed', 'themescamp-blocks' ) },
 		];
 
 		function onButtonBackgroundChange(changes) {
@@ -110,6 +126,18 @@ registerBlockType( 'tc/block-prosandcons', {
 			})
 		}
 
+		function onboxBorderTypeChange(changes) {
+			setAttributes({
+				boxBorder: changes
+			})
+		}
+
+		function onBorderColorChange(changes) {
+			setAttributes({
+				borderColor: changes
+			})
+		}
+
 		return ([
 			<InspectorControls>
 
@@ -129,6 +157,27 @@ registerBlockType( 'tc/block-prosandcons', {
 					} ) ) }
 					onChange={ onButtonRelChange }
 				/>
+
+				<SelectControl
+					label={ __( 'Box Border Style', 'themescamp-blocks' ) }
+					value={ boxBorder }
+					options={ boxBorderOptions.map( ({ value, label }) => ( {
+						value: value,
+						label: label,
+					} ) ) }
+					onChange={ onboxBorderTypeChange }
+				/>
+
+				<PanelColorSettings 
+					title={ __( 'Border Color', 'themescamp-blocks' ) }
+					initialOpen={ false }
+					colorSettings={ [ {
+						value: borderColor,
+						onChange: onBorderColorChange,
+						label: __( 'Border Color', 'themescamp-block' ),
+					} ] }
+				>
+				</PanelColorSettings>
 
 				<PanelColorSettings 
 					title={ __( 'Button Background Color', 'themescamp-blocks' ) }
@@ -165,7 +214,7 @@ registerBlockType( 'tc/block-prosandcons', {
 				
 			</InspectorControls>
 			,
-			<div style={{ backgroundColor: boxBackgroundColor }} className="wp-pros-cons">				
+			<div style={{ borderColor: borderColor, backgroundColor: boxBackgroundColor, border: boxBorder }} className="wp-pros-cons">				
 				<RichText
 					tagName="h3"
 					onChange={ content => setAttributes({ title: content }) }
@@ -258,10 +307,10 @@ registerBlockType( 'tc/block-prosandcons', {
 
 	save({ attributes, className }) {
 		
-		const { prosValues, consValues, title, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel } = attributes;
+		const { prosValues, consValues, title, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, boxBorder, borderColor } = attributes;
 		
 		return (
-			<div style={{ backgroundColor: boxBackgroundColor }} className="wp-pros-cons">
+			<div style={{ backgroundColor: boxBackgroundColor, border: boxBorder, borderColor: borderColor }} className="wp-pros-cons">
 				<h3 className="wp-pros-cons-title wpc-title">
 					<RawHTML>{ title }</RawHTML>
 				</h3>
