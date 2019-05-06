@@ -5,7 +5,7 @@ import { RawHTML } from '@wordpress/element';
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
-const { IconButton, PanelBody } = wp.components;
+const { IconButton, PanelBody, ToggleControl } = wp.components;
 const { RichText, URLInput, ColorPalette, InspectorControls, PanelColorSettings } = wp.editor;
 
 registerBlockType( 'tc/block-prosandcons', {
@@ -51,11 +51,18 @@ registerBlockType( 'tc/block-prosandcons', {
 			type: 'string',
 			default: 'white',
 		},
-		
+		boxBackgroundColor: {
+			type: 'string',
+			default: '#f9f9f9',
+		},
+		buttonTarget: {
+			type: 'boolean',
+			default: false
+		},
 	},
 
 	edit({attributes, setAttributes, className, focus}) {
-		const { prosValues, consValues, title, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor } = attributes;
+		const { prosValues, consValues, title, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget } = attributes;
 
 		function onButtonBackgroundChange(changes) {
 			setAttributes({
@@ -68,9 +75,28 @@ registerBlockType( 'tc/block-prosandcons', {
 				buttonTextColor: changes
 			})
 		}
+		
+		function onBackgroundColorChange(changes) {
+			setAttributes({
+				boxBackgroundColor: changes
+			})
+		}
+
+		function onChangeButtonTarget(changes) {
+			setAttributes({
+				buttonTarget: ! buttonTarget
+			})
+		}
 
 		return ([
 			<InspectorControls>
+
+				<ToggleControl
+					label={ __( 'Open link in new window', 'themescamp-blocks' ) }
+					checked={ buttonTarget }
+					onChange={ onChangeButtonTarget }
+				>
+				</ToggleControl>
 
 				<PanelColorSettings 
 					title={ __( 'Button Background Color', 'themescamp-blocks' ) }
@@ -93,10 +119,21 @@ registerBlockType( 'tc/block-prosandcons', {
 					} ] }
 				>
 				</PanelColorSettings>
+
+				<PanelColorSettings 
+					title={ __( 'Background Color', 'themescamp-blocks' ) }
+					initialOpen={ false }
+					colorSettings={ [ {
+						value: boxBackgroundColor,
+						onChange: onBackgroundColorChange,
+						label: __( 'Background Color', 'themescamp-block' ),
+					} ] }
+				>
+				</PanelColorSettings>
 				
 			</InspectorControls>
 			,
-			<div className="wp-pros-cons">				
+			<div style={{ backgroundColor: boxBackgroundColor }} className="wp-pros-cons">				
 				<RichText
 					tagName="h3"
 					onChange={ content => setAttributes({ title: content }) }
@@ -189,10 +226,10 @@ registerBlockType( 'tc/block-prosandcons', {
 
 	save({ attributes, className }) {
 		
-		const { prosValues, consValues, title, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor } = attributes;
+		const { prosValues, consValues, title, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget } = attributes;
 		
 		return (
-			<div className="wp-pros-cons">
+			<div style={{ backgroundColor: boxBackgroundColor }} className="wp-pros-cons">
 				<h3 className="wp-pros-cons-title wpc-title">
 					<RawHTML>{ title }</RawHTML>
 				</h3>
@@ -236,10 +273,10 @@ registerBlockType( 'tc/block-prosandcons', {
 						<div className="wp-pros-cons-btn-wrap">							
 							<a
 								href={ buttonUrl }
-								target='_blank'
 								style={{ backgroundColor: buttonBackgroundColor, color: buttonTextColor }}
 								rel="#"
 								className="cta-btn"
+								target={ buttonTarget ? '_blank' : null }
 							>
 								<RichText.Content
 									value={ buttonText }
