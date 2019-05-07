@@ -75,5 +75,21 @@ function prosandcons_cgb_block_assets() { // phpcs:ignore
 	);
 }
 
+/**
+ * Creates new `ThemesCamp Blocks` block category.
+ */
+function themescamp_custom_category( $categories ) {
+	return array_merge(
+		$categories,
+		array(
+			array(
+				'slug'  => 'themescamp-blocks',
+				'title' => __( 'Themescamp Blocks', 'themescamp-blocks' ),
+			),
+		)
+	);
+}
+add_filter( 'block_categories', 'themescamp_custom_category' );
+
 // Hook: Block assets.
 add_action( 'init', 'prosandcons_cgb_block_assets' );

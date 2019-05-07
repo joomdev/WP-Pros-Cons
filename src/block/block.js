@@ -12,7 +12,7 @@ registerBlockType( 'tc/block-prosandcons', {
 	title: __( 'Pros And Cons', 'themescamp-blocks' ),
 	description: __( 'Pros & Cons for your website.', 'themescamp-blocks' ),
 	icon: 'thumbs-up',
-	category: 'common',
+	category: 'themescamp-blocks',
 	keywords: [
 		__( 'Pros And Cons' ),
 		__( 'ThemesCamp' ),
@@ -303,25 +303,22 @@ registerBlockType( 'tc/block-prosandcons', {
 					<form
 						key="form-link"
 						onSubmit={ event => event.preventDefault() }
-					>
-						<ul class="list-inline">
-							<li class="list-inline-item">
-								<URLInput
-									className="button-url btn-onclick-url"
-									value={ buttonUrl }
-									onChange={ ( value ) => setAttributes( { buttonUrl: value } ) }
-								/>
-							</li>
-							<li class="list-inline-item">
-								<IconButton
-									icon="editor-break"
-									label={ __( 'Apply', 'themescamp-blocks' ) }
-									type="submit"
-								/>
-							</li>
-						</ul>
-					</form>
+					>							
+						<URLInput
+							className="button-url btn-onclick-url"
+							style={{ display:'inline' }}
+							value={ buttonUrl }
+							onChange={ ( value ) => setAttributes( { buttonUrl: value } ) }
+						/>
 					
+					
+						<IconButton
+							icon="editor-break"
+							style={{ display:'inline' }}
+							label={ __( 'Apply', 'themescamp-blocks' ) }
+							type="submit"
+						/>						
+					</form>					
 				</div>
 			</div>
 		]);
