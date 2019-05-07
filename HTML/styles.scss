@@ -11,15 +11,13 @@ body {
 
 /* Don't use the above css while creating the plugin */
 
+$circle-size: 100px;
+
 .wp-pros-cons {
 	background: #F9F9F9;
 
 	a {
 		text-decoration: none;
-	}
-
-	&.wppc-border {
-		border: 2px dashed #27C110;
 	}
 
 	.wp-pros-cons-heading {
@@ -45,8 +43,8 @@ body {
 	}
 
 	.wppc-box-symbol {
-		width: 100px;
-		height: 100px;
+		width: $circle-size;
+		height: $circle-size;
 		position: relative;
 		border-radius: 100%;
 		margin: 0 auto;
@@ -63,14 +61,14 @@ body {
 	.pros-content {
 		.wppc-box-symbol {
 			color: #fff;
-			background: #bf000a;
+			background: #27C110;
 		}
 	}
 
-	.cons_content {
+	.cons-content {
 		.wppc-box-symbol {
 			color: #fff;
-			background: #27C110;
+			background: #bf000a;
 		}
 	}
 
@@ -94,7 +92,7 @@ body {
 		}
 	}
 
-	.cons_content ul.wp-pros-cons-list li:before {
+	.cons-content ul.wp-pros-cons-list li:before {
 		content: "\f00d";
 		color: #bf000a;
 	}
@@ -118,7 +116,16 @@ body {
 			}
 		}
 	}
-	&.with-border {
+	&.wppc-view1{
+		.wppc-boxs {
+			margin-top: calc(#{$circle-size} / 2);
+		}
+		.wppc-header {
+			margin-bottom: 20px;
+			margin-top: calc(-#{$circle-size} / 2);
+		}
+	}
+	&.wppc-view2 {
 		background: transparent;
 		.wppc-boxs .wppc-box {
 			border-width: 2px;
@@ -136,7 +143,7 @@ body {
 			}
 		}
 	
-		.cons_content {
+		.cons-content {
 			border-color: #bf000a;
 			.wppc-header {
 				background: #bf000a;
@@ -144,7 +151,7 @@ body {
 			}
 		}
 	}
-	&.solid-header {
+	&.wppc-view3 {
 		background: transparent;
 		.wppc-boxs .wppc-box {
 			border-radius: 4px;
@@ -159,7 +166,7 @@ body {
 			}
 		}
 	
-		.cons_content {
+		.cons-content {
 			.wppc-header {
 				background: #bf000a;
 				color: #fff;
