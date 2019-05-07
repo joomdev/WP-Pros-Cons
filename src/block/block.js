@@ -25,14 +25,14 @@ registerBlockType( 'tc/block-prosandcons', {
 			selector: 'h3.wpc-title',
 		},
 		prosTitle: {
-            type: 'array',
-			source: 'children',
-			default: 'Pros'
+			source: 'text',
+			default: 'Pros',
+			selector: 'div.pros-title',
 		},
 		consTitle: {
-            type: 'array',
-			source: 'children',
-			default: 'Cons'
+			source: 'text',
+			default: 'Cons',
+			selector: 'div.cons-title',
         },
 		prosValues: {
 			type: 'array',
@@ -79,7 +79,7 @@ registerBlockType( 'tc/block-prosandcons', {
 		},
 		borderColor: {
 			type: 'string',
-			default: ''
+			default: '#28b914'
 		},
 	},
 
@@ -136,27 +136,9 @@ registerBlockType( 'tc/block-prosandcons', {
 			})
 		}
 
-		function onboxBorderTypeChange(changes) {
-			setAttributes({
-				boxBorder: changes
-			})
-		}
-
 		function onBorderColorChange(changes) {
 			setAttributes({
 				borderColor: changes
-			})
-		}
-
-		function onProsTitleChange(changes) {
-			setAttributes({
-				prosTitle: changes
-			})
-		}
-
-		function onConsTitleChange(changes) {
-			setAttributes({
-				consTitle: changes
 			})
 		}
 
@@ -178,7 +160,8 @@ registerBlockType( 'tc/block-prosandcons', {
 						label: label,
 					} ) ) }
 					onChange={ onButtonRelChange }
-				/>
+				>
+				</SelectControl>
 
 				<SelectControl
 					label={ __( 'Box Border Style', 'themescamp-blocks' ) }
@@ -187,8 +170,9 @@ registerBlockType( 'tc/block-prosandcons', {
 						value: value,
 						label: label,
 					} ) ) }
-					onChange={ onboxBorderTypeChange }
-				/>
+					onChange={ content => setAttributes({ boxBorder: content }) }
+				>
+				</SelectControl>
 
 				<PanelColorSettings 
 					title={ __( 'Border Color', 'themescamp-blocks' ) }
@@ -213,12 +197,12 @@ registerBlockType( 'tc/block-prosandcons', {
 				</PanelColorSettings>
 
 				<PanelColorSettings 
-					title={ __( 'Button Color', 'themescamp-blocks' ) }
+					title={ __( 'Button Text Color', 'themescamp-blocks' ) }
 					initialOpen={ false }
 					colorSettings={ [ {
 						value: buttonTextColor,
 						onChange: onButtonTextColorChange,
-						label: __( 'Button Color', 'themescamp-block' ),
+						label: __( 'Button Text Color', 'themescamp-block' ),
 					} ] }
 				>
 				</PanelColorSettings>
@@ -252,14 +236,13 @@ registerBlockType( 'tc/block-prosandcons', {
 								<div className="wp-pros-cons-img-container bg-green">
 									<i className="far fa-thumbs-up wpc-top-icons"></i>
 								</div>
-							</div>
-							
+							</div>							
 								{/* Pros Title */}
 								<RichText
 									tagName="div"
-									className="section-title"
+									className="section-title pros-title"
 									value={ prosTitle }
-									onChange={ onProsTitleChange }
+									onChange={ value => setAttributes({ prosTitle: value }) }
 									placeholder="Enter title here!"
 								/>
 							
@@ -286,9 +269,9 @@ registerBlockType( 'tc/block-prosandcons', {
 								{/* Cons Title */}
 								<RichText
 									tagName="div"
-									className="section-title"
+									className="section-title cons-title"
 									value={ consTitle }
-									onChange={ onConsTitleChange }
+									onChange={ ( value ) => setAttributes( { consTitle: value } ) }
 									placeholder="Enter title here!"
 								/>
 
@@ -344,15 +327,19 @@ registerBlockType( 'tc/block-prosandcons', {
 		]);
 	},
 
-	save({ attributes, className }) {
+	save({ attributes }) {
 		
 		const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, boxBorder, borderColor } = attributes;
 		
 		return (
-			<div style={{ backgroundColor: boxBackgroundColor, border: boxBorder, borderColor: borderColor }} className="wp-pros-cons">
-				<h3 className="wp-pros-cons-title wpc-title">
-					<RawHTML>{ title }</RawHTML>
-				</h3>
+			<div style={{ borderColor: borderColor, backgroundColor: boxBackgroundColor, border: boxBorder }} className="wp-pros-cons">
+				{/* Pros&Cons Title */}
+				<RichText.Content
+					tagName="h3"
+					className="wp-pros-cons-title wpc-title"
+					value={ title }
+				/>
+
 				<div className="wp-pros-cons-sections">
 					<div className="wp-pros-cons-col">
 						<div className="pros-section section">
@@ -364,7 +351,7 @@ registerBlockType( 'tc/block-prosandcons', {
 								{/* Pros title */}
 								<RichText.Content
 									tagName="div"
-									className="section-title"
+									className="section-title pros-title"
 									value={ prosTitle }
 								/>
 								
@@ -387,14 +374,13 @@ registerBlockType( 'tc/block-prosandcons', {
 								{/* Cons title */}
 								<RichText.Content
 									tagName="div"
-									className="section-title"
+									className="section-title cons-title"
 									value={ consTitle }
 								/>
 
 								{/* Cons goes here */}
 								<RichText.Content
 									tagName="ul"
-									// multiline="li"
 									className="wpc_cons_list"
 									value={ consValues }
 								/>
