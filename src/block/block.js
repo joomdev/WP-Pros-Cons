@@ -88,14 +88,14 @@ registerBlockType( 'tc/block-prosandcons', {
 
 		// Button Rel values
 		const buttonRelOptions = [
-			{ value: 'Dofollow', label: __( 'Dofollow', 'themescamp-blocks' ) },
-			{ value: 'Nofollow', label: __( 'Nofollow', 'themescamp-blocks' ) },
-			{ value: 'Noreferrer', label: __( 'Noreferrer', 'themescamp-blocks' ) },
-			{ value: 'Noopener', label: __( 'Noopener', 'themescamp-blocks' ) },
-			{ value: 'External', label: __( 'External', 'themescamp-blocks' ) },
-			{ value: 'Help', label: __( 'Help', 'themescamp-blocks' ) },
-			{ value: 'Alternate', label: __( 'Alternate', 'themescamp-blocks' ) },
-			{ value: 'Author', label: __( 'Author', 'themescamp-blocks' ) },
+			{ value: 'dofollow', label: __( 'Dofollow', 'themescamp-blocks' ) },
+			{ value: 'nofollow', label: __( 'Nofollow', 'themescamp-blocks' ) },
+			{ value: 'noreferrer', label: __( 'Noreferrer', 'themescamp-blocks' ) },
+			{ value: 'noopener', label: __( 'Noopener', 'themescamp-blocks' ) },
+			{ value: 'external', label: __( 'External', 'themescamp-blocks' ) },
+			{ value: 'help', label: __( 'Help', 'themescamp-blocks' ) },
+			{ value: 'alternate', label: __( 'Alternate', 'themescamp-blocks' ) },
+			{ value: 'author', label: __( 'Author', 'themescamp-blocks' ) },
 		];
 
 		// Box border type
@@ -220,7 +220,7 @@ registerBlockType( 'tc/block-prosandcons', {
 				
 			</InspectorControls>
 			,
-			<div style={{ borderColor: borderColor, backgroundColor: boxBackgroundColor, border: boxBorder }} className="wp-pros-cons">				
+			<div style={{ borderColor: borderColor, backgroundColor: boxBackgroundColor, borderStyle: boxBorder }} className="wp-pros-cons">				
 				<RichText
 					tagName="h3"
 					onChange={ content => setAttributes({ title: content }) }
@@ -329,7 +329,7 @@ registerBlockType( 'tc/block-prosandcons', {
 		const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, boxBorder, borderColor } = attributes;
 		
 		return (
-			<div style={{ borderColor: borderColor, backgroundColor: boxBackgroundColor, border: boxBorder }} className="wp-pros-cons">
+			<div style={{ borderColor: borderColor, backgroundColor: boxBackgroundColor, borderStyle: boxBorder }} className="wp-pros-cons">
 				{/* Pros&Cons Title */}
 				<RichText.Content
 					tagName="h3"

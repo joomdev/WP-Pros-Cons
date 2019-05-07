@@ -59,9 +59,6 @@ function prosandcons_cgb_block_assets() { // phpcs:ignore
 	 * Register the block on server-side to ensure that the block
 	 * scripts and styles for both frontend and backend are
 	 * enqueued when the editor loads.
-	 *
-	 * @link https://wordpress.org/gutenberg/handbook/blocks/writing-your-first-block-type#enqueuing-block-scripts
-	 * @since 1.16.0
 	 */
 	register_block_type(
 		'cgb/block-prosandcons', array(
@@ -90,6 +87,13 @@ function themescamp_custom_category( $categories ) {
 	);
 }
 add_filter( 'block_categories', 'themescamp_custom_category' );
+
+function themescamp_block_css()
+{
+    // Font-awesome
+    wp_enqueue_style('themescamp-blocks-fontawesome', '//use.fontawesome.com/releases/v5.8.1/css/all.css');
+}
+add_action('wp_enqueue_scripts', 'themescamp_block_css');
 
 // Hook: Block assets.
 add_action( 'init', 'prosandcons_cgb_block_assets' );
