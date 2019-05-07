@@ -35,7 +35,7 @@ $circle-size: 100px;
 			background: #fff;
 			margin: 0 15px;
 			border: 1px solid #eee;
-			.wppc-header .pros-content-title {
+			.wppc-header .wppc-content-title {
 				margin: 0;
 				padding: 0;
 			}
@@ -116,13 +116,17 @@ $circle-size: 100px;
 			}
 		}
 	}
-	&.wppc-view1{
+	&.wppc-view1 {
 		.wppc-boxs {
 			margin-top: calc(#{$circle-size} / 2);
-		}
-		.wppc-header {
-			margin-bottom: 20px;
-			margin-top: calc(-#{$circle-size} / 2);
+			.wppc-header {
+				margin-bottom: 20px;
+				margin-top: calc(-#{$circle-size} / 2);
+				text-align: center;
+				.wppc-content-title {
+					margin-top: 10px;
+				}
+			}
 		}
 	}
 	&.wppc-view2 {
