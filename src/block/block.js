@@ -22,26 +22,26 @@ registerBlockType( 'tc/block-prosandcons', {
 	attributes: {
 		title: {
 			source: 'text',
-			selector: 'h3.wpc-title',
+			selector: 'h3.wp-pros-cons-heading',
 		},
 		prosTitle: {
 			source: 'text',
 			default: 'Pros',
-			selector: 'div.pros-title',
+			selector: 'h4.pros-title',
 		},
 		consTitle: {
 			source: 'text',
 			default: 'Cons',
-			selector: 'div.cons-title',
+			selector: 'h4.cons-title',
         },
 		prosValues: {
 			type: 'array',
-			selector: '.wpc_pros_list',
+			selector: '.wp-pros-list',
 			source: 'children',
 		},
 		consValues: {
 			type: 'array',
-			selector: '.wpc_cons_list',
+			selector: '.wp-cons-list',
 			source: 'children',
 		},
 		buttonText: {
@@ -220,82 +220,77 @@ registerBlockType( 'tc/block-prosandcons', {
 				
 			</InspectorControls>
 			,
-			<div style={{ borderColor: borderColor, backgroundColor: boxBackgroundColor, borderStyle: boxBorder }} className="wp-pros-cons">				
+			<div style={{ borderColor: borderColor, backgroundColor: boxBackgroundColor, borderStyle: boxBorder }} className="wp-pros-cons wppc-view1">				
 				<RichText
 					tagName="h3"
 					onChange={ content => setAttributes({ title: content }) }
 					value={ title }
 					placeholder="Title goes here.."
-					className="wp-pros-cons-title"
+					className="wp-pros-cons-heading"
 				/>
 				
-				<div className="wp-pros-cons-sections">
-					<div className="wp-pros-cons-col">
-						<div className="pros-section section">
-							<div className="wp-pros-cons-img-wrap">
-								<div className="wp-pros-cons-img-container bg-green">
-									<i className="far fa-thumbs-up wpc-top-icons"></i>
-								</div>
-							</div>							
-								{/* Pros Title */}
-								<RichText
-									tagName="div"
-									className="section-title pros-title"
-									value={ prosTitle }
-									onChange={ value => setAttributes({ prosTitle: value }) }
-									placeholder="Enter title here!"
-								/>
-							
-								{/* Here comes all the pros */}
-								<RichText
-									tagName="ul"
-									multiline="li"
-									placeholder={ __( 'Pros goes here...', 'themescamp-blocks' ) }
-									keepPlaceholderOnFocus
-									value={ prosValues }
-									formattingControls={ [ 'bold', 'italic', 'strikethrough', 'link' ] }
-									className='wpc_pros_list'
-									onChange={ ( value ) => setAttributes( { prosValues: value } ) }
-								/>							
-						</div>
-					</div>
-					<div className="wp-pros-cons-col">
-						<div className="cons-section section">
-							<div className="wp-pros-cons-img-wrap">
-								<div className="wp-pros-cons-img-container bg-red">
-									<i className="far fa-thumbs-down wpc-top-icons"></i>
-								</div>
+				<div className="wppc-boxs">
+					<div className="wppc-box pros-content">
+						<div className="wppc-header">
+							<div className="wppc-box-symbol">
+								<i className="far fa-thumbs-up"></i>
 							</div>
-								{/* Cons Title */}
-								<RichText
-									tagName="div"
-									className="section-title cons-title"
-									value={ consTitle }
-									onChange={ ( value ) => setAttributes( { consTitle: value } ) }
-									placeholder="Enter title here!"
-								/>
-
-								{/* Here comes all the cons */}
-								<RichText
-									tagName="ul"
-									multiline="li"
-									placeholder={ __( 'Cons goes here...', 'themescamp-blocks' ) }
-									keepPlaceholderOnFocus
-									value={ consValues }
-									formattingControls={ [ 'bold', 'italic', 'strikethrough', 'link' ] }
-									className="wpc_cons_list"
-									onChange={ ( value ) => setAttributes( { consValues: value } ) }
-								/>							
+							{/* Pros Title */}
+							<RichText
+								tagName="h4"
+								className="wppc-content-title pros-title"
+								value={ prosTitle }
+								onChange={ value => setAttributes({ prosTitle: value }) }
+								placeholder="Enter title here!"
+							/>
 						</div>
+					
+						{/* Here comes all the pros */}
+						<RichText
+							tagName="ul"
+							multiline="li"
+							placeholder={ __( 'Pros goes here...', 'themescamp-blocks' ) }
+							keepPlaceholderOnFocus
+							value={ prosValues }
+							className="wp-pros-cons-list wp-pros-list"
+							onChange={ ( value ) => setAttributes( { prosValues: value } ) }
+						/>
+					</div>
+					<div className="wppc-box cons-content">	
+						<div className="wppc-header">
+							<div className="wppc-box-symbol">
+								<i className="far fa-thumbs-down"></i>
+							</div>
+							{/* Cons Title */}
+							<RichText
+								tagName="h4"
+								className="wppc-content-title cons-title"
+								value={ consTitle }
+								onChange={ ( value ) => setAttributes( { consTitle: value } ) }
+								placeholder="Enter title here!"
+							/>
+						</div>
+
+						{/* Here comes all the cons */}
+						<RichText
+							tagName="ul"
+							multiline="li"
+							placeholder={ __( 'Cons goes here...', 'themescamp-blocks' ) }
+							keepPlaceholderOnFocus
+							value={ consValues }
+							formattingControls={ [ 'bold', 'italic', 'strikethrough', 'link' ] }
+							className="wp-pros-cons-list wp-cons-list"
+							onChange={ ( value ) => setAttributes( { consValues: value } ) }
+						/>
 					</div>
 				</div>
-				<div className="wp-pros-cons-btn-wrap">
+				<div className="wppc-btn-wrapper">
 					<RichText
 						tagName="a"
 						placeholder={ __( 'Button text...', 'themescamp-blocks' ) }
 						keepPlaceholderOnFocus
 						value={ buttonText }
-						className='cta-btn'
+						className='wp-btn'
 						onChange={ (value) => setAttributes( { buttonText: value } ) }
 						style={{ backgroundColor: buttonBackgroundColor, color: buttonTextColor }}
 					/>
@@ -329,70 +324,66 @@ registerBlockType( 'tc/block-prosandcons', {
 		const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, boxBorder, borderColor } = attributes;
 		
 		return (
-			<div style={{ borderColor: borderColor, backgroundColor: boxBackgroundColor, borderStyle: boxBorder }} className="wp-pros-cons">
+			<div style={{ borderColor: borderColor, backgroundColor: boxBackgroundColor, borderStyle: boxBorder }} className="wp-pros-cons wppc-view1">
 				{/* Pros&Cons Title */}
 				<RichText.Content
 					tagName="h3"
-					className="wp-pros-cons-title wpc-title"
+					className="wp-pros-cons-heading"
 					value={ title }
 				/>
 
-				<div className="wp-pros-cons-sections">
-					<div className="wp-pros-cons-col">
-						<div className="pros-section section">
-							<div className="wp-pros-cons-img-wrap">
-								<div className="wp-pros-cons-img-container bg-green">
-									<i className="far fa-thumbs-up wpc-top-icons"></i>
-								</div>
+				<div className="wppc-boxs">
+					<div className="wppc-box pros-content">		
+						<div className="wppc-header">
+							<div className="wppc-box-symbol">
+								<i className="far fa-thumbs-up"></i>
 							</div>
-								{/* Pros title */}
-								<RichText.Content
-									tagName="div"
-									className="section-title pros-title"
-									value={ prosTitle }
-								/>
-								
-								{/* Pros goes here */}
-								<RichText.Content
-									tagName="ul"
-									// multiline="li"
-									className="wpc_pros_list"
-									value={ prosValues }
-								/>
+							{/* Pros title */}
+							<RichText.Content
+								tagName="h4"
+								className="wppc-content-title pros-title"
+								value={ prosTitle }
+							/>
 						</div>
-					</div>
-					<div className="wp-pros-cons-col">
-						<div className="cons-section section">
-							<div className="wp-pros-cons-img-wrap">
-								<div className="wp-pros-cons-img-container bg-red">
-									<i className="far fa-thumbs-down wpc-top-icons"></i>
-								</div>
-							</div>
-								{/* Cons title */}
-								<RichText.Content
-									tagName="div"
-									className="section-title cons-title"
-									value={ consTitle }
-								/>
 
-								{/* Cons goes here */}
-								<RichText.Content
-									tagName="ul"
-									className="wpc_cons_list"
-									value={ consValues }
-								/>
+						{/* Pros goes here */}
+						<RichText.Content
+							tagName="ul"
+							className="wp-pros-cons-list wp-pros-list"
+							value={ prosValues }
+						/>						
+					</div>
+					<div className="wppc-box cons-content">	
+						<div className="wppc-header">
+							<div className="wppc-box-symbol">
+								<i className="far fa-thumbs-down"></i>
+							</div>
+							{/* Cons title */}
+							<RichText.Content
+								tagName="h4"
+								className="wppc-content-title cons-title"
+								value={ consTitle }
+							/>
 						</div>
+
+						{/* Cons goes here */}
+						<RichText.Content
+							tagName="ul"
+							className="wp-pros-cons-list wp-cons-list"
+							value={ consValues }
+						/>
+						
 					</div>
 				</div>
 
 				{
 					buttonText && (
-						<div className="wp-pros-cons-btn-wrap">							
+						<div className="wppc-btn-wrapper">							
 							<a
 								href={ buttonUrl }
 								style={{ backgroundColor: buttonBackgroundColor, color: buttonTextColor }}
 								rel={ buttonRel }
-								className="cta-btn"
+								className="wp-btn"
 								target={ buttonTarget ? '_blank' : null }
 							>
 								<RichText.Content

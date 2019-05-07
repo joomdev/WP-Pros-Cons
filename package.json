@@ -10,5 +10,8 @@
   "dependencies": {
     "cgb-scripts": "1.17.0",
     "file-loader": "^3.0.1"
+  },
+  "devDependencies": {
+    "font-awesome": "^4.7.0"
   }
 }

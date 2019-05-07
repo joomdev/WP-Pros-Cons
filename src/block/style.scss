@@ -1,33 +1,169 @@
-/**
- * #.# Styles
- *
- * CSS for both Frontend+Backend.
- */
+@import url('../node_modules/font-awesome/css/font-awesome.min.css');
 
-.wp-block-tc-block-prosandcons  {
-  background: $red;
-  border: 0.2rem solid $black;
-  color: $black;
-  margin: 0 auto;
-  max-width: 740px;
-  padding: 2rem;
-}
+$circle-size: 100px;
 
-i.wpc-top-icons {
-  color: white;
-  font-size: 36px;
-  font-weight: normal;
-  vertical-align: middle;
-  margin-top: 30px;  
-}
+.wp-pros-cons {
+	background: #F9F9F9;
 
-.wp-pros-cons-btn-wrap a.cta-btn {
-  background: black;
-  color: white;
-  cursor: pointer;
-  user-select: none;
-}
+	a {
+		text-decoration: none;
+	}
 
-.components-autocomplete a.cta-btn {
-  background: red;
+	.wp-pros-cons-heading {
+		font-size: 18px;
+		text-align: center;
+	}
+
+	.wppc-boxs {
+		display: flex;
+		flex-flow: row wrap;
+		>div {
+			flex: 1 0 0%;
+		}
+		.wppc-box {
+			background: #fff;
+			margin: 0 15px;
+			border: 1px solid #eee;
+			.wppc-header .wppc-content-title {
+				margin: 0;
+				padding: 0;
+			}
+		}
+	}
+
+	.wppc-box-symbol {
+		width: $circle-size;
+		height: $circle-size;
+		position: relative;
+		border-radius: 100%;
+		margin: 0 auto;
+
+		[class*="fa"] {
+			position: absolute;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			left: 50%;
+			font-size: 26px;
+		}
+	}
+
+	.pros-content {
+		.wppc-box-symbol {
+			color: #fff;
+			background: #27C110;
+		}
+	}
+
+	.cons-content {
+		.wppc-box-symbol {
+			color: #fff;
+			background: #bf000a;
+		}
+	}
+
+	ul.wp-pros-cons-list {
+		list-style: none;
+		margin: 0;
+		padding: 0 20px;
+
+		li {
+			position: relative;
+			display: flex;
+			margin: 10px 0;
+
+			&:before {
+				content: "\f00c";
+				color: #00bf08;
+				font-weight: 900;
+				padding-right: 5px;
+				font-family: 'Font Awesome\ 5 Free';
+			}
+		}
+	}
+
+	.cons-content ul.wp-pros-cons-list li:before {
+		content: "\f00d";
+		color: #bf000a;
+	}
+
+	.wppc-btn-wrapper {
+		text-align: center;
+		margin: 25px 0;
+		.wp-btn {
+			background: #212121;
+			color: #fff;
+			box-shadow: none;
+			padding: 12px 25px;
+			font-size: 24px;
+			line-height: 1.2;
+			font-weight: 300;
+			border-radius: 60px;
+			display: inline-block;
+			&:hover,
+			&:focus {
+				background: darken($color: #212121, $amount: 0.5);
+			}
+		}
+	}
+	&.wppc-view1 {
+		.wppc-boxs {
+			margin-top: calc(#{$circle-size} / 2);
+			.wppc-header {
+				margin-bottom: 20px;
+				margin-top: calc(-#{$circle-size} / 2);
+				text-align: center;
+				.wppc-content-title {
+					margin-top: 10px;
+				}
+			}
+		}
+	}
+	&.wppc-view2 {
+		background: transparent;
+		.wppc-boxs .wppc-box {
+			border-width: 2px;
+			border-style: solid;
+			border-radius: 4px;
+		}
+		.wppc-header {
+			padding: 20px;
+		}
+		.pros-content {
+			border-color: #00bf08;
+			.wppc-header {
+				background: #00bf08;
+				color: #fff;
+			}
+		}
+
+		.cons-content {
+			border-color: #bf000a;
+			.wppc-header {
+				background: #bf000a;
+				color: #fff;
+			}
+		}
+	}
+	&.wppc-view3 {
+		background: transparent;
+		.wppc-boxs .wppc-box {
+			border-radius: 4px;
+		}
+		.wppc-header {
+			padding: 20px;
+		}
+		.pros-content {
+			.wppc-header {
+				background: #00bf08;
+				color: #fff;
+			}
+		}
+
+		.cons-content {
+			.wppc-header {
+				background: #bf000a;
+				color: #fff;
+			}
+		}
+	}
 }
