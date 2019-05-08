@@ -1,5 +1,3 @@
-@import url('../node_modules/font-awesome/css/font-awesome.min.css');
-
 $circle-size: 100px;
 
 .wp-pros-cons {
@@ -57,7 +55,7 @@ $circle-size: 100px;
 	.cons-content {
 		.wppc-box-symbol {
 			color: #fff;
-			background: #bf000a;
+			background: red;
 		}
 	}
 
@@ -83,7 +81,7 @@ $circle-size: 100px;
 
 	.cons-content ul.wp-pros-cons-list li:before {
 		content: "\f00d";
-		color: #bf000a;
+		color: red;
 	}
 
 	.wppc-btn-wrapper {
@@ -137,9 +135,9 @@ $circle-size: 100px;
 		}
 
 		.cons-content {
-			border-color: #bf000a;
+			border-color: red;
 			.wppc-header {
-				background: #bf000a;
+				background: red;
 				color: #fff;
 			}
 		}
@@ -161,7 +159,7 @@ $circle-size: 100px;
 
 		.cons-content {
 			.wppc-header {
-				background: #bf000a;
+				background: red;
 				color: #fff;
 			}
 		}

@@ -81,21 +81,25 @@ registerBlockType( 'tc/block-prosandcons', {
 			type: 'string',
 			default: '#28b914'
 		},
+		pluginStyle: {
+			type: 'string',
+			default: 'wp-pros-cons wppc-view1'
+		}
 	},
 
 	edit({attributes, setAttributes, className, focus}) {
-		const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, boxBorder, borderColor } = attributes;
-
+		const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, boxBorder, borderColor, pluginStyle } = attributes;
+		
 		// Button Rel values
 		const buttonRelOptions = [
-			{ value: 'dofollow', label: __( 'Dofollow', 'themescamp-blocks' ) },
-			{ value: 'nofollow', label: __( 'Nofollow', 'themescamp-blocks' ) },
-			{ value: 'noreferrer', label: __( 'Noreferrer', 'themescamp-blocks' ) },
-			{ value: 'noopener', label: __( 'Noopener', 'themescamp-blocks' ) },
-			{ value: 'external', label: __( 'External', 'themescamp-blocks' ) },
-			{ value: 'help', label: __( 'Help', 'themescamp-blocks' ) },
-			{ value: 'alternate', label: __( 'Alternate', 'themescamp-blocks' ) },
-			{ value: 'author', label: __( 'Author', 'themescamp-blocks' ) },
+			{ value: 'dofollow noopener noreferrer', label: __( 'Dofollow', 'themescamp-blocks' ) },
+			{ value: 'nofollow noopener noreferrer', label: __( 'Nofollow', 'themescamp-blocks' ) },
+			{ value: 'noreferrer noopener noreferrer', label: __( 'Noreferrer', 'themescamp-blocks' ) },
+			{ value: 'noopener noopener noreferrer', label: __( 'Noopener', 'themescamp-blocks' ) },
+			{ value: 'external noopener noreferrer', label: __( 'External', 'themescamp-blocks' ) },
+			{ value: 'help noopener noreferrer', label: __( 'Help', 'themescamp-blocks' ) },
+			{ value: 'alternate noopener noreferrer', label: __( 'Alternate', 'themescamp-blocks' ) },
+			{ value: 'author noopener noreferrer', label: __( 'Author', 'themescamp-blocks' ) },
 		];
 
 		// Box border type
@@ -104,6 +108,13 @@ registerBlockType( 'tc/block-prosandcons', {
 			{ value: 'Dotted', label: __( 'Dotted', 'themescamp-blocks' ) },
 			{ value: 'Solid', label: __( 'Solid', 'themescamp-blocks' ) },
 			{ value: 'Dashed', label: __( 'Dashed', 'themescamp-blocks' ) },
+		];
+
+		// Styling options
+		const stylingOptions = [
+			{ value: 'wp-pros-cons wppc-view1', label: __( 'Style 1', 'themescamp-blocks' ) },
+			{ value: 'wp-pros-cons wppc-view2', label: __( 'Style 2', 'themescamp-blocks' ) },
+			{ value: 'wp-pros-cons wppc-view3', label: __( 'Style 3', 'themescamp-blocks' ) },
 		];
 
 		function onButtonBackgroundChange(changes) {
@@ -174,6 +185,17 @@ registerBlockType( 'tc/block-prosandcons', {
 				>
 				</SelectControl>
 
+				<SelectControl
+					label={ __( 'WP Pros & Cons Style', 'themescamp-blocks' ) }
+					value={ pluginStyle }
+					options={ stylingOptions.map( ({ value, label }) => ( {
+						value: value,
+						label: label,
+					} ) ) }
+					onChange={ content => setAttributes({ pluginStyle: content }) }
+				>
+				</SelectControl>
+
 				<PanelColorSettings 
 					title={ __( 'Border Color', 'themescamp-blocks' ) }
 					initialOpen={ false }
@@ -220,7 +242,7 @@ registerBlockType( 'tc/block-prosandcons', {
 				
 			</InspectorControls>
 			,
-			<div style={{ borderColor: borderColor, backgroundColor: boxBackgroundColor, borderStyle: boxBorder }} className="wp-pros-cons wppc-view1">				
+			<div style={{ borderColor: borderColor, backgroundColor: boxBackgroundColor, borderStyle: boxBorder }} className={pluginStyle}>				
 				<RichText
 					tagName="h3"
 					onChange={ content => setAttributes({ title: content }) }
@@ -232,9 +254,15 @@ registerBlockType( 'tc/block-prosandcons', {
 				<div className="wppc-boxs">
 					<div className="wppc-box pros-content">
 						<div className="wppc-header">
-							<div className="wppc-box-symbol">
-								<i className="far fa-thumbs-up"></i>
-							</div>
+							
+							{pluginStyle === "wp-pros-cons wppc-view1" ?								
+								<div className="wppc-box-symbol">
+									<i className="far fa-thumbs-up"></i>
+								</div>
+								: 
+								null
+							}
+
 							{/* Pros Title */}
 							<RichText
 								tagName="h4"
@@ -258,9 +286,15 @@ registerBlockType( 'tc/block-prosandcons', {
 					</div>
 					<div className="wppc-box cons-content">	
 						<div className="wppc-header">
-							<div className="wppc-box-symbol">
-								<i className="far fa-thumbs-down"></i>
-							</div>
+							
+							{pluginStyle === "wp-pros-cons wppc-view1" ?								
+								<div className="wppc-box-symbol">
+									<i className="far fa-thumbs-down"></i>
+								</div>
+								: 
+								null
+							}
+
 							{/* Cons Title */}
 							<RichText
 								tagName="h4"
@@ -321,10 +355,10 @@ registerBlockType( 'tc/block-prosandcons', {
 
 	save({ attributes }) {
 		
-		const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, boxBorder, borderColor } = attributes;
+		const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, boxBorder, borderColor, pluginStyle } = attributes;
 		
 		return (
-			<div style={{ borderColor: borderColor, backgroundColor: boxBackgroundColor, borderStyle: boxBorder }} className="wp-pros-cons wppc-view1">
+			<div style={{ borderColor: borderColor, backgroundColor: boxBackgroundColor, borderStyle: boxBorder }} className={pluginStyle}>
 				{/* Pros&Cons Title */}
 				<RichText.Content
 					tagName="h3"
@@ -335,9 +369,15 @@ registerBlockType( 'tc/block-prosandcons', {
 				<div className="wppc-boxs">
 					<div className="wppc-box pros-content">		
 						<div className="wppc-header">
-							<div className="wppc-box-symbol">
-								<i className="far fa-thumbs-up"></i>
-							</div>
+							
+							{pluginStyle === "wp-pros-cons wppc-view1" ?								
+								<div className="wppc-box-symbol">
+									<i className="far fa-thumbs-up"></i>
+								</div>							
+								: 
+								null
+							}
+
 							{/* Pros title */}
 							<RichText.Content
 								tagName="h4"
@@ -355,9 +395,15 @@ registerBlockType( 'tc/block-prosandcons', {
 					</div>
 					<div className="wppc-box cons-content">	
 						<div className="wppc-header">
-							<div className="wppc-box-symbol">
-								<i className="far fa-thumbs-down"></i>
-							</div>
+
+							{pluginStyle === "wp-pros-cons wppc-view1" ?								
+								<div className="wppc-box-symbol">
+									<i className="far fa-thumbs-down"></i>
+								</div>							
+								: 
+								null
+							}
+
 							{/* Cons title */}
 							<RichText.Content
 								tagName="h4"

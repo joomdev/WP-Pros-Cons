@@ -4,7 +4,6 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
-@import url("../node_modules/font-awesome/css/font-awesome.min.css");
 .wp-pros-cons {
   background: #F9F9F9; }
   .wp-pros-cons a {
@@ -46,7 +45,7 @@
     background: #27C110; }
   .wp-pros-cons .cons-content .wppc-box-symbol {
     color: #fff;
-    background: #bf000a; }
+    background: red; }
   .wp-pros-cons ul.wp-pros-cons-list {
     list-style: none;
     margin: 0;
@@ -64,7 +63,7 @@
         font-family: 'Font Awesome\ 5 Free'; }
   .wp-pros-cons .cons-content ul.wp-pros-cons-list li:before {
     content: "\f00d";
-    color: #bf000a; }
+    color: red; }
   .wp-pros-cons .wppc-btn-wrapper {
     text-align: center;
     margin: 25px 0; }
@@ -103,9 +102,9 @@
         background: #00bf08;
         color: #fff; }
     .wp-pros-cons.wppc-view2 .cons-content {
-      border-color: #bf000a; }
+      border-color: red; }
       .wp-pros-cons.wppc-view2 .cons-content .wppc-header {
-        background: #bf000a;
+        background: red;
         color: #fff; }
   .wp-pros-cons.wppc-view3 {
     background: transparent; }
@@ -117,5 +116,5 @@
       background: #00bf08;
       color: #fff; }
     .wp-pros-cons.wppc-view3 .cons-content .wppc-header {
-      background: #bf000a;
+      background: red;
       color: #fff; }
