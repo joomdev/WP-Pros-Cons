@@ -144,74 +144,80 @@ registerBlockType( 'tc/block-prosandcons', {
 		return ([
 			<InspectorControls>
 
-				<ToggleControl
-					label={ __( 'Open link in new window', 'themescamp-blocks' ) }
-					checked={ buttonTarget }
-					onChange={ onChangeButtonTarget }
-				>
-				</ToggleControl>
-				
-				<ToggleControl
-					label={ __( 'Activate NoFollow Rel Attribute', 'themescamp-blocks' ) }
-					checked={ buttonRel }
-					onChange={ onChangeButtonRel }
-				>
-				</ToggleControl>
+				<PanelBody title={ __( 'Button Options', 'themescamp-blocks' ) } initialOpen={ false }>
+					<ToggleControl
+						label={ __( 'Open link in new window', 'themescamp-blocks' ) }
+						checked={ buttonTarget }
+						onChange={ onChangeButtonTarget }
+					>
+					</ToggleControl>
 
-				<SelectControl
-					label={ __( 'Box Border Style', 'themescamp-blocks' ) }
-					value={ boxBorder }
-					options={ boxBorderOptions.map( ({ value, label }) => ( {
-						value: value,
-						label: label,
-					} ) ) }
-					onChange={ content => setAttributes({ boxBorder: content }) }
-				>
-				</SelectControl>
+					<ToggleControl
+						label={ __( 'Activate NoFollow Rel Attribute', 'themescamp-blocks' ) }
+						checked={ buttonRel }
+						onChange={ onChangeButtonRel }
+					>
+					</ToggleControl>
 
-				<SelectControl
-					label={ __( 'WP Pros & Cons Style', 'themescamp-blocks' ) }
-					value={ pluginStyle }
-					options={ stylingOptions.map( ({ value, label }) => ( {
-						value: value,
-						label: label,
-					} ) ) }
-					onChange={ content => setAttributes({ pluginStyle: content }) }
-				>
-				</SelectControl>
+					<PanelColorSettings 
+						title={ __( 'Button Background Color', 'themescamp-blocks' ) }
+						initialOpen={ false }
+						colorSettings={ [ {
+							value: buttonBackgroundColor,
+							onChange: onButtonBackgroundChange,
+							label: __( 'Button Background Color', 'themescamp-block' ),
+						} ] }
+					>
+					</PanelColorSettings>
 
-				<PanelColorSettings 
-					title={ __( 'Border Color', 'themescamp-blocks' ) }
-					initialOpen={ false }
-					colorSettings={ [ {
-						value: borderColor,
-						onChange: onBorderColorChange,
-						label: __( 'Border Color', 'themescamp-block' ),
-					} ] }
-				>
-				</PanelColorSettings>
+					<PanelColorSettings 
+						title={ __( 'Button Text Color', 'themescamp-blocks' ) }
+						initialOpen={ false }
+						colorSettings={ [ {
+							value: buttonTextColor,
+							onChange: onButtonTextColorChange,
+							label: __( 'Button Text Color', 'themescamp-block' ),
+						} ] }
+					>
+					</PanelColorSettings>
+				</PanelBody>
 
-				<PanelColorSettings 
-					title={ __( 'Button Background Color', 'themescamp-blocks' ) }
-					initialOpen={ false }
-					colorSettings={ [ {
-						value: buttonBackgroundColor,
-						onChange: onButtonBackgroundChange,
-						label: __( 'Button Background Color', 'themescamp-block' ),
-					} ] }
-				>
-				</PanelColorSettings>
+				<PanelBody title={ __( 'Border Options', 'themescamp-blocks' ) } initialOpen={ false }>
+					<SelectControl
+						label={ __( 'Box Border Style', 'themescamp-blocks' ) }
+						value={ boxBorder }
+						options={ boxBorderOptions.map( ({ value, label }) => ( {
+							value: value,
+							label: label,
+						} ) ) }
+						onChange={ content => setAttributes({ boxBorder: content }) }
+					>
+					</SelectControl>
 
-				<PanelColorSettings 
-					title={ __( 'Button Text Color', 'themescamp-blocks' ) }
-					initialOpen={ false }
-					colorSettings={ [ {
-						value: buttonTextColor,
-						onChange: onButtonTextColorChange,
-						label: __( 'Button Text Color', 'themescamp-block' ),
-					} ] }
-				>
-				</PanelColorSettings>
+					<PanelColorSettings 
+						title={ __( 'Border Color', 'themescamp-blocks' ) }
+						initialOpen={ false }
+						colorSettings={ [ {
+							value: borderColor,
+							onChange: onBorderColorChange,
+							label: __( 'Border Color', 'themescamp-block' ),
+						} ] }
+					>
+					</PanelColorSettings>
+				</PanelBody>
+
+				<PanelBody title={ __( 'Select Views', 'themescamp-blocks' ) } initialOpen={ false }>
+					<SelectControl
+						label={ __( 'WP Pros & Cons Style', 'themescamp-blocks' ) }
+						value={ pluginStyle }
+						options={ stylingOptions.map( ({ value, label }) => ( {
+							value: value,
+							label: label,
+						} ) ) }
+						onChange={ content => setAttributes({ pluginStyle: content }) }
+					>
+					</SelectControl>
+				</PanelBody>				
 
 				<PanelColorSettings 
 					title={ __( 'Background Color', 'themescamp-blocks' ) }
