@@ -217,9 +217,9 @@ registerBlockType( 'tc/block-prosandcons', {
 						onChange={ content => setAttributes({ pluginStyle: content }) }
 					>
 					</SelectControl>
-				</PanelBody>				
+				</PanelBody>
 
-				<PanelColorSettings 
+				<PanelColorSettings
 					title={ __( 'Background Color', 'themescamp-blocks' ) }
 					initialOpen={ false }
 					colorSettings={ [ {
