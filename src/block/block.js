@@ -73,6 +73,10 @@ registerBlockType( 'tc/block-prosandcons', {
 			type: 'boolean',
 			default: false
 		},
+		buttonSize: {
+			type: 'string',
+			default: 'wp-btn-md'
+		},
 		boxBorder: {
 			type: 'string',
 			default: 'None'
@@ -88,7 +92,7 @@ registerBlockType( 'tc/block-prosandcons', {
 	},
 
 	edit({attributes, setAttributes, className, focus}) {
-		const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, boxBorder, borderColor, pluginStyle } = attributes;
+		const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, buttonSize, boxBorder, borderColor, pluginStyle } = attributes;
 
 		// Box border type
 		const boxBorderOptions = [
@@ -103,6 +107,13 @@ registerBlockType( 'tc/block-prosandcons', {
 			{ value: 'wp-pros-cons wppc-view1', label: __( 'Style 1', 'themescamp-blocks' ) },
 			{ value: 'wp-pros-cons wppc-view2', label: __( 'Style 2', 'themescamp-blocks' ) },
 			{ value: 'wp-pros-cons wppc-view3', label: __( 'Style 3', 'themescamp-blocks' ) },
+		];
+
+		// Button size options
+		const buttonSizeOptions = [
+			{ value: 'wp-btn-sm', label: __( 'Small', 'themescamp-blocks' ) },
+			{ value: 'wp-btn-md', label: __( 'Medium', 'themescamp-blocks' ) },
+			{ value: 'wp-btn-lg', label: __( 'Large', 'themescamp-blocks' ) },
 		];
 
 		function onButtonBackgroundChange(changes) {
@@ -180,6 +191,17 @@ registerBlockType( 'tc/block-prosandcons', {
 						} ] }
 					>
 					</PanelColorSettings>
+
+					<SelectControl
+						label={ __( 'Button Size', 'themescamp-blocks' ) }
+						value={ buttonSize }
+						options={ buttonSizeOptions.map( ({ value, label }) => ( {
+							value: value,
+							label: label,
+						} ) ) }
+						onChange={ content => setAttributes({ buttonSize: content }) }
+					>
+					</SelectControl>
 				</PanelBody>
 
 				<PanelBody title={ __( 'Border Options', 'themescamp-blocks' ) } initialOpen={ false }>
@@ -314,7 +336,7 @@ registerBlockType( 'tc/block-prosandcons', {
 						placeholder={ __( 'Button text...', 'themescamp-blocks' ) }
 						keepPlaceholderOnFocus
 						value={ buttonText }
-						className='wp-btn'
+						className={ `wp-btn ${buttonSize}`}
 						onChange={ (value) => setAttributes( { buttonText: value } ) }
 						style={{ backgroundColor: buttonBackgroundColor, color: buttonTextColor }}
 					/>
@@ -345,7 +367,7 @@ registerBlockType( 'tc/block-prosandcons', {
 
 	save({ attributes }) {
 		
-		const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, boxBorder, borderColor, pluginStyle } = attributes;
+		const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, buttonSize, boxBorder, borderColor, pluginStyle } = attributes;
 		
 		return (
 			<div style={{ borderColor: borderColor, backgroundColor: boxBackgroundColor, borderStyle: boxBorder }} className={pluginStyle}>
@@ -419,7 +441,7 @@ registerBlockType( 'tc/block-prosandcons', {
 								href={ buttonUrl ? buttonUrl : '#' }
 								style={{ backgroundColor: buttonBackgroundColor, color: buttonTextColor }}
 								rel={ buttonRel ? 'nofollow noopener noreferrer' : null }
-								className="wp-btn"
+								className={ `wp-btn ${buttonSize}`}
 								target={ buttonTarget ? '_blank' : null }
 							>
 								<RichText.Content

@@ -1,4 +1,16 @@
-$circle-size: 100px;
+$circle-size: 100px !default;
+
+$button-sm-padding: 6px 10px !default;
+$button-sm-font: 14px !default;
+$button-sm-lineheight: 1.5 !default;
+
+$button-md-padding: 10px 20px !default;
+$button-md-font: 16px !default;
+$button-md-lineheight: 1.5 !default;
+
+$button-lg-padding: 10px 24px !default;
+$button-lg-font: 20px !default;
+$button-lg-lineheight: 1.5 !default;
 
 .wp-pros-cons {
 	background: #F9F9F9;
@@ -91,12 +103,26 @@ $circle-size: 100px;
 			background: #212121;
 			color: #fff;
 			box-shadow: none;
-			padding: 12px 25px;
 			font-size: 24px;
 			line-height: 1.2;
 			font-weight: 300;
 			border-radius: 60px;
 			display: inline-block;
+			&.wp-btn-sm{
+				font-size: $button-sm-font;
+				line-height: $button-sm-lineheight;
+				padding: $button-sm-padding;
+			}
+			&.wp-btn-md{
+				font-size: $button-md-font;
+				line-height: $button-md-lineheight;
+				padding: $button-md-padding;
+			}
+			&.wp-btn-lg{
+				font-size: $button-lg-font;
+				line-height: $button-lg-lineheight;
+				padding: $button-lg-padding;
+			}
 			&:hover,
 			&:focus {
 				background: darken($color: #212121, $amount: 0.5);
@@ -166,6 +192,7 @@ $circle-size: 100px;
 	}
 }
 
+// Editor specific styles
 .wp-pros-cons .wppc-btn-wrapper a.wp-btn {
     width: 50%;
 }
