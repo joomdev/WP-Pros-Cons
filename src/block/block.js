@@ -451,7 +451,7 @@ registerBlockType( 'tc/block-prosandcons', {
 							<a
 								href={ buttonUrl ? buttonUrl : '#' }
 								style={{ backgroundColor: buttonBackgroundColor, color: buttonTextColor, borderRadius: buttonShapeSize ? buttonShapeSize + 'px' : undefined }}
-								rel={ buttonRel ? 'nofollow' : 'noopener noreferrer' }
+								rel={ buttonRel ? 'nofollow noopener noreferrer' : 'noopener noreferrer' }
 								className={ `wp-btn ${buttonSize}`}
 								target={ buttonTarget ? '_blank' : null }
 							>
