@@ -70,6 +70,9 @@ function prosandcons_cgb_block_assets() { // phpcs:ignore
 			'editor_style'  => 'prosandcons-cgb-block-editor-css',
 		)
 	);
+
+	// Load the FontAwesome icon library.
+	wp_enqueue_style('themescamp-blocks-fontawesome', '//use.fontawesome.com/releases/v5.8.1/css/all.css');
 }
 
 /**
@@ -88,12 +91,15 @@ function themescamp_custom_category( $categories ) {
 }
 add_filter( 'block_categories', 'themescamp_custom_category' );
 
-function themescamp_block_css()
-{
-    // Font-awesome
-    wp_enqueue_style('themescamp-blocks-fontawesome', '//use.fontawesome.com/releases/v5.8.1/css/all.css');
+/**
+ * Enqueue assets for backend editor
+ */
+function themescamp_blocks_editor_assets() {
+	// FontAwesome library.
+	wp_enqueue_style('themescamp-blocks-fontawesome', '//use.fontawesome.com/releases/v5.8.1/css/all.css');
 }
-add_action('wp_enqueue_scripts', 'themescamp_block_css');
+add_action( 'enqueue_block_editor_assets', 'themescamp_blocks_editor_assets' );
+
 
 // Hook: Block assets.
 add_action( 'init', 'prosandcons_cgb_block_assets' );

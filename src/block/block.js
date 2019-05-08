@@ -1,11 +1,10 @@
-//  Import CSS.
+	//  Import CSS.
 import './style.scss';
 import './editor.scss';
-import { RawHTML } from '@wordpress/element';
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
-const { IconButton, PanelBody, ToggleControl, SelectControl } = wp.components;
+const { IconButton, PanelBody, ToggleControl, SelectControl, RangeControl } = wp.components;
 const { RichText, URLInput, ColorPalette, InspectorControls, PanelColorSettings } = wp.editor;
 
 registerBlockType( 'tc/block-prosandcons', {
@@ -22,26 +21,26 @@ registerBlockType( 'tc/block-prosandcons', {
 	attributes: {
 		title: {
 			source: 'text',
-			selector: 'h3.wpc-title',
+			selector: 'h3.wp-pros-cons-heading',
 		},
 		prosTitle: {
 			source: 'text',
 			default: 'Pros',
-			selector: 'div.pros-title',
+			selector: 'h4.pros-title',
 		},
 		consTitle: {
 			source: 'text',
 			default: 'Cons',
-			selector: 'div.cons-title',
+			selector: 'h4.cons-title',
         },
 		prosValues: {
 			type: 'array',
-			selector: '.wpc_pros_list',
+			selector: '.wp-pros-list',
 			source: 'children',
 		},
 		consValues: {
 			type: 'array',
-			selector: '.wpc_cons_list',
+			selector: '.wp-cons-list',
 			source: 'children',
 		},
 		buttonText: {
@@ -70,8 +69,16 @@ registerBlockType( 'tc/block-prosandcons', {
 			default: false
 		},
 		buttonRel: {
+			type: 'boolean',
+			default: false
+		},
+		buttonSize: {
 			type: 'string',
-			default: 'Dofollow'
+			default: 'wp-btn-md'
+		},
+		buttonShapeSize: {
+			type: 'number',
+			default: 18
 		},
 		boxBorder: {
 			type: 'string',
@@ -81,22 +88,14 @@ registerBlockType( 'tc/block-prosandcons', {
 			type: 'string',
 			default: '#28b914'
 		},
+		pluginStyle: {
+			type: 'string',
+			default: 'wp-pros-cons wppc-view1'
+		}
 	},
 
-	edit({attributes, setAttributes, className, focus}) {
-		const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, boxBorder, borderColor } = attributes;
-
-		// Button Rel values
-		const buttonRelOptions = [
-			{ value: 'dofollow', label: __( 'Dofollow', 'themescamp-blocks' ) },
-			{ value: 'nofollow', label: __( 'Nofollow', 'themescamp-blocks' ) },
-			{ value: 'noreferrer', label: __( 'Noreferrer', 'themescamp-blocks' ) },
-			{ value: 'noopener', label: __( 'Noopener', 'themescamp-blocks' ) },
-			{ value: 'external', label: __( 'External', 'themescamp-blocks' ) },
-			{ value: 'help', label: __( 'Help', 'themescamp-blocks' ) },
-			{ value: 'alternate', label: __( 'Alternate', 'themescamp-blocks' ) },
-			{ value: 'author', label: __( 'Author', 'themescamp-blocks' ) },
-		];
+	edit({attributes, setAttributes}) {
+		const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, buttonSize, buttonShapeSize, boxBorder, borderColor, pluginStyle } = attributes;
 
 		// Box border type
 		const boxBorderOptions = [
@@ -104,6 +103,20 @@ registerBlockType( 'tc/block-prosandcons', {
 			{ value: 'Dotted', label: __( 'Dotted', 'themescamp-blocks' ) },
 			{ value: 'Solid', label: __( 'Solid', 'themescamp-blocks' ) },
 			{ value: 'Dashed', label: __( 'Dashed', 'themescamp-blocks' ) },
+		];
+
+		// Styling options
+		const stylingOptions = [
+			{ value: 'wp-pros-cons wppc-view1', label: __( 'Style 1', 'themescamp-blocks' ) },
+			{ value: 'wp-pros-cons wppc-view2', label: __( 'Style 2', 'themescamp-blocks' ) },
+			{ value: 'wp-pros-cons wppc-view3', label: __( 'Style 3', 'themescamp-blocks' ) },
+		];
+
+		// Button size options
+		const buttonSizeOptions = [
+			{ value: 'wp-btn-sm', label: __( 'Small', 'themescamp-blocks' ) },
+			{ value: 'wp-btn-md', label: __( 'Medium', 'themescamp-blocks' ) },
+			{ value: 'wp-btn-lg', label: __( 'Large', 'themescamp-blocks' ) },
 		];
 
 		function onButtonBackgroundChange(changes) {
@@ -130,9 +143,9 @@ registerBlockType( 'tc/block-prosandcons', {
 			})
 		}
 
-		function onButtonRelChange(changes) {
+		function onChangeButtonRel(changes) {
 			setAttributes({
-				buttonRel: changes
+				buttonRel: ! buttonRel
 			})
 		}
 
@@ -145,69 +158,102 @@ registerBlockType( 'tc/block-prosandcons', {
 		return ([
 			<InspectorControls>
 
-				<ToggleControl
-					label={ __( 'Open link in new window', 'themescamp-blocks' ) }
-					checked={ buttonTarget }
-					onChange={ onChangeButtonTarget }
-				>
-				</ToggleControl>
+				<PanelBody title={ __( 'Button Options', 'themescamp-blocks' ) } initialOpen={ false }>
+					<ToggleControl
+						label={ __( 'Open link in new window', 'themescamp-blocks' ) }
+						checked={ buttonTarget }
+						onChange={ onChangeButtonTarget }
+					>
+					</ToggleControl>
 
-				<SelectControl
-					label={ __( 'Button Rel Attribute', 'themescamp-blocks' ) }
-					value={ buttonRel }
-					options={ buttonRelOptions.map( ({ value, label }) => ( {
-						value: value,
-						label: label,
-					} ) ) }
-					onChange={ onButtonRelChange }
-				>
-				</SelectControl>
+					<ToggleControl
+						label={ __( 'Activate NoFollow Rel Attribute', 'themescamp-blocks' ) }
+						checked={ buttonRel }
+						onChange={ onChangeButtonRel }
+					>
+					</ToggleControl>
 
-				<SelectControl
-					label={ __( 'Box Border Style', 'themescamp-blocks' ) }
-					value={ boxBorder }
-					options={ boxBorderOptions.map( ({ value, label }) => ( {
-						value: value,
-						label: label,
-					} ) ) }
-					onChange={ content => setAttributes({ boxBorder: content }) }
-				>
-				</SelectControl>
+					<PanelColorSettings 
+						title={ __( 'Button Background Color', 'themescamp-blocks' ) }
+						initialOpen={ false }
+						colorSettings={ [ {
+							value: buttonBackgroundColor,
+							onChange: onButtonBackgroundChange,
+							label: __( 'Button Background Color', 'themescamp-block' ),
+						} ] }
+					>
+					</PanelColorSettings>
 
-				<PanelColorSettings 
-					title={ __( 'Border Color', 'themescamp-blocks' ) }
-					initialOpen={ false }
-					colorSettings={ [ {
-						value: borderColor,
-						onChange: onBorderColorChange,
-						label: __( 'Border Color', 'themescamp-block' ),
-					} ] }
-				>
-				</PanelColorSettings>
+					<PanelColorSettings 
+						title={ __( 'Button Text Color', 'themescamp-blocks' ) }
+						initialOpen={ false }
+						colorSettings={ [ {
+							value: buttonTextColor,
+							onChange: onButtonTextColorChange,
+							label: __( 'Button Text Color', 'themescamp-block' ),
+						} ] }
+					>
+					</PanelColorSettings>
 
-				<PanelColorSettings 
-					title={ __( 'Button Background Color', 'themescamp-blocks' ) }
-					initialOpen={ false }
-					colorSettings={ [ {
-						value: buttonBackgroundColor,
-						onChange: onButtonBackgroundChange,
-						label: __( 'Button Background Color', 'themescamp-block' ),
-					} ] }
-				>
-				</PanelColorSettings>
+					<SelectControl
+						label={ __( 'Button Size', 'themescamp-blocks' ) }
+						value={ buttonSize }
+						options={ buttonSizeOptions.map( ({ value, label }) => ( {
+							value: value,
+							label: label,
+						} ) ) }
+						onChange={ value => setAttributes({ buttonSize: value }) }
+					>
+					</SelectControl>
 
-				<PanelColorSettings 
-					title={ __( 'Button Text Color', 'themescamp-blocks' ) }
-					initialOpen={ false }
-					colorSettings={ [ {
-						value: buttonTextColor,
-						onChange: onButtonTextColorChange,
-						label: __( 'Button Text Color', 'themescamp-block' ),
-					} ] }
-				>
-				</PanelColorSettings>
+					<RangeControl
+						label={ __( 'Button Shape', 'themescamp-blocks' ) }
+						value={ buttonShapeSize }
+						onChange={ ( value ) => setAttributes( { buttonShapeSize: value } ) }
+						min={ 1 }
+						max={ 50 }
+						step={ 1 }
+					/>
+				</PanelBody>
 
-				<PanelColorSettings 
+				<PanelBody title={ __( 'Border Options', 'themescamp-blocks' ) } initialOpen={ false }>
+					<SelectControl
+						label={ __( 'Box Border Style', 'themescamp-blocks' ) }
+						value={ boxBorder }
+						options={ boxBorderOptions.map( ({ value, label }) => ( {
+							value: value,
+							label: label,
+						} ) ) }
+						onChange={ content => setAttributes({ boxBorder: content }) }
+					>
+					</SelectControl>
+
+					<PanelColorSettings 
+						title={ __( 'Border Color', 'themescamp-blocks' ) }
+						initialOpen={ false }
+						colorSettings={ [ {
+							value: borderColor,
+							onChange: onBorderColorChange,
+							label: __( 'Border Color', 'themescamp-block' ),
+						} ] }
+					>
+					</PanelColorSettings>
+				</PanelBody>
+
+				<PanelBody title={ __( 'Select Views', 'themescamp-blocks' ) } initialOpen={ false }>
+					<SelectControl
+						label={ __( 'WP Pros & Cons Style', 'themescamp-blocks' ) }
+						value={ pluginStyle }
+						options={ stylingOptions.map( ({ value, label }) => ( {
+							value: value,
+							label: label,
+						} ) ) }
+						onChange={ content => setAttributes({ pluginStyle: content }) }
+					>
+					</SelectControl>
+				</PanelBody>
+
+				<PanelColorSettings
 					title={ __( 'Background Color', 'themescamp-blocks' ) }
 					initialOpen={ false }
 					colorSettings={ [ {
@@ -220,84 +266,91 @@ registerBlockType( 'tc/block-prosandcons', {
 				
 			</InspectorControls>
 			,
-			<div style={{ borderColor: borderColor, backgroundColor: boxBackgroundColor, borderStyle: boxBorder }} className="wp-pros-cons">				
+			<div style={{ borderColor: borderColor, backgroundColor: boxBackgroundColor, borderStyle: boxBorder }} className={pluginStyle}>				
 				<RichText
 					tagName="h3"
 					onChange={ content => setAttributes({ title: content }) }
 					value={ title }
 					placeholder="Title goes here.."
-					className="wp-pros-cons-title"
+					className="wp-pros-cons-heading"
 				/>
 				
-				<div className="wp-pros-cons-sections">
-					<div className="wp-pros-cons-col">
-						<div className="pros-section section">
-							<div className="wp-pros-cons-img-wrap">
-								<div className="wp-pros-cons-img-container bg-green">
-									<i className="far fa-thumbs-up wpc-top-icons"></i>
-								</div>
-							</div>							
-								{/* Pros Title */}
-								<RichText
-									tagName="div"
-									className="section-title pros-title"
-									value={ prosTitle }
-									onChange={ value => setAttributes({ prosTitle: value }) }
-									placeholder="Enter title here!"
-								/>
+				<div className="wppc-boxs">
+					<div className="wppc-box pros-content">
+						<div className="wppc-header">
 							
-								{/* Here comes all the pros */}
-								<RichText
-									tagName="ul"
-									multiline="li"
-									placeholder={ __( 'Pros goes here...', 'themescamp-blocks' ) }
-									keepPlaceholderOnFocus
-									value={ prosValues }
-									formattingControls={ [ 'bold', 'italic', 'strikethrough', 'link' ] }
-									className='wpc_pros_list'
-									onChange={ ( value ) => setAttributes( { prosValues: value } ) }
-								/>							
-						</div>
-					</div>
-					<div className="wp-pros-cons-col">
-						<div className="cons-section section">
-							<div className="wp-pros-cons-img-wrap">
-								<div className="wp-pros-cons-img-container bg-red">
-									<i className="far fa-thumbs-down wpc-top-icons"></i>
+							{pluginStyle === "wp-pros-cons wppc-view1" ?								
+								<div className="wppc-box-symbol">
+									<i className="far fa-thumbs-up"></i>
 								</div>
-							</div>
-								{/* Cons Title */}
-								<RichText
-									tagName="div"
-									className="section-title cons-title"
-									value={ consTitle }
-									onChange={ ( value ) => setAttributes( { consTitle: value } ) }
-									placeholder="Enter title here!"
-								/>
+								: 
+								null
+							}
 
-								{/* Here comes all the cons */}
-								<RichText
-									tagName="ul"
-									multiline="li"
-									placeholder={ __( 'Cons goes here...', 'themescamp-blocks' ) }
-									keepPlaceholderOnFocus
-									value={ consValues }
-									formattingControls={ [ 'bold', 'italic', 'strikethrough', 'link' ] }
-									className="wpc_cons_list"
-									onChange={ ( value ) => setAttributes( { consValues: value } ) }
-								/>							
+							{/* Pros Title */}
+							<RichText
+								tagName="h4"
+								className="wppc-content-title pros-title"
+								value={ prosTitle }
+								onChange={ value => setAttributes({ prosTitle: value }) }
+								placeholder="Enter title here!"
+							/>
 						</div>
+					
+						{/* Here comes all the pros */}
+						<RichText
+							tagName="ul"
+							multiline="li"
+							placeholder={ __( 'Pros goes here...', 'themescamp-blocks' ) }
+							keepPlaceholderOnFocus
+							value={ prosValues }
+							className="wp-pros-cons-list wp-pros-list"
+							onChange={ ( value ) => setAttributes( { prosValues: value } ) }
+						/>
+					</div>
+					<div className="wppc-box cons-content">	
+						<div className="wppc-header">
+							
+							{pluginStyle === "wp-pros-cons wppc-view1" ?								
+								<div className="wppc-box-symbol">
+									<i className="far fa-thumbs-down"></i>
+								</div>
+								: 
+								null
+							}
+
+							{/* Cons Title */}
+							<RichText
+								tagName="h4"
+								className="wppc-content-title cons-title"
+								value={ consTitle }
+								onChange={ ( value ) => setAttributes( { consTitle: value } ) }
+								placeholder="Enter title here!"
+							/>
+						</div>
+
+						{/* Here comes all the cons */}
+						<RichText
+							tagName="ul"
+							multiline="li"
+							placeholder={ __( 'Cons goes here...', 'themescamp-blocks' ) }
+							keepPlaceholderOnFocus
+							value={ consValues }
+							formattingControls={ [ 'bold', 'italic', 'strikethrough', 'link' ] }
+							className="wp-pros-cons-list wp-cons-list"
+							onChange={ ( value ) => setAttributes( { consValues: value } ) }
+						/>
 					</div>
 				</div>
-				<div className="wp-pros-cons-btn-wrap">
+				<div className="wppc-btn-wrapper">
 					<RichText
 						tagName="a"
 						placeholder={ __( 'Button text...', 'themescamp-blocks' ) }
 						keepPlaceholderOnFocus
 						value={ buttonText }
-						className='cta-btn'
+						className={ `wp-btn ${buttonSize}`}
 						onChange={ (value) => setAttributes( { buttonText: value } ) }
-						style={{ backgroundColor: buttonBackgroundColor, color: buttonTextColor }}
+						style={{ backgroundColor: buttonBackgroundColor, color: buttonTextColor, borderRadius: buttonShapeSize ? buttonShapeSize + 'px' : undefined }}
 					/>
 					
 					<form
@@ -310,7 +363,6 @@ registerBlockType( 'tc/block-prosandcons', {
 							value={ buttonUrl }
 							onChange={ ( value ) => setAttributes( { buttonUrl: value } ) }
 						/>
-					
 					
 						<IconButton
 							icon="editor-break"
@@ -326,78 +378,84 @@ registerBlockType( 'tc/block-prosandcons', {
 
 	save({ attributes }) {
 		
-		const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, boxBorder, borderColor } = attributes;
+		const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, buttonSize, buttonShapeSize, boxBorder, borderColor, pluginStyle } = attributes;
 		
 		return (
-			<div style={{ borderColor: borderColor, backgroundColor: boxBackgroundColor, borderStyle: boxBorder }} className="wp-pros-cons">
+			<div style={{ borderColor: borderColor, backgroundColor: boxBackgroundColor, borderStyle: boxBorder }} className={pluginStyle}>
 				{/* Pros&Cons Title */}
 				<RichText.Content
 					tagName="h3"
-					className="wp-pros-cons-title wpc-title"
+					className="wp-pros-cons-heading"
 					value={ title }
 				/>
 
-				<div className="wp-pros-cons-sections">
-					<div className="wp-pros-cons-col">
-						<div className="pros-section section">
-							<div className="wp-pros-cons-img-wrap">
-								<div className="wp-pros-cons-img-container bg-green">
-									<i className="far fa-thumbs-up wpc-top-icons"></i>
-								</div>
-							</div>
-								{/* Pros title */}
-								<RichText.Content
-									tagName="div"
-									className="section-title pros-title"
-									value={ prosTitle }
-								/>
-								
-								{/* Pros goes here */}
-								<RichText.Content
-									tagName="ul"
-									// multiline="li"
-									className="wpc_pros_list"
-									value={ prosValues }
-								/>
-						</div>
-					</div>
-					<div className="wp-pros-cons-col">
-						<div className="cons-section section">
-							<div className="wp-pros-cons-img-wrap">
-								<div className="wp-pros-cons-img-container bg-red">
-									<i className="far fa-thumbs-down wpc-top-icons"></i>
-								</div>
-							</div>
-								{/* Cons title */}
-								<RichText.Content
-									tagName="div"
-									className="section-title cons-title"
-									value={ consTitle }
-								/>
+				<div className="wppc-boxs">
+					<div className="wppc-box pros-content">		
+						<div className="wppc-header">
+							
+							{pluginStyle === "wp-pros-cons wppc-view1" ?								
+								<div className="wppc-box-symbol">
+									<i className="far fa-thumbs-up"></i>
+								</div>							
+								: 
+								null
+							}
 
-								{/* Cons goes here */}
-								<RichText.Content
-									tagName="ul"
-									className="wpc_cons_list"
-									value={ consValues }
-								/>
+							{/* Pros title */}
+							<RichText.Content
+								tagName="h4"
+								className="wppc-content-title pros-title"
+								value={ prosTitle }
+							/>
 						</div>
+
+						{/* Pros goes here */}
+						<RichText.Content
+							tagName="ul"
+							className="wp-pros-cons-list wp-pros-list"
+							value={ prosValues }
+						/>						
+					</div>
+					<div className="wppc-box cons-content">	
+						<div className="wppc-header">
+
+							{pluginStyle === "wp-pros-cons wppc-view1" ?								
+								<div className="wppc-box-symbol">
+									<i className="far fa-thumbs-down"></i>
+								</div>							
+								: 
+								null
+							}
+
+							{/* Cons title */}
+							<RichText.Content
+								tagName="h4"
+								className="wppc-content-title cons-title"
+								value={ consTitle }
+							/>
+						</div>
+
+						{/* Cons goes here */}
+						<RichText.Content
+							tagName="ul"
+							className="wp-pros-cons-list wp-cons-list"
+							value={ consValues }
+						/>
+						
 					</div>
 				</div>
 
 				{
 					buttonText && (
-						<div className="wp-pros-cons-btn-wrap">							
+						<div className="wppc-btn-wrapper">							
 							<a
-								href={ buttonUrl }
-								style={{ backgroundColor: buttonBackgroundColor, color: buttonTextColor }}
-								rel={ buttonRel }
-								className="cta-btn"
+								href={ buttonUrl ? buttonUrl : '#' }
+								style={{ backgroundColor: buttonBackgroundColor, color: buttonTextColor, borderRadius: buttonShapeSize ? buttonShapeSize + 'px' : undefined }}
+								rel={ buttonRel ? 'nofollow noopener noreferrer' : 'noopener noreferrer' }
+								className={ `wp-btn ${buttonSize}`}
 								target={ buttonTarget ? '_blank' : null }
 							>
-								<RichText.Content
-									value={ buttonText }
-								/>
+								<RichText.Content value={ buttonText } />
 							</a>							
 						</div>
 					)

@@ -4,211 +4,139 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
-/**
- * #.# Editor Styles
- *
- * CSS for just Backend enqueued after style.scss
- * which makes it higher in priority.
- */
-.wp-block-tc-block-prosandcons {
-  background: #bada55;
-  border: 0.2rem solid orangered;
-  color: #292929;
-  margin: 0 auto;
-  max-width: 740px;
-  padding: 2rem; }
-
-.wp-pros-cons * {
-  margin: 0;
-  padding: 0; }
-
-.wp-pros-cons *,
-.wp-pros-cons div {
-  -webkit-box-sizing: border-box !important;
-  box-sizing: border-box !important; }
-
 .wp-pros-cons {
-  background: #f9f9f9;
-  margin: 30px auto;
-  border: dashed 2px #28b914;
-  width: 100%;
-  max-width: 963px;
-  padding: 30px 0 30px 0; }
+  background: #F9F9F9; }
+  .wp-pros-cons a {
+    text-decoration: none; }
+  .wp-pros-cons .wp-pros-cons-heading {
+    font-size: 18px;
+    text-align: center; }
+  .wp-pros-cons .wppc-boxs {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-flow: row wrap;
+        flex-flow: row wrap; }
+    .wp-pros-cons .wppc-boxs > div {
+      -ms-flex: 1 0 0%;
+          flex: 1 0 0%; }
+    .wp-pros-cons .wppc-boxs .wppc-box {
+      background: #fff;
+      margin: 0 15px;
+      border: 1px solid #eee; }
+      .wp-pros-cons .wppc-boxs .wppc-box .wppc-header .wppc-content-title {
+        margin: 0;
+        padding: 0; }
+  .wp-pros-cons .wppc-box-symbol {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    border-radius: 100%;
+    margin: 0 auto; }
+    .wp-pros-cons .wppc-box-symbol [class*="fa"] {
+      position: absolute;
+      top: 50%;
+      -webkit-transform: translate(-50%, -50%);
+          -ms-transform: translate(-50%, -50%);
+              transform: translate(-50%, -50%);
+      left: 50%;
+      font-size: 26px; }
+  .wp-pros-cons .pros-content .wppc-box-symbol {
+    color: #fff;
+    background: #27C110; }
+  .wp-pros-cons .cons-content .wppc-box-symbol {
+    color: #fff;
+    background: red; }
+  .wp-pros-cons ul.wp-pros-cons-list {
+    list-style: none;
+    margin: 0;
+    padding: 0 20px; }
+    .wp-pros-cons ul.wp-pros-cons-list li {
+      position: relative;
+      display: -ms-flexbox;
+      display: flex;
+      margin: 10px 0; }
+      .wp-pros-cons ul.wp-pros-cons-list li:before {
+        content: "\f00c";
+        color: #00bf08;
+        font-weight: 900;
+        padding-right: 5px;
+        font-family: 'Font Awesome\ 5 Free'; }
+  .wp-pros-cons .cons-content ul.wp-pros-cons-list li:before {
+    content: "\f00d";
+    color: red; }
+  .wp-pros-cons .wppc-btn-wrapper {
+    text-align: center;
+    margin: 25px 0; }
+    .wp-pros-cons .wppc-btn-wrapper .wp-btn {
+      background: #212121;
+      color: #fff;
+      -webkit-box-shadow: none;
+              box-shadow: none;
+      font-size: 24px;
+      line-height: 1.2;
+      font-weight: 300;
+      display: inline-block; }
+      .wp-pros-cons .wppc-btn-wrapper .wp-btn.wp-btn-sm {
+        font-size: 14px;
+        line-height: 1.5;
+        padding: 6px 10px; }
+      .wp-pros-cons .wppc-btn-wrapper .wp-btn.wp-btn-md {
+        font-size: 16px;
+        line-height: 1.5;
+        padding: 10px 20px; }
+      .wp-pros-cons .wppc-btn-wrapper .wp-btn.wp-btn-lg {
+        font-size: 20px;
+        line-height: 1.5;
+        padding: 10px 24px; }
+      .wp-pros-cons .wppc-btn-wrapper .wp-btn:hover, .wp-pros-cons .wppc-btn-wrapper .wp-btn:focus {
+        background: #202020; }
+  .wp-pros-cons.wppc-view1 .wppc-boxs {
+    margin-top: calc(100px / 2); }
+    .wp-pros-cons.wppc-view1 .wppc-boxs .wppc-header {
+      margin-bottom: 20px;
+      margin-top: calc(-100px / 2);
+      text-align: center; }
+      .wp-pros-cons.wppc-view1 .wppc-boxs .wppc-header .wppc-content-title {
+        margin-top: 10px; }
+  .wp-pros-cons.wppc-view2 {
+    background: transparent; }
+    .wp-pros-cons.wppc-view2 .wppc-boxs .wppc-box {
+      border-width: 2px;
+      border-style: solid;
+      border-radius: 4px; }
+    .wp-pros-cons.wppc-view2 .wppc-header {
+      padding: 20px; }
+    .wp-pros-cons.wppc-view2 .pros-content {
+      border-color: #00bf08; }
+      .wp-pros-cons.wppc-view2 .pros-content .wppc-header {
+        background: #00bf08;
+        color: #fff; }
+    .wp-pros-cons.wppc-view2 .cons-content {
+      border-color: red; }
+      .wp-pros-cons.wppc-view2 .cons-content .wppc-header {
+        background: red;
+        color: #fff; }
+  .wp-pros-cons.wppc-view3 {
+    background: transparent; }
+    .wp-pros-cons.wppc-view3 .wppc-boxs .wppc-box {
+      border-radius: 4px; }
+    .wp-pros-cons.wppc-view3 .wppc-header {
+      padding: 20px; }
+    .wp-pros-cons.wppc-view3 .pros-content .wppc-header {
+      background: #00bf08;
+      color: #fff; }
+    .wp-pros-cons.wppc-view3 .cons-content .wppc-header {
+      background: red;
+      color: #fff; }
 
-.wp-pros-cons .wp-pros-cons-title {
-  text-align: center;
-  color: #1a1a1a;
-  font-size: 28px;
-  font-weight: normal;
-  margin: 0 0 20px; }
-
-.wp-pros-cons .wp-pros-cons-sections {
-  display: block;
-  margin: 40px 0 0 0;
-  padding-top: 58px;
-  min-width: 100%; }
-
-.wp-pros-cons-img-container {
-  display: inline-block;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  text-align: center;
-  vertical-align: middle;
-  margin: 0 auto;
-  position: relative; }
-
-.wp-pros-cons-col {
-  width: 50%;
-  display: block;
-  padding: 0 15px;
-  float: left; }
-
-.wp-pros-cons .section {
-  width: 100%;
-  background: #fff;
-  position: relative;
-  text-align: left;
-  padding: 0 15px;
-  padding-bottom: 45px;
-  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  display: block;
-  float: left; }
-
-.wp-pros-cons-img-wrap {
-  text-align: center;
-  margin-top: -58px;
-  margin-bottom: 25px; }
-
-.wp-pros-cons-img-container img {
-  width: 46px !important;
-  vertical-align: middle;
-  display: inline-block;
-  margin: auto;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-      transform: translate(-50%, -50%); }
-
-.wp-pros-cons .bg-green {
-  background-color: #28b914; }
-
-.wp-pros-cons .bg-red {
-  background-color: #ff0b0b; }
-
-.wp-pros-cons .section-title {
-  font-size: 28px;
-  color: #252525;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 25px;
-  margin-top: 10px;
-  padding: 0; }
-
-.wp-pros-cons ul {
-  margin: 0;
-  padding: 0;
-  list-style: outside none none !important; }
-
-.wp-pros-cons .wp-pros-cons-col .wpc_cons_list,
-.wp-pros-cons .wp-pros-cons-col .wpc_pros_list {
-  margin: 0 !important;
-  padding: 0 0 0 10px !important;
-  list-style-type: none !important; }
-
-.wp-pros-cons ul li {
-  font-size: 18px;
-  color: #3b3b3b;
-  margin: 12px 0;
-  white-space: normal;
-  word-break: break-word; }
-
-.wp-pros-cons .wp-pros-cons-col .wpc_cons_list li,
-.wp-pros-cons .wp-pros-cons-col .wpc_pros_list li {
-  margin: 12px 0 !important;
-  padding-left: 30px !important; }
-
-.wp-pros-cons ul li:before,
-.wp-pros-cons ul li:after {
-  display: none !important; }
-
-.wp-pros-cons .pros-section ul li {
-  padding-left: 30px;
-  background-size: 18px 17px;
-  list-style: outside none none !important; }
-
-.wp-pros-cons .cons-section ul li {
-  padding-left: 30px;
-  background-size: 18px 17px;
-  list-style: outside none none !important; }
-
-.wp-pros-cons .wp-pros-cons-btn-wrap {
-  text-align: center;
-  margin-top: 30px;
-  color: white; }
-
-.wp-pros-cons a.cta-btn {
-  text-decoration: none;
-  font-size: 24px;
-  line-height: 1.2;
-  font-weight: 300;
-  color: #fff;
-  background: #212121;
-  padding: 12px 25px;
-  border-radius: 60px;
-  display: inline-block;
+.wp-pros-cons .wppc-btn-wrapper a.wp-btn {
   width: 50%; }
 
-.wpc-top-icons {
-  color: white;
-  font-size: 36px;
-  font-weight: normal;
-  vertical-align: middle;
-  margin-top: 30px; }
+.wp-pros-cons .wppc-btn-wrapper .components-autocomplete {
+  margin-bottom: 10px; }
 
-@media (min-width: 768px) {
-  .wp-pros-cons .wp-pros-cons-sections {
-    display: -ms-flexbox;
-    display: flex; }
-  .wp-pros-cons-col {
-    display: -ms-flexbox;
-    display: flex; } }
+.wp-pros-cons .editor-url-input {
+  display: inline-block; }
 
-@media (max-width: 1024px) {
-  .wp-pros-cons {
-    padding: 20px 20px; } }
-
-@media (max-width: 767px) {
-  .wp-pros-cons .wp-pros-cons-sections:before,
-  .wp-pros-cons .wp-pros-cons-sections:after {
-    content: "";
-    display: block;
-    float: none;
-    clear: both;
-    width: 100%; }
-  .wp-pros-cons {
-    width: 100%;
-    padding: 20px 15px; }
-  .wp-pros-cons-col {
-    width: 100%;
-    padding: 0; }
-  .wp-pros-cons-col:first-child {
-    margin-bottom: 90px; }
-  .wp-pros-cons .section-title {
-    margin-bottom: 20px; }
-  .wp-pros-cons .wp-pros-cons-btn-wrap {
-    text-align: center;
-    margin-top: 25px; }
-  .wp-pros-cons a.cta-btn {
-    font-size: 24px;
-    padding: 15px 35px;
-    line-height: 1; } }
-
-.btn-onclick-url {
-  margin: 10px; }
-
-.wp-pros-cons-btn-wrap a.cta-btn {
-  cursor: text; }
+.wp-pros-cons .components-button {
+  vertical-align: middle; }
