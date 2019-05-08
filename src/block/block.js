@@ -1,11 +1,10 @@
-//  Import CSS.
+	//  Import CSS.
 import './style.scss';
 import './editor.scss';
-import { RawHTML } from '@wordpress/element';
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
-const { IconButton, PanelBody, ToggleControl, SelectControl } = wp.components;
+const { IconButton, PanelBody, ToggleControl, SelectControl, RangeControl } = wp.components;
 const { RichText, URLInput, ColorPalette, InspectorControls, PanelColorSettings } = wp.editor;
 
 registerBlockType( 'tc/block-prosandcons', {
@@ -77,6 +76,10 @@ registerBlockType( 'tc/block-prosandcons', {
 			type: 'string',
 			default: 'wp-btn-md'
 		},
+		buttonShapeSize: {
+			type: 'number',
+			default: 18
+		},
 		boxBorder: {
 			type: 'string',
 			default: 'None'
@@ -91,8 +94,8 @@ registerBlockType( 'tc/block-prosandcons', {
 		}
 	},
 
-	edit({attributes, setAttributes, className, focus}) {
-		const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, buttonSize, boxBorder, borderColor, pluginStyle } = attributes;
+	edit({attributes, setAttributes}) {
+		const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, buttonSize, buttonShapeSize, boxBorder, borderColor, pluginStyle } = attributes;
 
 		// Box border type
 		const boxBorderOptions = [
@@ -199,9 +202,18 @@ registerBlockType( 'tc/block-prosandcons', {
 							value: value,
 							label: label,
 						} ) ) }
-						onChange={ content => setAttributes({ buttonSize: content }) }
+						onChange={ value => setAttributes({ buttonSize: value }) }
 					>
 					</SelectControl>
+
+					<RangeControl
+						label={ __( 'Button Shape', 'themescamp-blocks' ) }
+						value={ buttonShapeSize }
+						onChange={ ( value ) => setAttributes( { buttonShapeSize: value } ) }
+						min={ 1 }
+						max={ 50 }
+						step={ 1 }
+					/>
 				</PanelBody>
 
 				<PanelBody title={ __( 'Border Options', 'themescamp-blocks' ) } initialOpen={ false }>
@@ -338,7 +350,7 @@ registerBlockType( 'tc/block-prosandcons', {
 						value={ buttonText }
 						className={ `wp-btn ${buttonSize}`}
 						onChange={ (value) => setAttributes( { buttonText: value } ) }
-						style={{ backgroundColor: buttonBackgroundColor, color: buttonTextColor }}
+						style={{ backgroundColor: buttonBackgroundColor, color: buttonTextColor, borderRadius: buttonShapeSize ? buttonShapeSize + 'px' : undefined }}
 					/>
 					
 					<form
@@ -351,7 +363,6 @@ registerBlockType( 'tc/block-prosandcons', {
 							value={ buttonUrl }
 							onChange={ ( value ) => setAttributes( { buttonUrl: value } ) }
 						/>
-					
 					
 						<IconButton
 							icon="editor-break"
@@ -367,7 +378,7 @@ registerBlockType( 'tc/block-prosandcons', {
 
 	save({ attributes }) {
 		
-		const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, buttonSize, boxBorder, borderColor, pluginStyle } = attributes;
+		const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, buttonSize, buttonShapeSize, boxBorder, borderColor, pluginStyle } = attributes;
 		
 		return (
 			<div style={{ borderColor: borderColor, backgroundColor: boxBackgroundColor, borderStyle: boxBorder }} className={pluginStyle}>
@@ -439,14 +450,12 @@ registerBlockType( 'tc/block-prosandcons', {
 						<div className="wppc-btn-wrapper">							
 							<a
 								href={ buttonUrl ? buttonUrl : '#' }
-								style={{ backgroundColor: buttonBackgroundColor, color: buttonTextColor }}
-								rel={ buttonRel ? 'nofollow noopener noreferrer' : null }
+								style={{ backgroundColor: buttonBackgroundColor, color: buttonTextColor, borderRadius: buttonShapeSize ? buttonShapeSize + 'px' : undefined }}
+								rel={ buttonRel ? 'nofollow' : 'noopener noreferrer' }
 								className={ `wp-btn ${buttonSize}`}
 								target={ buttonTarget ? '_blank' : null }
 							>
-								<RichText.Content
-									value={ buttonText }
-								/>
+								<RichText.Content value={ buttonText } />
 							</a>							
 						</div>
 					)
