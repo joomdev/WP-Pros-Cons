@@ -39,7 +39,8 @@
           -ms-transform: translate(-50%, -50%);
               transform: translate(-50%, -50%);
       left: 50%;
-      font-size: 26px; }
+      font-size: 26px;
+      font-style: normal; }
   .wp-pros-cons .pros-content .wppc-box-symbol {
     color: #fff;
     background: #27C110; }
@@ -130,7 +131,7 @@
       color: #fff; }
 
 .wp-pros-cons .wppc-btn-wrapper a.wp-btn {
-  width: 50%; }
+  width: 15%; }
 
 .wp-pros-cons .wppc-btn-wrapper .components-autocomplete {
   margin-bottom: 10px; }
