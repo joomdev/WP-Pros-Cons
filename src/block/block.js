@@ -70,8 +70,8 @@ registerBlockType( 'tc/block-prosandcons', {
 			default: false
 		},
 		buttonRel: {
-			type: 'string',
-			default: 'Dofollow'
+			type: 'boolean',
+			default: false
 		},
 		boxBorder: {
 			type: 'string',
@@ -89,18 +89,6 @@ registerBlockType( 'tc/block-prosandcons', {
 
 	edit({attributes, setAttributes, className, focus}) {
 		const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, boxBorder, borderColor, pluginStyle } = attributes;
-		
-		// Button Rel values
-		const buttonRelOptions = [
-			{ value: 'dofollow noopener noreferrer', label: __( 'Dofollow', 'themescamp-blocks' ) },
-			{ value: 'nofollow noopener noreferrer', label: __( 'Nofollow', 'themescamp-blocks' ) },
-			{ value: 'noreferrer noopener noreferrer', label: __( 'Noreferrer', 'themescamp-blocks' ) },
-			{ value: 'noopener noopener noreferrer', label: __( 'Noopener', 'themescamp-blocks' ) },
-			{ value: 'external noopener noreferrer', label: __( 'External', 'themescamp-blocks' ) },
-			{ value: 'help noopener noreferrer', label: __( 'Help', 'themescamp-blocks' ) },
-			{ value: 'alternate noopener noreferrer', label: __( 'Alternate', 'themescamp-blocks' ) },
-			{ value: 'author noopener noreferrer', label: __( 'Author', 'themescamp-blocks' ) },
-		];
 
 		// Box border type
 		const boxBorderOptions = [
@@ -141,9 +129,9 @@ registerBlockType( 'tc/block-prosandcons', {
 			})
 		}
 
-		function onButtonRelChange(changes) {
+		function onChangeButtonRel(changes) {
 			setAttributes({
-				buttonRel: changes
+				buttonRel: ! buttonRel
 			})
 		}
 
@@ -162,17 +150,13 @@ registerBlockType( 'tc/block-prosandcons', {
 					onChange={ onChangeButtonTarget }
 				>
 				</ToggleControl>
-
-				<SelectControl
-					label={ __( 'Button Rel Attribute', 'themescamp-blocks' ) }
-					value={ buttonRel }
-					options={ buttonRelOptions.map( ({ value, label }) => ( {
-						value: value,
-						label: label,
-					} ) ) }
-					onChange={ onButtonRelChange }
+				
+				<ToggleControl
+					label={ __( 'Activate NoFollow Rel Attribute', 'themescamp-blocks' ) }
+					checked={ buttonRel }
+					onChange={ onChangeButtonRel }
 				>
-				</SelectControl>
+				</ToggleControl>
 
 				<SelectControl
 					label={ __( 'Box Border Style', 'themescamp-blocks' ) }
@@ -426,9 +410,9 @@ registerBlockType( 'tc/block-prosandcons', {
 					buttonText && (
 						<div className="wppc-btn-wrapper">							
 							<a
-								href={ buttonUrl }
+								href={ buttonUrl ? buttonUrl : '#' }
 								style={{ backgroundColor: buttonBackgroundColor, color: buttonTextColor }}
-								rel={ buttonRel }
+								rel={ buttonRel ? 'nofollow noopener noreferrer' : null }
 								className="wp-btn"
 								target={ buttonTarget ? '_blank' : null }
 							>
