@@ -72,33 +72,33 @@ function prosandcons_cgb_block_assets() { // phpcs:ignore
 	);
 
 	// Load the FontAwesome icon library.
-	wp_enqueue_style('themescamp-blocks-fontawesome', '//use.fontawesome.com/releases/v5.8.1/css/all.css');
+	wp_enqueue_style('mightythemes-blocks-fontawesome', '//use.fontawesome.com/releases/v5.8.1/css/all.css');
 }
 
 /**
- * Creates new `ThemesCamp Blocks` block category.
+ * Creates new `MightyThemes Blocks` block category.
  */
-function themescamp_custom_category( $categories ) {
+function mightythemes_custom_category( $categories ) {
 	return array_merge(
 		$categories,
 		array(
 			array(
-				'slug'  => 'themescamp-blocks',
-				'title' => __( 'Themescamp Blocks', 'themescamp-blocks' ),
+				'slug'  => 'mightythemes-blocks',
+				'title' => __( 'MightyThemes Blocks', 'mightythemes-blocks' ),
 			),
 		)
 	);
 }
-add_filter( 'block_categories', 'themescamp_custom_category' );
+add_filter( 'block_categories', 'mightythemes_custom_category' );
 
 /**
  * Enqueue assets for backend editor
  */
-function themescamp_blocks_editor_assets() {
+function mightythemes_blocks_editor_assets() {
 	// FontAwesome library.
-	wp_enqueue_style('themescamp-blocks-fontawesome', '//use.fontawesome.com/releases/v5.8.1/css/all.css');
+	wp_enqueue_style('mightythemes-blocks-fontawesome', '//use.fontawesome.com/releases/v5.8.1/css/all.css');
 }
-add_action( 'enqueue_block_editor_assets', 'themescamp_blocks_editor_assets' );
+add_action( 'enqueue_block_editor_assets', 'mightythemes_blocks_editor_assets' );
 
 
 // Hook: Block assets.

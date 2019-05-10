@@ -8,13 +8,13 @@ const { IconButton, PanelBody, ToggleControl, SelectControl, RangeControl } = wp
 const { RichText, URLInput, ColorPalette, InspectorControls, PanelColorSettings } = wp.editor;
 
 registerBlockType( 'tc/block-prosandcons', {
-	title: __( 'Pros And Cons', 'themescamp-blocks' ),
-	description: __( 'Pros & Cons for your website.', 'themescamp-blocks' ),
+	title: __( 'Pros And Cons', 'mightythemes-blocks' ),
+	description: __( 'Pros & Cons for your website.', 'mightythemes-blocks' ),
 	icon: 'thumbs-up',
-	category: 'themescamp-blocks',
+	category: 'mightythemes-blocks',
 	keywords: [
 		__( 'Pros And Cons' ),
-		__( 'ThemesCamp' ),
+		__( 'MightyThemes' ),
 		__( 'Pros & Cons' ),
 	],
 
@@ -99,24 +99,24 @@ registerBlockType( 'tc/block-prosandcons', {
 
 		// Box border type
 		const boxBorderOptions = [
-			{ value: 'None', label: __( 'None', 'themescamp-blocks' ) },
-			{ value: 'Dotted', label: __( 'Dotted', 'themescamp-blocks' ) },
-			{ value: 'Solid', label: __( 'Solid', 'themescamp-blocks' ) },
-			{ value: 'Dashed', label: __( 'Dashed', 'themescamp-blocks' ) },
+			{ value: 'None', label: __( 'None', 'mightythemes-blocks' ) },
+			{ value: 'Dotted', label: __( 'Dotted', 'mightythemes-blocks' ) },
+			{ value: 'Solid', label: __( 'Solid', 'mightythemes-blocks' ) },
+			{ value: 'Dashed', label: __( 'Dashed', 'mightythemes-blocks' ) },
 		];
 
 		// Styling options
 		const stylingOptions = [
-			{ value: 'wp-pros-cons wppc-view1', label: __( 'Style 1', 'themescamp-blocks' ) },
-			{ value: 'wp-pros-cons wppc-view2', label: __( 'Style 2', 'themescamp-blocks' ) },
-			{ value: 'wp-pros-cons wppc-view3', label: __( 'Style 3', 'themescamp-blocks' ) },
+			{ value: 'wp-pros-cons wppc-view1', label: __( 'Style 1', 'mightythemes-blocks' ) },
+			{ value: 'wp-pros-cons wppc-view2', label: __( 'Style 2', 'mightythemes-blocks' ) },
+			{ value: 'wp-pros-cons wppc-view3', label: __( 'Style 3', 'mightythemes-blocks' ) },
 		];
 
 		// Button size options
 		const buttonSizeOptions = [
-			{ value: 'wp-btn-sm', label: __( 'Small', 'themescamp-blocks' ) },
-			{ value: 'wp-btn-md', label: __( 'Medium', 'themescamp-blocks' ) },
-			{ value: 'wp-btn-lg', label: __( 'Large', 'themescamp-blocks' ) },
+			{ value: 'wp-btn-sm', label: __( 'Small', 'mightythemes-blocks' ) },
+			{ value: 'wp-btn-md', label: __( 'Medium', 'mightythemes-blocks' ) },
+			{ value: 'wp-btn-lg', label: __( 'Large', 'mightythemes-blocks' ) },
 		];
 
 		function onButtonBackgroundChange(changes) {
@@ -158,45 +158,45 @@ registerBlockType( 'tc/block-prosandcons', {
 		return ([
 			<InspectorControls>
 
-				<PanelBody title={ __( 'Button Options', 'themescamp-blocks' ) } initialOpen={ false }>
+				<PanelBody title={ __( 'Button Options', 'mightythemes-blocks' ) } initialOpen={ false }>
 					<ToggleControl
-						label={ __( 'Open link in new window', 'themescamp-blocks' ) }
+						label={ __( 'Open link in new window', 'mightythemes-blocks' ) }
 						checked={ buttonTarget }
 						onChange={ onChangeButtonTarget }
 					>
 					</ToggleControl>
 
 					<ToggleControl
-						label={ __( 'Activate NoFollow Rel Attribute', 'themescamp-blocks' ) }
+						label={ __( 'Activate NoFollow Rel Attribute', 'mightythemes-blocks' ) }
 						checked={ buttonRel }
 						onChange={ onChangeButtonRel }
 					>
 					</ToggleControl>
 
 					<PanelColorSettings 
-						title={ __( 'Button Background Color', 'themescamp-blocks' ) }
+						title={ __( 'Button Background Color', 'mightythemes-blocks' ) }
 						initialOpen={ false }
 						colorSettings={ [ {
 							value: buttonBackgroundColor,
 							onChange: onButtonBackgroundChange,
-							label: __( 'Button Background Color', 'themescamp-block' ),
+							label: __( 'Button Background Color', 'mightythemes-block' ),
 						} ] }
 					>
 					</PanelColorSettings>
 
 					<PanelColorSettings 
-						title={ __( 'Button Text Color', 'themescamp-blocks' ) }
+						title={ __( 'Button Text Color', 'mightythemes-blocks' ) }
 						initialOpen={ false }
 						colorSettings={ [ {
 							value: buttonTextColor,
 							onChange: onButtonTextColorChange,
-							label: __( 'Button Text Color', 'themescamp-block' ),
+							label: __( 'Button Text Color', 'mightythemes-block' ),
 						} ] }
 					>
 					</PanelColorSettings>
 
 					<SelectControl
-						label={ __( 'Button Size', 'themescamp-blocks' ) }
+						label={ __( 'Button Size', 'mightythemes-blocks' ) }
 						value={ buttonSize }
 						options={ buttonSizeOptions.map( ({ value, label }) => ( {
 							value: value,
@@ -207,7 +207,7 @@ registerBlockType( 'tc/block-prosandcons', {
 					</SelectControl>
 
 					<RangeControl
-						label={ __( 'Button Shape', 'themescamp-blocks' ) }
+						label={ __( 'Button Shape', 'mightythemes-blocks' ) }
 						value={ buttonShapeSize }
 						onChange={ ( value ) => setAttributes( { buttonShapeSize: value } ) }
 						min={ 1 }
@@ -216,9 +216,9 @@ registerBlockType( 'tc/block-prosandcons', {
 					/>
 				</PanelBody>
 
-				<PanelBody title={ __( 'Border Options', 'themescamp-blocks' ) } initialOpen={ false }>
+				<PanelBody title={ __( 'Border Options', 'mightythemes-blocks' ) } initialOpen={ false }>
 					<SelectControl
-						label={ __( 'Box Border Style', 'themescamp-blocks' ) }
+						label={ __( 'Box Border Style', 'mightythemes-blocks' ) }
 						value={ boxBorder }
 						options={ boxBorderOptions.map( ({ value, label }) => ( {
 							value: value,
@@ -229,20 +229,20 @@ registerBlockType( 'tc/block-prosandcons', {
 					</SelectControl>
 
 					<PanelColorSettings 
-						title={ __( 'Border Color', 'themescamp-blocks' ) }
+						title={ __( 'Border Color', 'mightythemes-blocks' ) }
 						initialOpen={ false }
 						colorSettings={ [ {
 							value: borderColor,
 							onChange: onBorderColorChange,
-							label: __( 'Border Color', 'themescamp-block' ),
+							label: __( 'Border Color', 'mightythemes-block' ),
 						} ] }
 					>
 					</PanelColorSettings>
 				</PanelBody>
 
-				<PanelBody title={ __( 'Select Views', 'themescamp-blocks' ) } initialOpen={ false }>
+				<PanelBody title={ __( 'Select Views', 'mightythemes-blocks' ) } initialOpen={ false }>
 					<SelectControl
-						label={ __( 'WP Pros & Cons Style', 'themescamp-blocks' ) }
+						label={ __( 'WP Pros & Cons Style', 'mightythemes-blocks' ) }
 						value={ pluginStyle }
 						options={ stylingOptions.map( ({ value, label }) => ( {
 							value: value,
@@ -254,12 +254,12 @@ registerBlockType( 'tc/block-prosandcons', {
 				</PanelBody>
 
 				<PanelColorSettings
-					title={ __( 'Background Color', 'themescamp-blocks' ) }
+					title={ __( 'Background Color', 'mightythemes-blocks' ) }
 					initialOpen={ false }
 					colorSettings={ [ {
 						value: boxBackgroundColor,
 						onChange: onBackgroundColorChange,
-						label: __( 'Background Color', 'themescamp-block' ),
+						label: __( 'Background Color', 'mightythemes-block' ),
 					} ] }
 				>
 				</PanelColorSettings>
@@ -301,7 +301,7 @@ registerBlockType( 'tc/block-prosandcons', {
 						<RichText
 							tagName="ul"
 							multiline="li"
-							placeholder={ __( 'Pros goes here...', 'themescamp-blocks' ) }
+							placeholder={ __( 'Pros goes here...', 'mightythemes-blocks' ) }
 							keepPlaceholderOnFocus
 							value={ prosValues }
 							className="wp-pros-cons-list wp-pros-list"
@@ -333,7 +333,7 @@ registerBlockType( 'tc/block-prosandcons', {
 						<RichText
 							tagName="ul"
 							multiline="li"
-							placeholder={ __( 'Cons goes here...', 'themescamp-blocks' ) }
+							placeholder={ __( 'Cons goes here...', 'mightythemes-blocks' ) }
 							keepPlaceholderOnFocus
 							value={ consValues }
 							formattingControls={ [ 'bold', 'italic', 'strikethrough', 'link' ] }
@@ -345,7 +345,7 @@ registerBlockType( 'tc/block-prosandcons', {
 				<div className="wppc-btn-wrapper">
 					<RichText
 						tagName="a"
-						placeholder={ __( 'Button text...', 'themescamp-blocks' ) }
+						placeholder={ __( 'Button text...', 'mightythemes-blocks' ) }
 						keepPlaceholderOnFocus
 						value={ buttonText }
 						className={ `wp-btn ${buttonSize}`}
@@ -367,7 +367,7 @@ registerBlockType( 'tc/block-prosandcons', {
 						<IconButton
 							icon="editor-break"
 							style={{ display:'inline' }}
-							label={ __( 'Apply', 'themescamp-blocks' ) }
+							label={ __( 'Apply', 'mightythemes-blocks' ) }
 							type="submit"
 						/>						
 					</form>					
