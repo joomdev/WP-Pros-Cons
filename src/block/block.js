@@ -21,7 +21,7 @@ registerBlockType( 'tc/block-prosandcons', {
 	attributes: {
 		title: {
 			source: 'text',
-			selector: 'h3.wp-pros-cons-heading',
+			selector: '.wp-pros-cons-heading',
 			default: 'Your Title here..'
 		},
 		prosTitle: {
@@ -131,12 +131,12 @@ registerBlockType( 'tc/block-prosandcons', {
 
 		// Title heading tag
 		const titleHeadingTags = [
-			{ value: 'H1', label: __( 'H1', 'mightythemes-blocks' ) },
-			{ value: 'H2', label: __( 'H2', 'mightythemes-blocks' ) },
-			{ value: 'H3', label: __( 'H3', 'mightythemes-blocks' ) },
-			{ value: 'H4', label: __( 'H4', 'mightythemes-blocks' ) },
-			{ value: 'H5', label: __( 'H5', 'mightythemes-blocks' ) },
-			{ value: 'H6', label: __( 'H6', 'mightythemes-blocks' ) },
+			{ value: 'h1', label: __( 'H1', 'mightythemes-blocks' ) },
+			{ value: 'h2', label: __( 'H2', 'mightythemes-blocks' ) },
+			{ value: 'h3', label: __( 'H3', 'mightythemes-blocks' ) },
+			{ value: 'h4', label: __( 'H4', 'mightythemes-blocks' ) },
+			{ value: 'h5', label: __( 'H5', 'mightythemes-blocks' ) },
+			{ value: 'h6', label: __( 'H6', 'mightythemes-blocks' ) },
 		];
 
 		// Button size options
@@ -341,7 +341,7 @@ registerBlockType( 'tc/block-prosandcons', {
 			,
 			<div style={{ borderColor: borderColor, backgroundColor: boxBackgroundColor, borderStyle: boxBorder, borderWidth: borderWidth }} className={pluginStyle}>
 
-				{enableTitle ?								
+				{enableTitle ?
 					<RichText
 						tagName={ titleTag }
 						onChange={ content => setAttributes({ title: content }) }
