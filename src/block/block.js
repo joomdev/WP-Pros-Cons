@@ -205,13 +205,6 @@ registerBlockType( 'tc/block-prosandcons', {
 					>
 					</ToggleControl>
 
-					<ToggleControl
-						label={ __( 'Enable Button', 'mightythemes-blocks' ) }
-						checked={ enableButton }
-						onChange={ onChangeEnableButton }
-					>
-					</ToggleControl>
-
 					<SelectControl
 						label={ __( 'WP Pros & Cons Style', 'mightythemes-blocks' ) }
 						value={ pluginStyle }
@@ -247,6 +240,13 @@ registerBlockType( 'tc/block-prosandcons', {
 				</PanelBody>
 
 				<PanelBody title={ __( 'Button Options', 'mightythemes-blocks' ) } initialOpen={ false }>
+					<ToggleControl
+						label={ __( 'Enable Button', 'mightythemes-blocks' ) }
+						checked={ enableButton }
+						onChange={ onChangeEnableButton }
+					>
+					</ToggleControl>
+
 					<ToggleControl
 						label={ __( 'Open link in new window', 'mightythemes-blocks' ) }
 						checked={ buttonTarget }
