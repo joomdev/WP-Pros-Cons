@@ -1,4 +1,8 @@
+$green: #27C110;
+$red: #f00;
+$btncolor: #212121;
 $circle-size: 100px !default;
+$breakpoint: 767px;
 
 $button-sm-padding: 6px 10px !default;
 $button-sm-font: 14px !default;
@@ -13,7 +17,6 @@ $button-lg-font: 20px !default;
 $button-lg-lineheight: 1.5 !default;
 
 .wp-pros-cons {
-	background: #F9F9F9;
 	padding-top: 10px;
 	padding-bottom: 10px;
 
@@ -29,16 +32,27 @@ $button-lg-lineheight: 1.5 !default;
 	.wppc-boxs {
 		display: flex;
 		flex-flow: row wrap;
+		@media screen and (max-width: $breakpoint) {
+			display: block;
+		}
 		>div {
-			flex: 1 0 0%;
+			flex: 1 0 0;
 		}
 		.wppc-box {
 			background: #fff;
 			margin: 0 15px;
 			border: 1px solid #eee;
+			@media screen and (max-width: $breakpoint) {
+				&:not(:last-child) {
+					margin-bottom: $circle-size;
+				}
+			}
 			.wppc-header .wppc-content-title {
 				margin: 0;
 				padding: 0;
+				font-size: 24px;
+				line-height: 1.5;
+				font-weight: 500;
 			}
 		}
 	}
@@ -59,18 +73,14 @@ $button-lg-lineheight: 1.5 !default;
 		}
 	}
 
-	.pros-content {
-		.wppc-box-symbol {
-			color: #fff;
-			background: #27C110;
-		}
+	.pros-content .wppc-box-symbol {
+		color: #fff;
+		background: $green;
 	}
 
-	.cons-content {
-		.wppc-box-symbol {
-			color: #fff;
-			background: red;
-		}
+	.cons-content .wppc-box-symbol {
+		color: #fff;
+		background: $red;
 	}
 
 	ul.wp-pros-cons-list {
@@ -85,7 +95,7 @@ $button-lg-lineheight: 1.5 !default;
 
 			&:before {
 				content: "\f00c";
-				color: #00bf08;
+				color: $green;
 				font-weight: 900;
 				padding-right: 5px;
 				font-family: 'Font Awesome\ 5 Free';
@@ -95,14 +105,14 @@ $button-lg-lineheight: 1.5 !default;
 
 	.cons-content ul.wp-pros-cons-list li:before {
 		content: "\f00d";
-		color: red;
+		color: $red;
 	}
 
 	.wppc-btn-wrapper {
 		text-align: center;
 		margin: 25px 0;
 		.wp-btn {
-			background: #212121;
+			background: $btncolor;
 			color: #fff;
 			box-shadow: none;
 			font-size: 24px;
@@ -126,7 +136,8 @@ $button-lg-lineheight: 1.5 !default;
 			}
 			&:hover,
 			&:focus {
-				background: darken($color: #212121, $amount: 0.5);
+				color: red;
+				background: darken($btncolor, $amount: .5);
 			}
 		}
 	}
@@ -144,51 +155,49 @@ $button-lg-lineheight: 1.5 !default;
 		}
 	}
 	&.wppc-view2 {
-		background: transparent;
 		.wppc-boxs .wppc-box {
 			border-width: 2px;
 			border-style: solid;
 			border-radius: 4px;
 		}
 		.wppc-header {
-			padding: 20px;
-		}
-		.pros-content {
-			border-color: #00bf08;
-			.wppc-header {
-				background: #00bf08;
+			padding: 10px 20px;
+			.wppc-content-title {
 				color: #fff;
 			}
 		}
-
-		.cons-content {
-			border-color: red;
+		.pros-content {
+			border-color: $green;
 			.wppc-header {
-				background: red;
+				background: $green;
+				color: #fff;
+			}
+		}
+		.cons-content {
+			border-color: $red;
+			.wppc-header {
+				background: $red;
 				color: #fff;
 			}
 		}
 	}
 	&.wppc-view3 {
-		background: transparent;
 		.wppc-boxs .wppc-box {
 			border-radius: 4px;
 		}
 		.wppc-header {
-			padding: 20px;
-		}
-		.pros-content {
-			.wppc-header {
-				background: #00bf08;
+			padding: 10px 20px;
+			.wppc-content-title {
 				color: #fff;
 			}
 		}
-
-		.cons-content {
-			.wppc-header {
-				background: red;
-				color: #fff;
-			}
+		.pros-content .wppc-header {
+			background: $green;
+			color: #fff;
+		}
+		.cons-content .wppc-header {
+			background: $red;
+			color: #fff;
 		}
 	}
 }

@@ -5,7 +5,6 @@
  * that are used across the project.
 */
 .wp-pros-cons {
-  background: #F9F9F9;
   padding-top: 10px;
   padding-bottom: 10px; }
   .wp-pros-cons a {
@@ -18,16 +17,25 @@
     display: flex;
     -ms-flex-flow: row wrap;
         flex-flow: row wrap; }
+    @media screen and (max-width: 767px) {
+      .wp-pros-cons .wppc-boxs {
+        display: block; } }
     .wp-pros-cons .wppc-boxs > div {
-      -ms-flex: 1 0 0%;
-          flex: 1 0 0%; }
+      -ms-flex: 1 0 0px;
+          flex: 1 0 0; }
     .wp-pros-cons .wppc-boxs .wppc-box {
       background: #fff;
       margin: 0 15px;
       border: 1px solid #eee; }
+      @media screen and (max-width: 767px) {
+        .wp-pros-cons .wppc-boxs .wppc-box:not(:last-child) {
+          margin-bottom: 100px; } }
       .wp-pros-cons .wppc-boxs .wppc-box .wppc-header .wppc-content-title {
         margin: 0;
-        padding: 0; }
+        padding: 0;
+        font-size: 24px;
+        line-height: 1.5;
+        font-weight: 500; }
   .wp-pros-cons .wppc-box-symbol {
     width: 100px;
     height: 100px;
@@ -47,7 +55,7 @@
     background: #27C110; }
   .wp-pros-cons .cons-content .wppc-box-symbol {
     color: #fff;
-    background: red; }
+    background: #f00; }
   .wp-pros-cons ul.wp-pros-cons-list {
     list-style: none;
     margin: 0;
@@ -59,13 +67,13 @@
       margin: 10px 0; }
       .wp-pros-cons ul.wp-pros-cons-list li:before {
         content: "\f00c";
-        color: #00bf08;
+        color: #27C110;
         font-weight: 900;
         padding-right: 5px;
         font-family: 'Font Awesome\ 5 Free'; }
   .wp-pros-cons .cons-content ul.wp-pros-cons-list li:before {
     content: "\f00d";
-    color: red; }
+    color: #f00; }
   .wp-pros-cons .wppc-btn-wrapper {
     text-align: center;
     margin: 25px 0; }
@@ -91,6 +99,7 @@
         line-height: 1.5;
         padding: 10px 24px; }
       .wp-pros-cons .wppc-btn-wrapper .wp-btn:hover, .wp-pros-cons .wppc-btn-wrapper .wp-btn:focus {
+        color: red;
         background: #202020; }
   .wp-pros-cons.wppc-view1 .wppc-boxs {
     margin-top: calc(100px / 2); }
@@ -100,33 +109,33 @@
       text-align: center; }
       .wp-pros-cons.wppc-view1 .wppc-boxs .wppc-header .wppc-content-title {
         margin-top: 10px; }
-  .wp-pros-cons.wppc-view2 {
-    background: transparent; }
-    .wp-pros-cons.wppc-view2 .wppc-boxs .wppc-box {
-      border-width: 2px;
-      border-style: solid;
-      border-radius: 4px; }
-    .wp-pros-cons.wppc-view2 .wppc-header {
-      padding: 20px; }
-    .wp-pros-cons.wppc-view2 .pros-content {
-      border-color: #00bf08; }
-      .wp-pros-cons.wppc-view2 .pros-content .wppc-header {
-        background: #00bf08;
-        color: #fff; }
-    .wp-pros-cons.wppc-view2 .cons-content {
-      border-color: red; }
-      .wp-pros-cons.wppc-view2 .cons-content .wppc-header {
-        background: red;
-        color: #fff; }
-  .wp-pros-cons.wppc-view3 {
-    background: transparent; }
-    .wp-pros-cons.wppc-view3 .wppc-boxs .wppc-box {
-      border-radius: 4px; }
-    .wp-pros-cons.wppc-view3 .wppc-header {
-      padding: 20px; }
-    .wp-pros-cons.wppc-view3 .pros-content .wppc-header {
-      background: #00bf08;
+  .wp-pros-cons.wppc-view2 .wppc-boxs .wppc-box {
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 4px; }
+  .wp-pros-cons.wppc-view2 .wppc-header {
+    padding: 10px 20px; }
+    .wp-pros-cons.wppc-view2 .wppc-header .wppc-content-title {
       color: #fff; }
-    .wp-pros-cons.wppc-view3 .cons-content .wppc-header {
-      background: red;
+  .wp-pros-cons.wppc-view2 .pros-content {
+    border-color: #27C110; }
+    .wp-pros-cons.wppc-view2 .pros-content .wppc-header {
+      background: #27C110;
       color: #fff; }
+  .wp-pros-cons.wppc-view2 .cons-content {
+    border-color: #f00; }
+    .wp-pros-cons.wppc-view2 .cons-content .wppc-header {
+      background: #f00;
+      color: #fff; }
+  .wp-pros-cons.wppc-view3 .wppc-boxs .wppc-box {
+    border-radius: 4px; }
+  .wp-pros-cons.wppc-view3 .wppc-header {
+    padding: 10px 20px; }
+    .wp-pros-cons.wppc-view3 .wppc-header .wppc-content-title {
+      color: #fff; }
+  .wp-pros-cons.wppc-view3 .pros-content .wppc-header {
+    background: #27C110;
+    color: #fff; }
+  .wp-pros-cons.wppc-view3 .cons-content .wppc-header {
+    background: #f00;
+    color: #fff; }
