@@ -56,15 +56,6 @@
       display: -ms-flexbox;
       display: flex;
       margin: 10px 0; }
-      .wp-pros-cons ul.wp-pros-cons-list li:before {
-        content: "\f00c";
-        color: #00bf08;
-        font-weight: 900;
-        padding-right: 5px;
-        font-family: 'Font Awesome\ 5 Free'; }
-  .wp-pros-cons .cons-content ul.wp-pros-cons-list li:before {
-    content: "\f00d";
-    color: red; }
   .wp-pros-cons .wppc-btn-wrapper {
     text-align: center;
     margin: 25px 0; }

@@ -91,18 +91,22 @@ registerBlockType( 'tc/block-prosandcons', {
 		pluginStyle: {
 			type: 'string',
 			default: 'wp-pros-cons wppc-view1'
+		},
+		titleTag: {
+			type: 'string',
+			default: 'h3'
 		}
 	},
 
 	edit({attributes, setAttributes}) {
-		const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, buttonSize, buttonShapeSize, boxBorder, borderColor, pluginStyle } = attributes;
+		const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, buttonSize, buttonShapeSize, boxBorder, borderColor, pluginStyle, titleTag } = attributes;
 
 		// Box border type
 		const boxBorderOptions = [
-			{ value: 'None', label: __( 'None', 'mightythemes-blocks' ) },
-			{ value: 'Dotted', label: __( 'Dotted', 'mightythemes-blocks' ) },
-			{ value: 'Solid', label: __( 'Solid', 'mightythemes-blocks' ) },
-			{ value: 'Dashed', label: __( 'Dashed', 'mightythemes-blocks' ) },
+			{ value: 'none', label: __( 'None', 'mightythemes-blocks' ) },
+			{ value: 'dotted', label: __( 'Dotted', 'mightythemes-blocks' ) },
+			{ value: 'solid', label: __( 'Solid', 'mightythemes-blocks' ) },
+			{ value: 'dashed', label: __( 'Dashed', 'mightythemes-blocks' ) },
 		];
 
 		// Styling options
@@ -110,6 +114,16 @@ registerBlockType( 'tc/block-prosandcons', {
 			{ value: 'wp-pros-cons wppc-view1', label: __( 'Style 1', 'mightythemes-blocks' ) },
 			{ value: 'wp-pros-cons wppc-view2', label: __( 'Style 2', 'mightythemes-blocks' ) },
 			{ value: 'wp-pros-cons wppc-view3', label: __( 'Style 3', 'mightythemes-blocks' ) },
+		];
+
+		// Title heading tag
+		const titleHeadingTags = [
+			{ value: 'H1', label: __( 'H1', 'mightythemes-blocks' ) },
+			{ value: 'H2', label: __( 'H2', 'mightythemes-blocks' ) },
+			{ value: 'H3', label: __( 'H3', 'mightythemes-blocks' ) },
+			{ value: 'H4', label: __( 'H4', 'mightythemes-blocks' ) },
+			{ value: 'H5', label: __( 'H5', 'mightythemes-blocks' ) },
+			{ value: 'H6', label: __( 'H6', 'mightythemes-blocks' ) },
 		];
 
 		// Button size options
@@ -157,6 +171,30 @@ registerBlockType( 'tc/block-prosandcons', {
 
 		return ([
 			<InspectorControls>
+
+				<PanelBody title={ __( 'Select Views', 'mightythemes-blocks' ) } initialOpen={ false }>
+					<SelectControl
+						label={ __( 'WP Pros & Cons Style', 'mightythemes-blocks' ) }
+						value={ pluginStyle }
+						options={ stylingOptions.map( ({ value, label }) => ( {
+							value: value,
+							label: label,
+						} ) ) }
+						onChange={ value => setAttributes({ pluginStyle: value }) }
+					>
+					</SelectControl>
+
+					<SelectControl
+						label={ __( 'Title tag', 'mightythemes-blocks' ) }
+						value={ titleTag }
+						options={ titleHeadingTags.map( ({ value, label }) => ( {
+							value: value,
+							label: label,
+						} ) ) }
+						onChange={ value => setAttributes({ titleTag: value }) }
+					>
+					</SelectControl>
+				</PanelBody>
 
 				<PanelBody title={ __( 'Button Options', 'mightythemes-blocks' ) } initialOpen={ false }>
 					<ToggleControl
@@ -240,19 +278,6 @@ registerBlockType( 'tc/block-prosandcons', {
 					</PanelColorSettings>
 				</PanelBody>
 
-				<PanelBody title={ __( 'Select Views', 'mightythemes-blocks' ) } initialOpen={ false }>
-					<SelectControl
-						label={ __( 'WP Pros & Cons Style', 'mightythemes-blocks' ) }
-						value={ pluginStyle }
-						options={ stylingOptions.map( ({ value, label }) => ( {
-							value: value,
-							label: label,
-						} ) ) }
-						onChange={ content => setAttributes({ pluginStyle: content }) }
-					>
-					</SelectControl>
-				</PanelBody>
-
 				<PanelColorSettings
 					title={ __( 'Background Color', 'mightythemes-blocks' ) }
 					initialOpen={ false }
@@ -268,7 +293,7 @@ registerBlockType( 'tc/block-prosandcons', {
 			,
 			<div style={{ borderColor: borderColor, backgroundColor: boxBackgroundColor, borderStyle: boxBorder }} className={pluginStyle}>				
 				<RichText
-					tagName="h3"
+					tagName={ titleTag }
 					onChange={ content => setAttributes({ title: content }) }
 					value={ title }
 					placeholder="Title goes here.."
@@ -378,13 +403,13 @@ registerBlockType( 'tc/block-prosandcons', {
 
 	save({ attributes }) {
 		
-		const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, buttonSize, buttonShapeSize, boxBorder, borderColor, pluginStyle } = attributes;
+		const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, buttonSize, buttonShapeSize, boxBorder, borderColor, pluginStyle, titleTag } = attributes;
 		
 		return (
 			<div style={{ borderColor: borderColor, backgroundColor: boxBackgroundColor, borderStyle: boxBorder }} className={pluginStyle}>
 				{/* Pros&Cons Title */}
 				<RichText.Content
-					tagName="h3"
+					tagName={ titleTag }
 					className="wp-pros-cons-heading"
 					value={ title }
 				/>
