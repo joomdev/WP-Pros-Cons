@@ -233,6 +233,17 @@ registerBlockType( 'tc/block-prosandcons', {
 						onChange={ value => setAttributes({ titleTag: value }) }
 					>
 					</SelectControl>
+
+					<PanelColorSettings
+						title={ __( 'Background Color', 'mightythemes-blocks' ) }
+						initialOpen={ false }
+						colorSettings={ [ {
+							value: boxBackgroundColor,
+							onChange: onBackgroundColorChange,
+							label: __( 'Background Color', 'mightythemes-block' ),
+						} ] }
+					>
+					</PanelColorSettings>
 				</PanelBody>
 
 				<PanelBody title={ __( 'Button Options', 'mightythemes-blocks' ) } initialOpen={ false }>
@@ -325,17 +336,6 @@ registerBlockType( 'tc/block-prosandcons', {
 					>
 					</PanelColorSettings>
 				</PanelBody>
-
-				<PanelColorSettings
-					title={ __( 'Background Color', 'mightythemes-blocks' ) }
-					initialOpen={ false }
-					colorSettings={ [ {
-						value: boxBackgroundColor,
-						onChange: onBackgroundColorChange,
-						label: __( 'Background Color', 'mightythemes-block' ),
-					} ] }
-				>
-				</PanelColorSettings>
 				
 			</InspectorControls>
 			,
