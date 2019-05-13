@@ -95,11 +95,15 @@ registerBlockType( 'tc/block-prosandcons', {
 		titleTag: {
 			type: 'string',
 			default: 'h3'
+		},
+		borderWidth: {
+			type: 'number',
+			default: 2
 		}
 	},
 
 	edit({attributes, setAttributes}) {
-		const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, buttonSize, buttonShapeSize, boxBorder, borderColor, pluginStyle, titleTag } = attributes;
+		const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, buttonSize, buttonShapeSize, borderWidth, boxBorder, borderColor, pluginStyle, titleTag } = attributes;
 
 		// Box border type
 		const boxBorderOptions = [
@@ -266,6 +270,15 @@ registerBlockType( 'tc/block-prosandcons', {
 					>
 					</SelectControl>
 
+					<RangeControl
+						label={ __( 'Border Width', 'mightythemes-blocks' ) }
+						value={ borderWidth }
+						onChange={ ( value ) => setAttributes( { borderWidth: value } ) }
+						min={ 1 }
+						max={ 20 }
+						step={ 1 }
+					/>
+
 					<PanelColorSettings 
 						title={ __( 'Border Color', 'mightythemes-blocks' ) }
 						initialOpen={ false }
@@ -291,7 +304,7 @@ registerBlockType( 'tc/block-prosandcons', {
 				
 			</InspectorControls>
 			,
-			<div style={{ borderColor: borderColor, backgroundColor: boxBackgroundColor, borderStyle: boxBorder }} className={pluginStyle}>				
+			<div style={{ borderColor: borderColor, backgroundColor: boxBackgroundColor, borderStyle: boxBorder, borderWidth: borderWidth }} className={pluginStyle}>				
 				<RichText
 					tagName={ titleTag }
 					onChange={ content => setAttributes({ title: content }) }
@@ -403,10 +416,10 @@ registerBlockType( 'tc/block-prosandcons', {
 
 	save({ attributes }) {
 		
-		const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, buttonSize, buttonShapeSize, boxBorder, borderColor, pluginStyle, titleTag } = attributes;
+		const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, buttonSize, buttonShapeSize, boxBorder, borderWidth, borderColor, pluginStyle, titleTag } = attributes;
 		
 		return (
-			<div style={{ borderColor: borderColor, backgroundColor: boxBackgroundColor, borderStyle: boxBorder }} className={pluginStyle}>
+			<div style={{ borderColor: borderColor, backgroundColor: boxBackgroundColor, borderStyle: boxBorder, borderWidth: borderWidth }} className={pluginStyle}>
 				{/* Pros&Cons Title */}
 				<RichText.Content
 					tagName={ titleTag }

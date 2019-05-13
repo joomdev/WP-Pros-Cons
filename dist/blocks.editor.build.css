@@ -5,7 +5,8 @@
  * that are used across the project.
 */
 .wp-pros-cons {
-  background: #F9F9F9; }
+  background: #F9F9F9;
+  border-width: 2px; }
   .wp-pros-cons a {
     text-decoration: none; }
   .wp-pros-cons .wp-pros-cons-heading {
