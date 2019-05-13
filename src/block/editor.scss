@@ -14,14 +14,14 @@ $button-lg-lineheight: 1.5 !default;
 
 .wp-pros-cons {
 	background: #F9F9F9;
-	border-width: 2px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 
 	a {
 		text-decoration: none;
 	}
 
 	.wp-pros-cons-heading {
-		font-size: 18px;
 		text-align: center;
 	}
 

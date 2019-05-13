@@ -6,11 +6,11 @@
 */
 .wp-pros-cons {
   background: #F9F9F9;
-  border-width: 2px; }
+  padding-top: 10px;
+  padding-bottom: 10px; }
   .wp-pros-cons a {
     text-decoration: none; }
   .wp-pros-cons .wp-pros-cons-heading {
-    font-size: 18px;
     text-align: center; }
   .wp-pros-cons .wppc-boxs {
     display: -ms-flexbox;

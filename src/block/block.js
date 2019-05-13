@@ -94,7 +94,7 @@ registerBlockType( 'tc/block-prosandcons', {
 		},
 		titleTag: {
 			type: 'string',
-			default: 'h3'
+			default: 'H3'
 		},
 		borderWidth: {
 			type: 'number',
