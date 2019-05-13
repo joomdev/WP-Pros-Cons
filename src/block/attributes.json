@@ -1,0 +1,96 @@
+{
+    "attributes": {
+        "title": {
+            "source": "text",
+            "selector": ".wp-pros-cons-heading",
+            "default": "Your Title here.."
+        },
+        "prosTitle": {
+            "source": "text",
+            "default": "Pros",
+            "selector": "h4.pros-title"
+        },
+        "consTitle": {
+            "source": "text",
+            "default": "Cons",
+            "selector": "h4.cons-title"
+        },
+        "prosValues": {
+            "type": "array",
+            "selector": ".wp-pros-list",
+            "source": "children"
+        },
+        "consValues": {
+            "type": "array",
+            "selector": ".wp-cons-list",
+            "source": "children"
+        },
+        "buttonText": {
+            "type": "string",
+            "default": "Button text here..",
+            "selector": ".wp-btn"
+        },
+        "buttonUrl": {
+            "type": "string",
+            "source": "attribute",
+            "selector": "a",
+            "attribute": "href"
+        },
+        "buttonBackgroundColor": {
+            "type": "string",
+            "default": "black"
+        },
+        "buttonTextColor": {
+            "type": "string",
+            "default": "white"
+        },
+        "boxBackgroundColor": {
+            "type": "string",
+            "default": "#f9f9f9"
+        },
+        "buttonTarget": {
+            "type": "boolean",
+            "default": false
+        },
+        "buttonRel": {
+            "type": "boolean",
+            "default": false
+        },
+        "buttonSize": {
+            "type": "string",
+            "default": "wp-btn-md"
+        },
+        "buttonShapeSize": {
+            "type": "number",
+            "default": 18
+        },
+        "boxBorder": {
+            "type": "string",
+            "default": "None"
+        },
+        "borderColor": {
+            "type": "string",
+            "default": "#28b914"
+        },
+        "pluginStyle": {
+            "type": "string",
+            "default": "wp-pros-cons wppc-view1"
+        },
+        "titleTag": {
+            "type": "string",
+            "default": "H3"
+        },
+        "borderWidth": {
+            "type": "number",
+            "default": 2
+        },
+        "enableTitle": {
+            "type": "boolean",
+            "default": false
+        },
+        "enableButton": {
+            "type": "boolean",
+            "default": false
+        }
+    }
+}
