@@ -76,17 +76,6 @@ export default function edit({attributes, setAttributes}) {
                 </ToggleControl>
 
                 <SelectControl
-                    label={ __( 'WP Pros & Cons Style', 'mightythemes-blocks' ) }
-                    value={ pluginStyle }
-                    options={ stylingOptions.map( ({ value, label }) => ( {
-                        value: value,
-                        label: label,
-                    } ) ) }
-                    onChange={ value => setAttributes({ pluginStyle: value }) }
-                >
-                </SelectControl>
-
-                <SelectControl
                     label={ __( 'Title tag', 'mightythemes-blocks' ) }
                     value={ titleTag }
                     options={ titleHeadingTags.map( ({ value, label }) => ( {
@@ -94,6 +83,17 @@ export default function edit({attributes, setAttributes}) {
                         label: label,
                     } ) ) }
                     onChange={ value => setAttributes({ titleTag: value }) }
+                >
+                </SelectControl>
+
+                <SelectControl
+                    label={ __( 'Choose Style', 'mightythemes-blocks' ) }
+                    value={ pluginStyle }
+                    options={ stylingOptions.map( ({ value, label }) => ( {
+                        value: value,
+                        label: label,
+                    } ) ) }
+                    onChange={ value => setAttributes({ pluginStyle: value }) }
                 >
                 </SelectControl>
                 
