@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:  Pros And Cons
+ * Plugin Name:  Mighty Pros & Cons
  * Plugin URI: #
  * Description: #
  * Author: #

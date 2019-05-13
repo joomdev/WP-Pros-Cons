@@ -8,11 +8,12 @@ const { IconButton, PanelBody, ToggleControl, SelectControl, RangeControl } = wp
 const { RichText, URLInput, ColorPalette, InspectorControls, PanelColorSettings } = wp.editor;
 
 registerBlockType( 'tc/block-prosandcons', {
-	title: __( 'Pros And Cons', 'mightythemes-blocks' ),
+	title: __( 'Mighty Pros & Cons', 'mightythemes-blocks' ),
 	description: __( 'Pros & Cons for your website.', 'mightythemes-blocks' ),
 	icon: 'thumbs-up',
 	category: 'mightythemes-blocks',
 	keywords: [
+		__( 'Mighty Pros & Cons' ),
 		__( 'Pros And Cons' ),
 		__( 'MightyThemes' ),
 		__( 'Pros & Cons' ),
@@ -137,6 +138,8 @@ registerBlockType( 'tc/block-prosandcons', {
 			{ value: 'h4', label: __( 'H4', 'mightythemes-blocks' ) },
 			{ value: 'h5', label: __( 'H5', 'mightythemes-blocks' ) },
 			{ value: 'h6', label: __( 'H6', 'mightythemes-blocks' ) },
+			{ value: 'p', label: __( 'p', 'mightythemes-blocks' ) },
+			{ value: 'span', label: __( 'span', 'mightythemes-blocks' ) },
 		];
 
 		// Button size options
@@ -428,7 +431,8 @@ registerBlockType( 'tc/block-prosandcons', {
 		return (
 			<div style={{ borderColor: borderColor, backgroundColor: boxBackgroundColor, borderStyle: boxBorder, borderWidth: borderWidth }} className={pluginStyle}>
 				{/* Pros&Cons Title */}
-				{enableTitle ?								
+
+				{enableTitle ?
 					<RichText.Content
 						tagName={ titleTag }
 						className="wp-pros-cons-heading"
@@ -442,7 +446,7 @@ registerBlockType( 'tc/block-prosandcons', {
 					<div className="wppc-box pros-content">		
 						<div className="wppc-header">
 							
-							{pluginStyle === "wp-pros-cons wppc-view1" ?								
+							{pluginStyle === "wp-pros-cons wppc-view1" ?
 								<div className="wppc-box-symbol">
 									<i className="far fa-thumbs-up"></i>
 								</div>							
