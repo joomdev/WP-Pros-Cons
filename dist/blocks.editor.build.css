@@ -129,6 +129,10 @@
       background: red;
       color: #fff; }
 
+.wppc-box .components-autocomplete {
+  position: relative;
+  display: inline-block; }
+
 .wp-pros-cons .wppc-btn-wrapper .components-autocomplete {
   margin-bottom: 10px;
   position: relative;

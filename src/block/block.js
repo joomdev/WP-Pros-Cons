@@ -146,24 +146,6 @@ registerBlockType( 'tc/block-prosandcons', {
 			{ value: 'wp-btn-lg', label: __( 'Large', 'mightythemes-blocks' ) },
 		];
 
-		function onButtonBackgroundChange(changes) {
-			setAttributes({
-				buttonBackgroundColor: changes
-			})
-		}
-
-		function onButtonTextColorChange(changes) {
-			setAttributes({
-				buttonTextColor: changes
-			})
-		}
-		
-		function onBackgroundColorChange(changes) {
-			setAttributes({
-				boxBackgroundColor: changes
-			})
-		}
-
 		function onChangeButtonTarget(changes) {
 			setAttributes({
 				buttonTarget: ! buttonTarget
@@ -173,12 +155,6 @@ registerBlockType( 'tc/block-prosandcons', {
 		function onChangeButtonRel(changes) {
 			setAttributes({
 				buttonRel: ! buttonRel
-			})
-		}
-
-		function onBorderColorChange(changes) {
-			setAttributes({
-				borderColor: changes
 			})
 		}
 
@@ -226,17 +202,14 @@ registerBlockType( 'tc/block-prosandcons', {
 						onChange={ value => setAttributes({ titleTag: value }) }
 					>
 					</SelectControl>
-
-					<PanelColorSettings
-						title={ __( 'Background Color', 'mightythemes-blocks' ) }
-						initialOpen={ false }
-						colorSettings={ [ {
-							value: boxBackgroundColor,
-							onChange: onBackgroundColorChange,
-							label: __( 'Background Color', 'mightythemes-block' ),
-						} ] }
-					>
-					</PanelColorSettings>
+					
+					<p>Background color:</p>
+					<ColorPalette 
+						value={ boxBackgroundColor }
+						onChange={ ( color ) => setAttributes( { boxBackgroundColor: color } ) }
+						label={ __( 'Background Color', 'mightythemes-blocks' ) } 
+					/>
+					
 				</PanelBody>
 
 				<PanelBody title={ __( 'Button Options', 'mightythemes-blocks' ) } initialOpen={ false }>
@@ -261,27 +234,19 @@ registerBlockType( 'tc/block-prosandcons', {
 					>
 					</ToggleControl>
 
-					<PanelColorSettings 
-						title={ __( 'Button Background Color', 'mightythemes-blocks' ) }
-						initialOpen={ false }
-						colorSettings={ [ {
-							value: buttonBackgroundColor,
-							onChange: onButtonBackgroundChange,
-							label: __( 'Button Background Color', 'mightythemes-block' ),
-						} ] }
-					>
-					</PanelColorSettings>
-
-					<PanelColorSettings 
-						title={ __( 'Button Text Color', 'mightythemes-blocks' ) }
-						initialOpen={ false }
-						colorSettings={ [ {
-							value: buttonTextColor,
-							onChange: onButtonTextColorChange,
-							label: __( 'Button Text Color', 'mightythemes-block' ),
-						} ] }
-					>
-					</PanelColorSettings>
+					<p>Button Background color:</p>
+					<ColorPalette 
+						value={ buttonBackgroundColor }
+						onChange={ ( color ) => setAttributes( { buttonBackgroundColor: color } ) }
+						label={ __( 'Button Background Color', 'mightythemes-blocks' ) } 
+					/>
+					
+					<p>Button Text color:</p>
+					<ColorPalette 
+						value={ buttonTextColor }
+						onChange={ ( color ) => setAttributes( { buttonTextColor: color } ) }
+						label={ __( 'Button Text Color', 'mightythemes-blocks' ) } 
+					/>
 
 					<SelectControl
 						label={ __( 'Button Size', 'mightythemes-blocks' ) }
@@ -325,16 +290,12 @@ registerBlockType( 'tc/block-prosandcons', {
 						step={ 1 }
 					/>
 
-					<PanelColorSettings 
-						title={ __( 'Border Color', 'mightythemes-blocks' ) }
-						initialOpen={ false }
-						colorSettings={ [ {
-							value: borderColor,
-							onChange: onBorderColorChange,
-							label: __( 'Border Color', 'mightythemes-block' ),
-						} ] }
-					>
-					</PanelColorSettings>
+					<p>Border Color:</p>
+					<ColorPalette 
+						value={ borderColor }
+						onChange={ ( color ) => setAttributes( { borderColor: color } ) }
+						label={ __( 'Border Color', 'mightythemes-blocks' ) } 
+					/>
 				</PanelBody>
 				
 			</InspectorControls>
