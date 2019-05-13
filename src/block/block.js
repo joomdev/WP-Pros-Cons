@@ -22,6 +22,7 @@ registerBlockType( 'tc/block-prosandcons', {
 		title: {
 			source: 'text',
 			selector: 'h3.wp-pros-cons-heading',
+			default: 'Your Title here..'
 		},
 		prosTitle: {
 			source: 'text',
@@ -99,11 +100,19 @@ registerBlockType( 'tc/block-prosandcons', {
 		borderWidth: {
 			type: 'number',
 			default: 2
-		}
+		},
+		enableTitle: {
+			type: 'boolean',
+			default: false
+		},
+		enableButton: {
+			type: 'boolean',
+			default: false
+		},
 	},
 
 	edit({attributes, setAttributes}) {
-		const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, buttonSize, buttonShapeSize, borderWidth, boxBorder, borderColor, pluginStyle, titleTag } = attributes;
+		const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, buttonSize, buttonShapeSize, borderWidth, boxBorder, borderColor, pluginStyle, titleTag, enableTitle, enableButton } = attributes;
 
 		// Box border type
 		const boxBorderOptions = [
@@ -173,10 +182,36 @@ registerBlockType( 'tc/block-prosandcons', {
 			})
 		}
 
+		function onChangeEnableTitle(changes) {
+			setAttributes({
+				enableTitle: !enableTitle
+			})
+		}
+		
+		function onChangeEnableButton(changes) {
+			setAttributes({
+				enableButton: !enableButton
+			})
+		}
+
 		return ([
 			<InspectorControls>
 
-				<PanelBody title={ __( 'Select Views', 'mightythemes-blocks' ) } initialOpen={ false }>
+				<PanelBody title={ __( 'Formatting Options', 'mightythemes-blocks' ) } initialOpen={ false }>
+					<ToggleControl
+						label={ __( 'Enable Title', 'mightythemes-blocks' ) }
+						checked={ enableTitle }
+						onChange={ onChangeEnableTitle }
+					>
+					</ToggleControl>
+
+					<ToggleControl
+						label={ __( 'Enable Button', 'mightythemes-blocks' ) }
+						checked={ enableButton }
+						onChange={ onChangeEnableButton }
+					>
+					</ToggleControl>
+
 					<SelectControl
 						label={ __( 'WP Pros & Cons Style', 'mightythemes-blocks' ) }
 						value={ pluginStyle }
@@ -304,14 +339,19 @@ registerBlockType( 'tc/block-prosandcons', {
 				
 			</InspectorControls>
 			,
-			<div style={{ borderColor: borderColor, backgroundColor: boxBackgroundColor, borderStyle: boxBorder, borderWidth: borderWidth }} className={pluginStyle}>				
-				<RichText
-					tagName={ titleTag }
-					onChange={ content => setAttributes({ title: content }) }
-					value={ title }
-					placeholder="Title goes here.."
-					className="wp-pros-cons-heading"
-				/>
+			<div style={{ borderColor: borderColor, backgroundColor: boxBackgroundColor, borderStyle: boxBorder, borderWidth: borderWidth }} className={pluginStyle}>
+
+				{enableTitle ?								
+					<RichText
+						tagName={ titleTag }
+						onChange={ content => setAttributes({ title: content }) }
+						value={ title }
+						placeholder="Title goes here.."
+						className="wp-pros-cons-heading"
+					/>
+					: 
+					null
+				}
 				
 				<div className="wppc-boxs">
 					<div className="wppc-box pros-content">
@@ -380,52 +420,62 @@ registerBlockType( 'tc/block-prosandcons', {
 						/>
 					</div>
 				</div>
-				<div className="wppc-btn-wrapper">
-					<RichText
-						tagName="a"
-						placeholder={ __( 'Button text...', 'mightythemes-blocks' ) }
-						keepPlaceholderOnFocus
-						value={ buttonText }
-						className={ `wp-btn ${buttonSize}`}
-						onChange={ (value) => setAttributes( { buttonText: value } ) }
-						style={{ backgroundColor: buttonBackgroundColor, color: buttonTextColor, borderRadius: buttonShapeSize ? buttonShapeSize + 'px' : undefined }}
-					/>
-					
-					<form
-						key="form-link"
-						onSubmit={ event => event.preventDefault() }
-					>							
-						<URLInput
-							className="button-url btn-onclick-url"
-							style={{ display:'inline' }}
-							value={ buttonUrl }
-							onChange={ ( value ) => setAttributes( { buttonUrl: value } ) }
+
+				{enableButton ?								
+					<div className="wppc-btn-wrapper">
+						<RichText
+							tagName="a"
+							placeholder={ __( 'Button text...', 'mightythemes-blocks' ) }
+							keepPlaceholderOnFocus
+							value={ buttonText }
+							className={ `wp-btn ${buttonSize}`}
+							onChange={ (value) => setAttributes( { buttonText: value } ) }
+							style={{ backgroundColor: buttonBackgroundColor, color: buttonTextColor, borderRadius: buttonShapeSize ? buttonShapeSize + 'px' : undefined }}
 						/>
-					
-						<IconButton
-							icon="editor-break"
-							style={{ display:'inline' }}
-							label={ __( 'Apply', 'mightythemes-blocks' ) }
-							type="submit"
-						/>						
-					</form>					
-				</div>
+						
+						<form
+							key="form-link"
+							onSubmit={ event => event.preventDefault() }
+						>							
+							<URLInput
+								className="button-url btn-onclick-url"
+								style={{ display:'inline' }}
+								value={ buttonUrl }
+								onChange={ ( value ) => setAttributes( { buttonUrl: value } ) }
+							/>
+						
+							<IconButton
+								icon="editor-break"
+								style={{ display:'inline' }}
+								label={ __( 'Apply', 'mightythemes-blocks' ) }
+								type="submit"
+							/>						
+						</form>					
+					</div>
+					: 
+					null
+				}
+				
 			</div>
 		]);
 	},
 
 	save({ attributes }) {
 		
-		const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, buttonSize, buttonShapeSize, boxBorder, borderWidth, borderColor, pluginStyle, titleTag } = attributes;
+		const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, buttonSize, buttonShapeSize, boxBorder, borderWidth, borderColor, pluginStyle, titleTag, enableTitle, enableButton } = attributes;
 		
 		return (
 			<div style={{ borderColor: borderColor, backgroundColor: boxBackgroundColor, borderStyle: boxBorder, borderWidth: borderWidth }} className={pluginStyle}>
 				{/* Pros&Cons Title */}
-				<RichText.Content
-					tagName={ titleTag }
-					className="wp-pros-cons-heading"
-					value={ title }
-				/>
+				{enableTitle ?								
+					<RichText.Content
+						tagName={ titleTag }
+						className="wp-pros-cons-heading"
+						value={ title }
+					/>
+					: 
+					null
+				}
 
 				<div className="wppc-boxs">
 					<div className="wppc-box pros-content">		
@@ -482,21 +532,21 @@ registerBlockType( 'tc/block-prosandcons', {
 						
 					</div>
 				</div>
-
-				{
-					buttonText && (
-						<div className="wppc-btn-wrapper">							
-							<a
-								href={ buttonUrl ? buttonUrl : '#' }
-								style={{ backgroundColor: buttonBackgroundColor, color: buttonTextColor, borderRadius: buttonShapeSize ? buttonShapeSize + 'px' : undefined }}
-								rel={ buttonRel ? 'nofollow noopener noreferrer' : 'noopener noreferrer' }
-								className={ `wp-btn ${buttonSize}`}
-								target={ buttonTarget ? '_blank' : null }
-							>
-								<RichText.Content value={ buttonText } />
-							</a>							
-						</div>
-					)
+				
+				{enableButton ?								
+					<div className="wppc-btn-wrapper">							
+						<a
+							href={ buttonUrl ? buttonUrl : '#' }
+							style={{ backgroundColor: buttonBackgroundColor, color: buttonTextColor, borderRadius: buttonShapeSize ? buttonShapeSize + 'px' : undefined }}
+							rel={ buttonRel ? 'nofollow noopener noreferrer' : 'noopener noreferrer' }
+							className={ `wp-btn ${buttonSize}`}
+							target={ buttonTarget ? '_blank' : null }
+						>
+							<RichText.Content value={ buttonText } />
+						</a>							
+					</div>
+					: 
+					null
 				}
 			</div>
 		);

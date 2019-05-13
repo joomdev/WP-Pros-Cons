@@ -11,7 +11,8 @@
   .wp-pros-cons a {
     text-decoration: none; }
   .wp-pros-cons .wp-pros-cons-heading {
-    text-align: center; }
+    text-align: center;
+    padding-bottom: 10px; }
   .wp-pros-cons .wppc-boxs {
     display: -ms-flexbox;
     display: flex;
