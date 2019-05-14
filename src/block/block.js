@@ -12,7 +12,7 @@ import metadata from './attributes.json';
 
 const { attributes } = metadata;
 
-registerBlockType( 'tc/block-prosandcons', {
+registerBlockType( 'mightythemes/block-prosandcons', {
 	title: __( 'Mighty Pros & Cons', 'mightythemes-blocks' ),
 	description: __( 'Mighty Pros & Cons is a Gutenberg block which helps you to insert responsive Pros and Cons table within your blog post.', 'mightythemes-blocks' ),
 	icon: 'thumbs-up',
