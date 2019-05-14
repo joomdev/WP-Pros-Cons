@@ -100,18 +100,23 @@ $button-lg-lineheight: 1.5 !default;
 		list-style: none;
 		margin: 0;
 		padding: 0 20px;
-
 		li {
 			position: relative;
 			display: flex;
 			margin: 10px 0;
-
+			width: 100%;
+			flex-wrap: wrap;
 			&:before {
 				content: "\f00c";
 				color: $green;
 				font-weight: 900;
 				padding-right: 5px;
 				font-family: 'Font Awesome\ 5 Free';
+			}
+			ul {
+				margin-left: 20px;
+				display: block;
+				width: 100%;
 			}
 		}
 	}
