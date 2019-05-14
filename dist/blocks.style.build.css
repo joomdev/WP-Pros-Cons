@@ -102,7 +102,7 @@
         line-height: 1.5;
         padding: 10px 24px; }
       .wp-pros-cons .wppc-btn-wrapper .wp-btn:hover, .wp-pros-cons .wppc-btn-wrapper .wp-btn:focus {
-        color: red;
+        color: #f00;
         background: #202020; }
   .wp-pros-cons.wppc-view1 .wppc-boxs {
     margin-top: calc(100px / 2); }

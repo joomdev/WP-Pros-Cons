@@ -149,7 +149,7 @@ $button-lg-lineheight: 1.5 !default;
 			}
 			&:hover,
 			&:focus {
-				color: red;
+				color: $red;
 				background: darken($btncolor, $amount: .5);
 			}
 		}
