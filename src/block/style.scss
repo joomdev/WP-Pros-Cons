@@ -1,17 +1,27 @@
+// Typography
 $green: #27C110;
 $red: #f00;
 $btncolor: #212121;
+$mainheading-size: 36px;
+$mainheading-lineheight: 1.5;
+$heading-size: 24px;
+$heading-lineheight: 24px;
+
+// Miscellaneous
 $circle-size: 100px !default;
 $breakpoint: 767px;
 
+// Small Button Sizes
 $button-sm-padding: 6px 10px !default;
 $button-sm-font: 14px !default;
 $button-sm-lineheight: 1.5 !default;
 
+// Medium Button Sizes
 $button-md-padding: 10px 20px !default;
 $button-md-font: 16px !default;
 $button-md-lineheight: 1.5 !default;
 
+// Large Button Sizes
 $button-lg-padding: 10px 24px !default;
 $button-lg-font: 20px !default;
 $button-lg-lineheight: 1.5 !default;
@@ -26,6 +36,8 @@ $button-lg-lineheight: 1.5 !default;
 	}
 
 	.wp-pros-cons-heading {
+		font-size: $mainheading-size;
+		line-height: $mainheading-lineheight;
 		text-align: center;
 		padding-bottom: 10px;
 	}
@@ -51,8 +63,8 @@ $button-lg-lineheight: 1.5 !default;
 			.wppc-header .wppc-content-title {
 				margin: 0;
 				padding: 0;
-				font-size: 24px;
-				line-height: 1.5;
+				font-size: $heading-size;
+				line-height: $heading-lineheight;
 				font-weight: 500;
 			}
 		}
@@ -116,8 +128,8 @@ $button-lg-lineheight: 1.5 !default;
 			background: $btncolor;
 			color: #fff;
 			box-shadow: none;
-			font-size: 24px;
-			line-height: 1.2;
+			font-size: $button-md-font;
+			line-height: $button-md-lineheight;
 			font-weight: 300;
 			display: inline-block;
 			&.wp-btn-sm{
