@@ -67,7 +67,7 @@ export default function edit({attributes, setAttributes}) {
     return ([
         <InspectorControls>
 
-            <PanelBody title={ __( 'Formatting Options', 'mightythemes-blocks' ) } initialOpen={ false }>
+            <PanelBody title={ __( 'Formatting Options', 'mightythemes-blocks' ) } initialOpen={ true }>
                 <ToggleControl
                     label={ __( 'Enable Title', 'mightythemes-blocks' ) }
                     checked={ enableTitle }
@@ -204,7 +204,7 @@ export default function edit({attributes, setAttributes}) {
                     placeholder="Title goes here.."
                     className="wp-pros-cons-heading"
                 />
-                : 
+                :
                 null
             }
             
