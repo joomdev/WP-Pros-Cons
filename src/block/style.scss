@@ -19,6 +19,7 @@ $button-lg-lineheight: 1.5 !default;
 .wp-pros-cons {
 	padding-top: 10px;
 	padding-bottom: 10px;
+	margin: 30px auto;
 
 	a {
 		text-decoration: none;
@@ -110,7 +111,7 @@ $button-lg-lineheight: 1.5 !default;
 
 	.wppc-btn-wrapper {
 		text-align: center;
-		margin: 25px 0;
+		margin: 30px 0 0;
 		.wp-btn {
 			background: $btncolor;
 			color: #fff;

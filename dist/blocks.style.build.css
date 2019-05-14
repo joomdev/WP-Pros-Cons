@@ -6,7 +6,8 @@
 */
 .wp-pros-cons {
   padding-top: 10px;
-  padding-bottom: 10px; }
+  padding-bottom: 10px;
+  margin: 30px auto; }
   .wp-pros-cons a {
     text-decoration: none; }
   .wp-pros-cons .wp-pros-cons-heading {
@@ -76,7 +77,7 @@
     color: #f00; }
   .wp-pros-cons .wppc-btn-wrapper {
     text-align: center;
-    margin: 25px 0; }
+    margin: 30px 0 0; }
     .wp-pros-cons .wppc-btn-wrapper .wp-btn {
       background: #212121;
       color: #fff;
