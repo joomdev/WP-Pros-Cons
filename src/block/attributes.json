@@ -80,6 +80,10 @@
             "type": "string",
             "default": "h3"
         },
+        "contentTitleTag": {
+            "type": "string",
+            "default": "h4"
+        },
         "borderWidth": {
             "type": "number",
             "default": 2

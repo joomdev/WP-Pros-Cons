@@ -4,7 +4,7 @@ const { IconButton, PanelBody, ToggleControl, SelectControl, RangeControl } = wp
 const { RichText, URLInput, ColorPalette, InspectorControls } = wp.editor;
 
 export default function edit({attributes, setAttributes}) {
-    const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, buttonSize, buttonShapeSize, borderWidth, boxBorder, borderColor, pluginStyle, titleTag, enableTitle, enableButton } = attributes;
+    const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, buttonSize, buttonShapeSize, borderWidth, boxBorder, borderColor, pluginStyle, titleTag, contentTitleTag, enableTitle, enableButton } = attributes;
 
     // Box border type
     const boxBorderOptions = [
@@ -83,6 +83,17 @@ export default function edit({attributes, setAttributes}) {
                         label: label,
                     } ) ) }
                     onChange={ value => setAttributes({ titleTag: value }) }
+                >
+                </SelectControl>
+
+                <SelectControl
+                    label={ __( 'Content Title tag', 'mightythemes-blocks' ) }
+                    value={ contentTitleTag }
+                    options={ titleHeadingTags.map( ({ value, label }) => ( {
+                        value: value,
+                        label: label,
+                    } ) ) }
+                    onChange={ value => setAttributes({ contentTitleTag: value }) }
                 >
                 </SelectControl>
 
@@ -222,7 +233,7 @@ export default function edit({attributes, setAttributes}) {
 
                         {/* Pros Title */}
                         <RichText
-                            tagName="h4"
+                            tagName={ contentTitleTag }
                             className="wppc-content-title pros-title"
                             value={ prosTitle }
                             onChange={ value => setAttributes({ prosTitle: value }) }
@@ -254,7 +265,7 @@ export default function edit({attributes, setAttributes}) {
 
                         {/* Cons Title */}
                         <RichText
-                            tagName="h4"
+                            tagName={ contentTitleTag }
                             className="wppc-content-title cons-title"
                             value={ consTitle }
                             onChange={ ( value ) => setAttributes( { consTitle: value } ) }

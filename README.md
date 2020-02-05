@@ -4,7 +4,7 @@ Donate link: https://mightythemes.com/
 Tags: pros & Cons, Pros, Cons, Table, Pros & Cons table, gutenberg, block, builder
 Requires at least: 5.0
 Tested up to: 5.2
-Stable tag: 1.0.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -69,8 +69,16 @@ Sorry, you can't use this plugin for Classic Editor, but we have another same pl
 4. Style 3.
 
 == Changelog ==
+
+= 1.1.1 =
+* Added: Option to choose title for content tag
+
+= 1.1.0 =
+* Fixed new line issues when using paragraph
+* Few more bug fixes and improvements.
+
 = 1.0.0 =
-* New Plugin initialized.
+This is the new plugin. So you not need to upgrade this yet.
 
 
 
