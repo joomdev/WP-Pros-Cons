@@ -60,19 +60,44 @@ function prosandcons_cgb_block_assets() { // phpcs:ignore
 	 * scripts and styles for both frontend and backend are
 	 * enqueued when the editor loads.
 	 */
-	register_block_type(
-		'cgb/block-prosandcons', array(
-			// Enqueue blocks.style.build.css on both frontend & backend.
-			'style'         => 'prosandcons-cgb-style-css',
-			// Enqueue blocks.build.js in the editor only.
-			'editor_script' => 'prosandcons-cgb-block-js',
-			// Enqueue blocks.editor.build.css in the editor only.
-			'editor_style'  => 'prosandcons-cgb-block-editor-css',
-		)
-	);
-
+	if ( function_exists('has_blocks')) {
+        register_block_type(
+			'cgb/block-prosandcons', array(
+				// Enqueue blocks.style.build.css on both frontend & backend.
+				'style'         => 'prosandcons-cgb-style-css',
+				// Enqueue blocks.build.js in the editor only.
+				'editor_script' => 'prosandcons-cgb-block-js',
+				// Enqueue blocks.editor.build.css in the editor only.
+				'editor_style'  => 'prosandcons-cgb-block-editor-css',
+			)
+		);
+    }
+    else {
+		add_action( 'admin_notices', 'admin_notice_require_gutenberg' );
+		return;
+	}
+	
 	// Load the FontAwesome icon library.
 	wp_enqueue_style('mightythemes-blocks-fontawesome', '//use.fontawesome.com/releases/v5.8.1/css/all.css');
+}
+
+/**
+ * Notice when Gutenberg Not found.
+ */
+function admin_notice_require_gutenberg() {
+	if ( isset( $_GET['activate'] ) ) {
+		unset( $_GET['activate'] );
+	}
+
+	$message = sprintf(
+		/* translators: 1: Plugin name 2: Gutenberg 3. Gutenberg Plugin URL */
+		esc_html__( '%1$s requires %2$s You can update your WordPress or install %3$s.', 'mighty' ),
+		'<strong>' . esc_html__( 'Mighty Pros & Cons', 'mighty' ) . '</strong>',
+		'<strong>' . esc_html__( 'Gutenberg Editor', 'mighty' ) . '</strong>.<br><br>',
+		'<a target="_blank" rel="noopener" href="https://wordpress.org/plugins/gutenberg/">' . esc_html__( 'Gutenberg Editor', 'mighty' ) . '</a>'
+	);
+
+	printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
 }
 
 /**

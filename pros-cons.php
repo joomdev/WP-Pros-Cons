@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name:  Mighty Pros & Cons
- * Plugin URI: #
+ * Plugin URI: https://mightythemes.com/products/mighty-pros-cons/
  * Description: Mighty Pros & Cons is a Gutenberg block which helps you to insert responsive Pros and Cons table within your blog post.
  * Author: Mighty Themes
  * Author URI: http://mightythemes.com
- * Version: 1.1
+ * Version: 1.2.1
  * License: GPL2+
  * License URI: #
  *

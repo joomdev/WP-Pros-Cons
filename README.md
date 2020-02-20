@@ -3,8 +3,8 @@ Contributors: mightythemes1
 Donate link: https://mightythemes.com/
 Tags: pros & Cons, Pros, Cons, Table, Pros & Cons table, gutenberg, block, builder
 Requires at least: 5.0
-Tested up to: 5.2
-Stable tag: 1.1.1
+Tested up to: 5.3
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -70,7 +70,10 @@ Sorry, you can't use this plugin for Classic Editor, but we have another same pl
 
 == Changelog ==
 
-= 1.1.1 =
+= 1.2.1 =
+* Added: Notice for older WordPress Version without Gutenberg
+
+= 1.2.0 =
 * Added: Option to choose title for content tag
 
 = 1.1.0 =
@@ -79,8 +82,6 @@ Sorry, you can't use this plugin for Classic Editor, but we have another same pl
 
 = 1.0.0 =
 This is the new plugin. So you not need to upgrade this yet.
-
-
 
 == Upgrade Notice ==
 
