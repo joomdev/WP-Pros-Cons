@@ -83,9 +83,6 @@ function prosandcons_cgb_block_assets() { // phpcs:ignore
 		add_action( 'admin_notices', 'admin_notice_require_gutenberg' );
 		return;
 	}
-	
-	// Load the FontAwesome icon library.
-	wp_enqueue_style('mightythemes-blocks-fontawesome', '//use.fontawesome.com/releases/v5.8.1/css/all.css');
 }
 
 /**
@@ -122,16 +119,6 @@ function mightythemes_custom_category( $categories ) {
 	);
 }
 add_filter( 'block_categories', 'mightythemes_custom_category' );
-
-/**
- * Enqueue assets for backend editor
- */
-function mightythemes_blocks_editor_assets() {
-	// FontAwesome library.
-	wp_enqueue_style('mightythemes-blocks-fontawesome', '//use.fontawesome.com/releases/v5.8.1/css/all.css');
-}
-add_action( 'enqueue_block_editor_assets', 'mightythemes_blocks_editor_assets' );
-
 
 // Hook: Block assets.
 add_action( 'init', 'prosandcons_cgb_block_assets' );

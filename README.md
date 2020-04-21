@@ -4,7 +4,7 @@ Donate link: https://mightythemes.com/
 Tags: pros & Cons, Pros, Cons, Table, Pros & Cons table, gutenberg, block, builder
 Requires at least: 5.0
 Tested up to: 5.3
-Stable tag: 1.2.1
+Stable tag: 1.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -68,7 +68,24 @@ Sorry, you can't use this plugin for Classic Editor, but we have another same pl
 3. Style 2.
 4. Style 3.
 
+== Development ==
+
+1. Open up the terminal
+2. Navigate to the plugin’s root directory
+3. npm install
+4. npm start
+
+== Media Licenses ==
+
+== Font Awesome Free ==
+FontAwesome Free is free, open source, and GPL friendly.
+* License: https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+* Source: https://fontawesome.com
+
 == Changelog ==
+
+= 1.2.2 =
+* Updated: Removed FontAwesome CDN
 
 = 1.2.1 =
 * Added: Notice for older WordPress Version without Gutenberg
