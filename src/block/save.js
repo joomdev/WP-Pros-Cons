@@ -25,8 +25,8 @@ export default function save({ attributes }) {
                         
                         {pluginStyle === "wp-pros-cons wppc-view1" ?
                             <div className="wppc-box-symbol">
-                                <i className="far fa-thumbs-up"></i>
-                            </div>							
+                                <img src={prosandcons.baseUrl + "assets/icons/thumbs-up-regular.svg"} />
+                            </div>
                             : 
                             null
                         }
@@ -44,15 +44,15 @@ export default function save({ attributes }) {
                         tagName="ul"
                         className="wp-pros-cons-list wp-pros-list"
                         value={ prosValues }
-                    />						
+                    />
                 </div>
                 <div className="wppc-box cons-content">	
                     <div className="wppc-header">
 
-                        {pluginStyle === "wp-pros-cons wppc-view1" ?								
+                        {pluginStyle === "wp-pros-cons wppc-view1" ?
                             <div className="wppc-box-symbol">
-                                <i className="far fa-thumbs-down"></i>
-                            </div>							
+                                <img src={prosandcons.baseUrl + "assets/icons/thumbs-down-regular.svg"} />
+                            </div>
                             : 
                             null
                         }

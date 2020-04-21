@@ -86,6 +86,14 @@ $button-lg-lineheight: 1.5 !default;
 		}
 	}
 
+	.wppc-box-symbol img {
+		height: 30px;
+		width: 30px;
+		display: inline-block;
+		height: 100%;
+		vertical-align: middle;
+	}
+
 	.pros-content .wppc-box-symbol {
 		color: #fff;
 		background: $green;
@@ -102,17 +110,10 @@ $button-lg-lineheight: 1.5 !default;
 		padding: 0 20px;
 		li {
 			position: relative;
-			display: block;
+			display: flex;
 			margin: 10px 0;
 			width: 100%;
 			flex-wrap: wrap;
-			&:before {
-				content: "\f00c";
-				color: $green;
-				font-weight: 900;
-				padding-right: 5px;
-				font-family: 'Font Awesome\ 5 Free';
-			}
 			ul {
 				margin-left: 20px;
 				display: block;
@@ -121,9 +122,22 @@ $button-lg-lineheight: 1.5 !default;
 		}
 	}
 
+	.pros-content ul.wp-pros-cons-list li:before {
+		content: '';
+		padding-right: 25px;
+		background-image: url('../assets/icons/check-solid.svg');
+		background-size: 18px 18px;
+		background-position: center;
+		background-repeat: no-repeat;
+	}
+
 	.cons-content ul.wp-pros-cons-list li:before {
-		content: "\f00d";
-		color: $red;
+		content: '';
+		padding-right: 25px;
+		background-image: url('../assets/icons/times-solid.svg');
+		background-size: 18px 18px;
+		background-position: center;
+		background-repeat: no-repeat;
 	}
 
 	.wppc-btn-wrapper {

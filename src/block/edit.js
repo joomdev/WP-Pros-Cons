@@ -225,7 +225,7 @@ export default function edit({attributes, setAttributes}) {
                         
                         {pluginStyle === "wp-pros-cons wppc-view1" ?								
                             <div className="wppc-box-symbol">
-                                <i className="far fa-thumbs-up"></i>
+                                <img src={prosandcons.baseUrl + "assets/icons/thumbs-up-regular.svg"} />
                             </div>
                             : 
                             null
@@ -257,7 +257,7 @@ export default function edit({attributes, setAttributes}) {
                         
                         {pluginStyle === "wp-pros-cons wppc-view1" ?								
                             <div className="wppc-box-symbol">
-                                <i className="far fa-thumbs-down"></i>
+                                <img src={prosandcons.baseUrl + "assets/icons/thumbs-down-regular.svg"} />
                             </div>
                             : 
                             null

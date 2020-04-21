@@ -17,6 +17,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+define( 'MIGHTY_PROS_AND_CONS_DIR_PATH', plugin_dir_path( __FILE__ ) );
+define( 'MIGHTY_PROS_AND_CONS_PLG_URL', plugin_dir_url( __FILE__ ) );
+
 /**
  * Block Initializer.
  */

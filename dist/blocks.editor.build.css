@@ -43,6 +43,12 @@
       left: 50%;
       font-size: 26px;
       font-style: normal; }
+  .wp-pros-cons .wppc-box-symbol img {
+    height: 30px;
+    width: 30px;
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle; }
   .wp-pros-cons .pros-content .wppc-box-symbol {
     color: #fff;
     background: #27C110; }

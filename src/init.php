@@ -39,10 +39,17 @@ function prosandcons_cgb_block_assets() { // phpcs:ignore
 	// Register block editor script for backend.
 	wp_register_script(
 		'prosandcons-cgb-block-js', // Handle.
-		plugins_url( '/dist/blocks.build.js', dirname( __FILE__ ) ), // Block.build.js: We register the block here. Built with Webpack.
-		array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ), // Dependencies, defined above.
-		null, // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.build.js' ), // Version: filemtime — Gets file modification time.
-		true // Enqueue the script in the footer.
+		plugins_url( '/dist/blocks.build.js', dirname( __FILE__ ) ),
+		array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ),
+		true // footer?
+	);
+
+	wp_localize_script(
+		'prosandcons-cgb-block-js',
+		'prosandcons',
+		array(
+			'baseUrl' => MIGHTY_PROS_AND_CONS_PLG_URL,
+		)
 	);
 
 	// Register block editor styles for backend.
