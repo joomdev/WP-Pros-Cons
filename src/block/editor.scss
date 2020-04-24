@@ -1,13 +1,27 @@
-$circle-size: 100px !default;
+// Typography
+$green: #27C110;
+$red: #f00;
+$btncolor: #212121;
+$mainheading-size: 36px;
+$mainheading-lineheight: 1.5;
+$heading-size: 24px;
+$heading-lineheight: 24px;
 
+// Miscellaneous
+$circle-size: 100px !default;
+$breakpoint: 767px;
+
+// Small Button Sizes
 $button-sm-padding: 6px 10px !default;
 $button-sm-font: 14px !default;
 $button-sm-lineheight: 1.5 !default;
 
+// Medium Button Sizes
 $button-md-padding: 10px 20px !default;
 $button-md-font: 16px !default;
 $button-md-lineheight: 1.5 !default;
 
+// Large Button Sizes
 $button-lg-padding: 10px 24px !default;
 $button-lg-font: 20px !default;
 $button-lg-lineheight: 1.5 !default;
@@ -27,11 +41,9 @@ $button-lg-lineheight: 1.5 !default;
 	}
 
 	.wppc-boxs {
-		display: flex;
-		flex-flow: row wrap;
-		>div {
-			flex: 1 0 0%;
-		}
+		display: grid;
+		word-break: break-all;
+		grid-template-columns: 50% 50%;
 		.wppc-box {
 			background: #fff;
 			margin: 0 15px;
@@ -71,14 +83,14 @@ $button-lg-lineheight: 1.5 !default;
 	.pros-content {
 		.wppc-box-symbol {
 			color: #fff;
-			background: #27C110;
+			background: $green;
 		}
 	}
 
 	.cons-content {
 		.wppc-box-symbol {
 			color: #fff;
-			background: red;
+			background: $red;
 		}
 	}
 
@@ -89,17 +101,29 @@ $button-lg-lineheight: 1.5 !default;
 
 		li {
 			position: relative;
-			display: block;
+			display: flex;
 			margin: 10px 0;
-
-			&:before {
-				content: "\f00c";
-				color: #00bf08;
-				font-weight: 900;
-				padding-right: 5px;
-				font-family: 'Font Awesome\ 5 Free';
+			width: 100%;
+			ul {
+				margin-left: 20px;
+				display: block;
+				width: 100%;
 			}
 		}
+	}
+	ul.wp-pros-cons-list li:before {
+		content: '';
+		padding-right: 25px;
+		background-size: 20px 20px;
+		background-position: 0 5px;
+		background-repeat: no-repeat;		
+	}
+	.pros-content ul.wp-pros-cons-list li:before {
+		background-image: url('../assets/icons/check-solid.svg');
+	}
+
+	.cons-content ul.wp-pros-cons-list li:before {
+		background-image: url('../assets/icons/times-solid.svg');
 	}
 
 	.wppc-btn-wrapper {

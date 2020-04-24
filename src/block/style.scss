@@ -43,13 +43,11 @@ $button-lg-lineheight: 1.5 !default;
 	}
 
 	.wppc-boxs {
-		display: flex;
-		flex-flow: row wrap;
+		display: grid;
+		word-break: break-all;
+		grid-template-columns: 50% 50%;
 		@media screen and (max-width: $breakpoint) {
 			display: block;
-		}
-		>div {
-			flex: 1 0 0;
 		}
 		.wppc-box {
 			background: #fff;
@@ -113,7 +111,6 @@ $button-lg-lineheight: 1.5 !default;
 			display: flex;
 			margin: 10px 0;
 			width: 100%;
-			flex-wrap: wrap;
 			ul {
 				margin-left: 20px;
 				display: block;
@@ -121,23 +118,19 @@ $button-lg-lineheight: 1.5 !default;
 			}
 		}
 	}
-
-	.pros-content ul.wp-pros-cons-list li:before {
+	ul.wp-pros-cons-list li:before {
 		content: '';
 		padding-right: 25px;
+		background-size: 20px 20px;
+		background-position: 0 5px;
+		background-repeat: no-repeat;		
+	}
+	.pros-content ul.wp-pros-cons-list li:before {
 		background-image: url('../assets/icons/check-solid.svg');
-		background-size: 18px 18px;
-		background-position: center;
-		background-repeat: no-repeat;
 	}
 
 	.cons-content ul.wp-pros-cons-list li:before {
-		content: '';
-		padding-right: 25px;
 		background-image: url('../assets/icons/times-solid.svg');
-		background-size: 18px 18px;
-		background-position: center;
-		background-repeat: no-repeat;
 	}
 
 	.wppc-btn-wrapper {
