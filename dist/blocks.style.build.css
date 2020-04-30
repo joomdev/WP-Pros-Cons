@@ -70,7 +70,8 @@
       display: -ms-flexbox;
       display: flex;
       margin: 10px 0;
-      width: 100%; }
+      width: 100%;
+      word-break: break-word; }
       .wp-pros-cons ul.wp-pros-cons-list li ul {
         margin-left: 20px;
         display: block;
