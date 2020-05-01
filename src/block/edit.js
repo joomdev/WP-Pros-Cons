@@ -4,7 +4,7 @@ const { IconButton, PanelBody, ToggleControl, SelectControl, RangeControl } = wp
 const { RichText, URLInput, ColorPalette, InspectorControls } = wp.editor;
 
 export default function edit({attributes, setAttributes}) {
-    const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, buttonSize, buttonShapeSize, borderWidth, boxBorder, borderColor, pluginStyle, titleTag, contentTitleTag, enableTitle, enableButton } = attributes;
+    const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, buttonSize, buttonShapeSize, borderWidth, boxBorder, borderColor, pluginStyle, titleTag, contentTitleTag, enableTitle, enableVerdict, verdictText, verdictFontSize, verdictColor, enableButton } = attributes;
 
     // Box border type
     const boxBorderOptions = [
@@ -55,6 +55,12 @@ export default function edit({attributes, setAttributes}) {
     function onChangeEnableTitle(changes) {
         setAttributes({
             enableTitle: !enableTitle
+        })
+    }
+
+    function onChangeEnableVerdict(changes) {
+        setAttributes({
+            enableVerdict: !enableVerdict
         })
     }
     
@@ -114,6 +120,28 @@ export default function edit({attributes, setAttributes}) {
                     onChange={ ( color ) => setAttributes( { boxBackgroundColor: color } ) }
                     label={ __( 'Background Color', 'mightythemes-blocks' ) } 
                 />
+
+                <ToggleControl
+                    label={ __( 'Enable Verdict Text', 'mightythemes-blocks' ) }
+                    checked={ enableVerdict }
+                    onChange={ onChangeEnableVerdict }
+                >
+                </ToggleControl>
+
+                <RangeControl
+                    label={ __( 'Verdict Font Size', 'mightythemes-blocks' ) }
+                    value={ verdictFontSize }
+                    onChange={ ( value ) => setAttributes( { verdictFontSize: value } ) }
+                    min={ 1 }
+                    max={ 50 }
+                    step={ 1 }
+                />
+
+                <ColorPalette
+                    value={ verdictColor }
+                    onChange={ ( color ) => setAttributes( { verdictColor: color } ) }
+                    label={ __( 'Verdict Color', 'mightythemes-blocks' ) } 
+                />
                 
             </PanelBody>
 
@@ -140,14 +168,14 @@ export default function edit({attributes, setAttributes}) {
                 </ToggleControl>
 
                 <p>Button Background color:</p>
-                <ColorPalette 
+                <ColorPalette
                     value={ buttonBackgroundColor }
                     onChange={ ( color ) => setAttributes( { buttonBackgroundColor: color } ) }
                     label={ __( 'Button Background Color', 'mightythemes-blocks' ) } 
                 />
                 
                 <p>Button Text color:</p>
-                <ColorPalette 
+                <ColorPalette
                     value={ buttonTextColor }
                     onChange={ ( color ) => setAttributes( { buttonTextColor: color } ) }
                     label={ __( 'Button Text Color', 'mightythemes-blocks' ) } 
@@ -286,6 +314,18 @@ export default function edit({attributes, setAttributes}) {
                     />
                 </div>
             </div>
+
+            {enableVerdict ?
+                <div style={{ fontSize: verdictFontSize, color: verdictColor }} className="wppc-verdict-wrapper">
+                <RichText
+                    value={ verdictText }
+                    onChange={ ( value ) => setAttributes( { verdictText: value } ) }
+                    placeholder="Enter verdict here!"
+                />
+                </div>
+                : 
+                null
+            }
 
             {enableButton ?								
                 <div className="wppc-btn-wrapper">

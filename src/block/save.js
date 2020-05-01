@@ -3,7 +3,7 @@ const { RichText } = wp.editor;
 
 export default function save({ attributes }) {
 		
-    const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, buttonSize, buttonShapeSize, boxBorder, borderWidth, borderColor, pluginStyle, titleTag, contentTitleTag, enableTitle, enableButton } = attributes;
+    const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, buttonSize, buttonShapeSize, boxBorder, borderWidth, borderColor, pluginStyle, titleTag, contentTitleTag, enableTitle, enableVerdict, verdictText, verdictFontSize, verdictColor, enableButton } = attributes;
     
     return (
         <div style={{ borderColor: borderColor, backgroundColor: boxBackgroundColor, borderStyle: boxBorder, borderWidth: borderWidth }} className={pluginStyle}>
@@ -74,6 +74,14 @@ export default function save({ attributes }) {
                     
                 </div>
             </div>
+
+            {enableVerdict ?								
+                <div style={{ fontSize: verdictFontSize, color: verdictColor }} className="wppc-verdict-wrapper">
+                    <RichText.Content value={ verdictText } />
+                </div>
+                : 
+                null
+            }
             
             {enableButton ?								
                 <div className="wppc-btn-wrapper">							

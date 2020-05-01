@@ -126,6 +126,12 @@ $button-lg-lineheight: 1.5 !default;
 		background-image: url('../assets/icons/times-solid.svg');
 	}
 
+	.wppc-verdict-wrapper {
+		text-align: center;
+		margin: 30px;
+		text-justify: inter-word;
+	}
+
 	.wppc-btn-wrapper {
 		text-align: center;
 		margin: 25px 0;

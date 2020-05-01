@@ -92,6 +92,18 @@
             "type": "boolean",
             "default": false
         },
+        "enableVerdict": {
+            "type": "boolean",
+            "default": false
+        },
+        "verdictFontSize": {
+            "type": "number",
+            "default": 18
+        },
+        "verdictColor": {
+            "type": "string",
+            "default": "black"
+        },
         "enableButton": {
             "type": "boolean",
             "default": false
