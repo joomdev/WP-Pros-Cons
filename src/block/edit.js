@@ -4,7 +4,7 @@ const { IconButton, PanelBody, ToggleControl, SelectControl, RangeControl } = wp
 const { RichText, URLInput, ColorPalette, InspectorControls } = wp.editor;
 
 export default function edit({attributes, setAttributes}) {
-    const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, buttonSize, buttonShapeSize, borderWidth, boxBorder, borderColor, pluginStyle, titleTag, contentTitleTag, enableTitle, enableVerdict, verdictText, verdictFontSize, verdictColor, enableButton } = attributes;
+    const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, buttonSize, buttonShapeSize, borderWidth, boxBorder, borderColor, pluginStyle, titleTag, contentTitleTag, enableTitle, enableVerdict, verdictText, verdictFontSize, verdictColor, enableButton, iconSize } = attributes;
 
     // Box border type
     const boxBorderOptions = [
@@ -137,10 +137,20 @@ export default function edit({attributes, setAttributes}) {
                     step={ 1 }
                 />
 
+                <p>Verdict color:</p>
                 <ColorPalette
                     value={ verdictColor }
                     onChange={ ( color ) => setAttributes( { verdictColor: color } ) }
                     label={ __( 'Verdict Color', 'mightythemes-blocks' ) } 
+                />
+
+                <RangeControl
+                    label={ __( 'Icon Font Size', 'mightythemes-blocks' ) }
+                    value={ iconSize }
+                    onChange={ ( value ) => setAttributes( { iconSize: value } ) }
+                    min={ 1 }
+                    max={ 100 }
+                    step={ 1 }
                 />
                 
             </PanelBody>
@@ -253,7 +263,7 @@ export default function edit({attributes, setAttributes}) {
                         
                         {pluginStyle === "wp-pros-cons wppc-view1" ?								
                             <div className="wppc-box-symbol">
-                                <img src={prosandcons.baseUrl + "assets/icons/thumbs-up-regular.svg"} />
+                                <img style={{ width: iconSize }} src={prosandcons.baseUrl + "assets/icons/thumbs-up-regular.svg"} />
                             </div>
                             : 
                             null
@@ -285,7 +295,7 @@ export default function edit({attributes, setAttributes}) {
                         
                         {pluginStyle === "wp-pros-cons wppc-view1" ?								
                             <div className="wppc-box-symbol">
-                                <img src={prosandcons.baseUrl + "assets/icons/thumbs-down-regular.svg"} />
+                                <img style={{ width: iconSize }} src={prosandcons.baseUrl + "assets/icons/thumbs-down-regular.svg"} />
                             </div>
                             : 
                             null

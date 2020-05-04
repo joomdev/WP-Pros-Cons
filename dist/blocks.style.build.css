@@ -50,7 +50,6 @@
       left: 50%;
       font-size: 26px; }
   .wp-pros-cons .wppc-box-symbol img {
-    height: 30px;
     width: 30px;
     display: inline-block;
     height: 100%;
@@ -87,7 +86,6 @@
   .wp-pros-cons .cons-content ul.wp-pros-cons-list li:before {
     background-image: url("../assets/icons/times-solid.svg"); }
   .wp-pros-cons .wppc-verdict-wrapper {
-    text-align: center;
     margin: 30px;
     text-justify: inter-word; }
   .wp-pros-cons .wppc-btn-wrapper {

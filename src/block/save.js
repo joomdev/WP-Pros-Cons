@@ -3,7 +3,7 @@ const { RichText } = wp.editor;
 
 export default function save({ attributes }) {
 		
-    const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, buttonSize, buttonShapeSize, boxBorder, borderWidth, borderColor, pluginStyle, titleTag, contentTitleTag, enableTitle, enableVerdict, verdictText, verdictFontSize, verdictColor, enableButton } = attributes;
+    const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, buttonSize, buttonShapeSize, boxBorder, borderWidth, borderColor, pluginStyle, titleTag, contentTitleTag, enableTitle, enableVerdict, verdictText, verdictFontSize, verdictColor, enableButton, iconSize } = attributes;
     
     return (
         <div style={{ borderColor: borderColor, backgroundColor: boxBackgroundColor, borderStyle: boxBorder, borderWidth: borderWidth }} className={pluginStyle}>
@@ -25,7 +25,7 @@ export default function save({ attributes }) {
                         
                         {pluginStyle === "wp-pros-cons wppc-view1" ?
                             <div className="wppc-box-symbol">
-                                <img src={prosandcons.baseUrl + "assets/icons/thumbs-up-regular.svg"} />
+                                <img style={{ width: iconSize }} src={prosandcons.baseUrl + "assets/icons/thumbs-up-regular.svg"} />
                             </div>
                             : 
                             null
@@ -51,7 +51,7 @@ export default function save({ attributes }) {
 
                         {pluginStyle === "wp-pros-cons wppc-view1" ?
                             <div className="wppc-box-symbol">
-                                <img src={prosandcons.baseUrl + "assets/icons/thumbs-down-regular.svg"} />
+                                <img style={{ width: iconSize }} src={prosandcons.baseUrl + "assets/icons/thumbs-down-regular.svg"} />
                             </div>
                             : 
                             null
