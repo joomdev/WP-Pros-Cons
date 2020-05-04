@@ -76,9 +76,12 @@ export default function save({ attributes }) {
             </div>
 
             {enableVerdict ?								
-                <div style={{ fontSize: verdictFontSize, color: verdictColor }} className="wppc-verdict-wrapper">
-                    <RichText.Content value={ verdictText } />
-                </div>
+                <RichText.Content
+                    tagName="div"
+                    style={{ fontSize: verdictFontSize, color: verdictColor }}
+                    value={ verdictText }
+                    className="wppc-verdict-wrapper"
+               />
                 : 
                 null
             }

@@ -96,6 +96,10 @@
             "type": "boolean",
             "default": false
         },
+        "verdictText": {
+            "source": "text",
+            "selector": "div.wppc-verdict-wrapper"
+        },
         "verdictFontSize": {
             "type": "number",
             "default": 18

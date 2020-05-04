@@ -316,13 +316,14 @@ export default function edit({attributes, setAttributes}) {
             </div>
 
             {enableVerdict ?
-                <div style={{ fontSize: verdictFontSize, color: verdictColor }} className="wppc-verdict-wrapper">
                 <RichText
+                    tagName="div"
+                    style={{ fontSize: verdictFontSize, color: verdictColor }}
                     value={ verdictText }
                     onChange={ ( value ) => setAttributes( { verdictText: value } ) }
                     placeholder="Enter verdict here!"
+                    className="wppc-verdict-wrapper"
                 />
-                </div>
                 : 
                 null
             }
