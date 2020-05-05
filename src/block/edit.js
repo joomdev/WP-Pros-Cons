@@ -1,7 +1,7 @@
 /* WordPress Dependencies */
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { IconButton, PanelBody, ToggleControl, SelectControl, RangeControl } = wp.components;
-const { RichText, URLInput, ColorPalette, InspectorControls } = wp.editor;
+const { RichText, URLInput, ColorPalette, InspectorControls } = wp.blockEditor;
 
 export default function edit({attributes, setAttributes}) {
     const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, buttonSize, buttonShapeSize, borderWidth, boxBorder, borderColor, pluginStyle, titleTag, contentTitleTag, enableTitle, enableVerdict, verdictText, verdictFontSize, verdictColor, enableButton, iconSize } = attributes;
@@ -52,23 +52,32 @@ export default function edit({attributes, setAttributes}) {
         })
     }
 
-    function onChangeEnableTitle(changes) {
+    function onChangeEnableTitle() {
         setAttributes({
             enableTitle: !enableTitle
         })
     }
 
-    function onChangeEnableVerdict(changes) {
+    function onChangeEnableVerdict() {
         setAttributes({
             enableVerdict: !enableVerdict
         })
     }
     
-    function onChangeEnableButton(changes) {
+    function onChangeEnableButton() {
         setAttributes({
             enableButton: !enableButton
         })
     }
+
+    function updateTitle( value ) {
+        console.log(value);
+        setAttributes({
+            title: value
+        })
+    }
+
+    console.log(title);
 
     return ([
         <InspectorControls>
@@ -248,7 +257,7 @@ export default function edit({attributes, setAttributes}) {
             {enableTitle ?
                 <RichText
                     tagName={ titleTag }
-                    onChange={ content => setAttributes({ title: content }) }
+                    onChange={ value => setAttributes({ title: value }) }
                     value={ title }
                     placeholder="Title goes here.."
                     className="wp-pros-cons-heading"

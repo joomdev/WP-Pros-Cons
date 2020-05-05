@@ -67,15 +67,18 @@ function prosandcons_cgb_block_assets() { // phpcs:ignore
 	 * scripts and styles for both frontend and backend are
 	 * enqueued when the editor loads.
 	 */
-	if ( function_exists('has_blocks')) {
+	if ( function_exists('has_blocks') ) {
         register_block_type(
-			'cgb/block-prosandcons', array(
+			'mightythemes/block-prosandcons', array(
 				// Enqueue blocks.style.build.css on both frontend & backend.
 				'style'         => 'prosandcons-cgb-style-css',
 				// Enqueue blocks.build.js in the editor only.
 				'editor_script' => 'prosandcons-cgb-block-js',
 				// Enqueue blocks.editor.build.css in the editor only.
 				'editor_style'  => 'prosandcons-cgb-block-editor-css',
+
+
+				'render_callback' => 'render_proscons_block',
 			)
 		);
     }
@@ -83,6 +86,21 @@ function prosandcons_cgb_block_assets() { // phpcs:ignore
 		add_action( 'admin_notices', 'admin_notice_require_gutenberg' );
 		return;
 	}
+}
+
+function render_proscons_block( $attributes ) {
+
+	// echo '<pre>';
+	// print_r($attributes);
+	// echo '<pre>';
+	// die();
+
+
+	
+	$block_content = "<div class='test'>" . $attributes['title'] . "</div>";
+	
+    // Return the frontend output for our block 
+    return $block_content;
 }
 
 /**

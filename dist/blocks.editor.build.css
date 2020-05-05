@@ -75,7 +75,6 @@
   .wp-pros-cons .cons-content ul.wp-pros-cons-list li:before {
     background-image: url("../assets/icons/times-solid.svg"); }
   .wp-pros-cons .wppc-verdict-wrapper {
-    text-align: center;
     margin: 30px;
     text-justify: inter-word; }
   .wp-pros-cons .wppc-btn-wrapper {
