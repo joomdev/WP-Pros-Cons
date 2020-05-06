@@ -28,39 +28,42 @@ registerBlockType( 'mightythemes/block-prosandcons', {
 
 	attributes: {
         title: {
-            source: "text",
-            selector: ".wp-pros-cons-heading",
+            // source: "text",
+			// selector: ".wp-pros-cons-heading",
+			type: "string",
             default: "Your Title here.."
         },
         prosTitle: {
-            source: "text",
+			// source: "text",
+			type: "string",
             default: "Pros",
-            selector: "h4.pros-title"
+            // selector: "h4.pros-title"
         },
         consTitle: {
-            source: "text",
-            default: "Cons",
-            selector: "h4.cons-title"
+            // source: "text",
+			default: "Cons",
+			type: "string",
+            // selector: "h4.cons-title"
         },
         prosValues: {
-            type: "array",
-            selector: ".wp-pros-list",
-            source: "children"
+            type: "string",
+            // selector: ".wp-pros-list",
+            // source: "children"
         },
         consValues: {
-            type: "array",
-            selector: ".wp-cons-list",
-            source: "children"
+            type: "string",
+            // selector: ".wp-cons-list",
+            // source: "children"
         },
         buttonText: {
             type: "string",
             default: "Button text here..",
-            selector: ".wp-btn"
+            // selector: ".wp-btn"
         },
         buttonUrl: {
             type: "string",
-            source: "attribute",
-            selector: "a",
+            // source: "attribute",
+            // selector: "a",
             attribute: "href"
         },
         buttonBackgroundColor: {
@@ -124,8 +127,9 @@ registerBlockType( 'mightythemes/block-prosandcons', {
             default: false
         },
         verdictText: {
-            source: "text",
-            selector: "div.wppc-verdict-wrapper"
+            // source: "text",
+			// selector: "div.wppc-verdict-wrapper"
+			type: "string",
         },
         verdictFontSize: {
             type: "number",
@@ -145,7 +149,7 @@ registerBlockType( 'mightythemes/block-prosandcons', {
         }
 	},
 	
-	edit: props => {
+	edit: ( props ) => {
 		const { attributes, className, setAttributes } = props;
 
 		const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, buttonSize, buttonShapeSize, borderWidth, boxBorder, borderColor, pluginStyle, titleTag, contentTitleTag, enableTitle, enableVerdict, verdictText, verdictFontSize, verdictColor, enableButton, iconSize } = attributes;
@@ -234,7 +238,7 @@ registerBlockType( 'mightythemes/block-prosandcons', {
 	
 					<SelectControl
 						label={ __( 'Title tag', 'mightythemes-blocks' ) }
-						value={ titleTag }
+						value={ props.attributes.titleTag }
 						options={ titleHeadingTags.map( ({ value, label }) => ( {
 							value: value,
 							label: label,
@@ -245,7 +249,7 @@ registerBlockType( 'mightythemes/block-prosandcons', {
 	
 					<SelectControl
 						label={ __( 'Content Title tag', 'mightythemes-blocks' ) }
-						value={ contentTitleTag }
+						value={ props.attributes.contentTitleTag }
 						options={ titleHeadingTags.map( ({ value, label }) => ( {
 							value: value,
 							label: label,
@@ -256,7 +260,7 @@ registerBlockType( 'mightythemes/block-prosandcons', {
 	
 					<SelectControl
 						label={ __( 'Choose Style', 'mightythemes-blocks' ) }
-						value={ pluginStyle }
+						value={ props.attributes.pluginStyle }
 						options={ stylingOptions.map( ({ value, label }) => ( {
 							value: value,
 							label: label,
@@ -267,8 +271,8 @@ registerBlockType( 'mightythemes/block-prosandcons', {
 					
 					<p>Background color:</p>
 					<ColorPalette 
-						value={ boxBackgroundColor }
-						onChange={ ( color ) => props.setAttributes( { boxBackgroundColor: color } ) }
+						value={ props.attributes.boxBackgroundColor }
+						onChange={ ( color ) => props.setAttributes({ boxBackgroundColor: color }) }
 						label={ __( 'Background Color', 'mightythemes-blocks' ) } 
 					/>
 	
@@ -281,8 +285,8 @@ registerBlockType( 'mightythemes/block-prosandcons', {
 	
 					<RangeControl
 						label={ __( 'Verdict Font Size', 'mightythemes-blocks' ) }
-						value={ verdictFontSize }
-						onChange={ ( value ) => props.setAttributes( { verdictFontSize: value } ) }
+						value={ props.attributes.verdictFontSize }
+						onChange={ ( value ) => props.setAttributes({ verdictFontSize: value }) }
 						min={ 1 }
 						max={ 50 }
 						step={ 1 }
@@ -290,15 +294,15 @@ registerBlockType( 'mightythemes/block-prosandcons', {
 	
 					<p>Verdict color:</p>
 					<ColorPalette
-						value={ verdictColor }
-						onChange={ ( color ) => props.setAttributes( { verdictColor: color } ) }
+						value={ props.attributes.verdictColor }
+						onChange={ ( color ) => props.setAttributes({ verdictColor: color }) }
 						label={ __( 'Verdict Color', 'mightythemes-blocks' ) } 
 					/>
 	
 					<RangeControl
 						label={ __( 'Icon Font Size', 'mightythemes-blocks' ) }
-						value={ iconSize }
-						onChange={ ( value ) => props.setAttributes( { iconSize: value } ) }
+						value={ props.attributes.iconSize }
+						onChange={ ( value ) => props.setAttributes({ iconSize: value }) }
 						min={ 1 }
 						max={ 100 }
 						step={ 1 }
@@ -330,21 +334,21 @@ registerBlockType( 'mightythemes/block-prosandcons', {
 	
 					<p>Button Background color:</p>
 					<ColorPalette
-						value={ buttonBackgroundColor }
-						onChange={ ( color ) => props.setAttributes( { buttonBackgroundColor: color } ) }
+						value={ props.attributes.buttonBackgroundColor }
+						onChange={ ( color ) => props.setAttributes({ buttonBackgroundColor: color }) }
 						label={ __( 'Button Background Color', 'mightythemes-blocks' ) } 
 					/>
 					
 					<p>Button Text color:</p>
 					<ColorPalette
-						value={ buttonTextColor }
-						onChange={ ( color ) => props.setAttributes( { buttonTextColor: color } ) }
+						value={ props.attributes.buttonTextColor }
+						onChange={ ( color ) => props.setAttributes({ buttonTextColor: color }) }
 						label={ __( 'Button Text Color', 'mightythemes-blocks' ) } 
 					/>
 	
 					<SelectControl
 						label={ __( 'Button Size', 'mightythemes-blocks' ) }
-						value={ buttonSize }
+						value={ props.attributes.buttonSize }
 						options={ buttonSizeOptions.map( ({ value, label }) => ( {
 							value: value,
 							label: label,
@@ -355,8 +359,8 @@ registerBlockType( 'mightythemes/block-prosandcons', {
 	
 					<RangeControl
 						label={ __( 'Button Shape', 'mightythemes-blocks' ) }
-						value={ buttonShapeSize }
-						onChange={ ( value ) => props.setAttributes( { buttonShapeSize: value } ) }
+						value={ props.attributes.buttonShapeSize }
+						onChange={ ( value ) => props.setAttributes({ buttonShapeSize: value }) }
 						min={ 1 }
 						max={ 50 }
 						step={ 1 }
@@ -366,7 +370,7 @@ registerBlockType( 'mightythemes/block-prosandcons', {
 				<PanelBody title={ __( 'Border Options', 'mightythemes-blocks' ) } initialOpen={ false }>
 					<SelectControl
 						label={ __( 'Box Border Style', 'mightythemes-blocks' ) }
-						value={ boxBorder }
+						value={ props.attributes.boxBorder }
 						options={ boxBorderOptions.map( ({ value, label }) => ( {
 							value: value,
 							label: label,
@@ -377,8 +381,8 @@ registerBlockType( 'mightythemes/block-prosandcons', {
 	
 					<RangeControl
 						label={ __( 'Border Width', 'mightythemes-blocks' ) }
-						value={ borderWidth }
-						onChange={ ( value ) => props.setAttributes( { borderWidth: value } ) }
+						value={ props.attributes.borderWidth }
+						onChange={ ( value ) => props.setAttributes({ borderWidth: value }) }
 						min={ 1 }
 						max={ 20 }
 						step={ 1 }
@@ -386,8 +390,8 @@ registerBlockType( 'mightythemes/block-prosandcons', {
 	
 					<p>Border Color:</p>
 					<ColorPalette 
-						value={ borderColor }
-						onChange={ ( color ) => props.setAttributes( { borderColor: color } ) }
+						value={ props.attributes.borderColor }
+						onChange={ ( color ) => props.setAttributes({ borderColor: color }) }
 						label={ __( 'Border Color', 'mightythemes-blocks' ) } 
 					/>
 				</PanelBody>
@@ -399,12 +403,8 @@ registerBlockType( 'mightythemes/block-prosandcons', {
 				{enableTitle ?
 					<RichText
 						tagName={ titleTag }
-						// onChange={ value => props.setAttributes({ title: value }) }
-						onChange={ function( title ) {
-							console.log(title);
-							props.setAttributes({ title: title });
-						} }
-						value={ attributes.title }
+						onChange={ value => props.setAttributes({ title: value }) }						
+						value={ props.attributes.title }
 						placeholder="Title goes here.."
 						className="wp-pros-cons-heading"
 					/>
@@ -428,7 +428,7 @@ registerBlockType( 'mightythemes/block-prosandcons', {
 							<RichText
 								tagName={ contentTitleTag }
 								className="wppc-content-title pros-title"
-								value={ prosTitle }
+								value={ props.attributes.prosTitle }
 								onChange={ value => props.setAttributes({ prosTitle: value }) }
 								placeholder="Enter title here!"
 							/>
@@ -440,9 +440,9 @@ registerBlockType( 'mightythemes/block-prosandcons', {
 							multiline="li"
 							placeholder={ __( 'Pros goes here...', 'mightythemes-blocks' ) }
 							keepPlaceholderOnFocus
-							value={ prosValues }
+							value={ props.attributes.prosValues }
 							className="wp-pros-cons-list wp-pros-list"
-							onChange={ ( value ) => props.setAttributes( { prosValues: value } ) }
+							onChange={ ( value ) => props.setAttributes({ prosValues: value }) }
 						/>
 					</div>
 					<div className="wppc-box cons-content">	
@@ -460,8 +460,8 @@ registerBlockType( 'mightythemes/block-prosandcons', {
 							<RichText
 								tagName={ contentTitleTag }
 								className="wppc-content-title cons-title"
-								value={ consTitle }
-								onChange={ ( value ) => props.setAttributes( { consTitle: value } ) }
+								value={ props.attributes.consTitle }
+								onChange={ ( value ) => props.setAttributes({ consTitle: value }) }
 								placeholder="Enter title here!"
 							/>
 						</div>
@@ -472,10 +472,10 @@ registerBlockType( 'mightythemes/block-prosandcons', {
 							multiline="li"
 							placeholder={ __( 'Cons goes here...', 'mightythemes-blocks' ) }
 							keepPlaceholderOnFocus
-							value={ consValues }
+							value={ props.attributes.consValues }
 							// formattingControls={ [ 'bold', 'italic', 'strikethrough', 'link' ] }
 							className="wp-pros-cons-list wp-cons-list"
-							onChange={ ( value ) => props.setAttributes( { consValues: value } ) }
+							onChange={ ( value ) => props.setAttributes({ consValues: value }) }
 						/>
 					</div>
 				</div>
@@ -484,8 +484,8 @@ registerBlockType( 'mightythemes/block-prosandcons', {
 					<RichText
 						tagName="div"
 						style={{ fontSize: verdictFontSize, color: verdictColor }}
-						value={ verdictText }
-						onChange={ ( value ) => props.setAttributes( { verdictText: value } ) }
+						value={ props.attributes.verdictText }
+						onChange={ ( value ) => props.setAttributes({ verdictText: value }) }
 						placeholder="Enter verdict here!"
 						className="wppc-verdict-wrapper"
 					/>
@@ -499,9 +499,9 @@ registerBlockType( 'mightythemes/block-prosandcons', {
 							tagName="a"
 							placeholder={ __( 'Button text...', 'mightythemes-blocks' ) }
 							keepPlaceholderOnFocus
-							value={ buttonText }
+							value={ props.attributes.buttonText }
 							className={ `wp-btn ${buttonSize}`}
-							onChange={ (value) => props.setAttributes( { buttonText: value } ) }
+							onChange={ (value) => props.setAttributes({ buttonText: value }) }
 							style={{ backgroundColor: buttonBackgroundColor, color: buttonTextColor, borderRadius: buttonShapeSize ? buttonShapeSize + 'px' : undefined }}
 						/>
 						
@@ -512,8 +512,8 @@ registerBlockType( 'mightythemes/block-prosandcons', {
 							<URLInput
 								className="button-url btn-onclick-url"
 								style={{ display:'inline' }}
-								value={ buttonUrl }
-								onChange={ ( value ) => props.setAttributes( { buttonUrl: value } ) }
+								value={ props.attributes.buttonUrl }
+								onChange={ ( value ) => props.setAttributes({ buttonUrl: value }) }
 							/>
 						
 							<IconButton
