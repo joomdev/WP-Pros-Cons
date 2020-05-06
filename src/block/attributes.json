@@ -1,39 +1,29 @@
 {
     "attributes": {
         "title": {
-            "source": "text",
-            "selector": ".wp-pros-cons-heading",
+            "type": "string",
             "default": "Your Title here.."
         },
         "prosTitle": {
-            "source": "text",
-            "default": "Pros",
-            "selector": "h4.pros-title"
+            "type": "string",
+            "default": "Pros"
         },
         "consTitle": {
-            "source": "text",
             "default": "Cons",
-            "selector": "h4.cons-title"
+            "type": "string"
         },
         "prosValues": {
-            "type": "array",
-            "selector": ".wp-pros-list",
-            "source": "children"
+            "type": "string"
         },
         "consValues": {
-            "type": "array",
-            "selector": ".wp-cons-list",
-            "source": "children"
+            "type": "string"
         },
         "buttonText": {
             "type": "string",
-            "default": "Button text here..",
-            "selector": ".wp-btn"
+            "default": "Button text here.."
         },
         "buttonUrl": {
             "type": "string",
-            "source": "attribute",
-            "selector": "a",
             "attribute": "href"
         },
         "buttonBackgroundColor": {
@@ -97,8 +87,7 @@
             "default": false
         },
         "verdictText": {
-            "source": "text",
-            "selector": "div.wppc-verdict-wrapper"
+            "type": "string"
         },
         "verdictFontSize": {
             "type": "number",

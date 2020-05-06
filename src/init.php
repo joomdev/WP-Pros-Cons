@@ -1,13 +1,4 @@
 <?php
-/**
- * Blocks Initializer
- *
- * Enqueue CSS/JS of all the blocks.
- *
- * @since   1.0.0
- * @package CGB
- */
-
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -15,30 +6,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Enqueue Gutenberg block assets for both frontend + backend.
- *
- * Assets enqueued:
- * 1. blocks.style.build.css - Frontend + Backend.
- * 2. blocks.build.js - Backend.
- * 3. blocks.editor.build.css - Backend.
- *
- * @uses {wp-blocks} for block type registration & related functions.
- * @uses {wp-element} for WP Element abstraction — structure of blocks.
- * @uses {wp-i18n} to internationalize the block's text.
- * @uses {wp-editor} for WP editor styles.
- * @since 1.0.0
  */
 function prosandcons_cgb_block_assets() { // phpcs:ignore
 	// Register block styles for both frontend + backend.
 	wp_register_style(
-		'prosandcons-cgb-style-css', // Handle.
-		plugins_url( 'dist/blocks.style.build.css', dirname( __FILE__ ) ), // Block style CSS.
-		array( 'wp-editor' ), // Dependency to include the CSS after it.
-		null // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.style.build.css' ) // Version: File modification time.
+		'prosandcons-cgb-style-css',
+		plugins_url( 'dist/blocks.style.build.css', dirname( __FILE__ ) ),
+		array( 'wp-editor' ),
+		null
 	);
 
 	// Register block editor script for backend.
 	wp_register_script(
-		'prosandcons-cgb-block-js', // Handle.
+		'prosandcons-cgb-block-js',
 		plugins_url( '/dist/blocks.build.js', dirname( __FILE__ ) ),
 		array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ),
 		true // footer?
@@ -60,11 +40,6 @@ function prosandcons_cgb_block_assets() { // phpcs:ignore
 		null
 	);
 
-	wp_enqueue_style(
-		'prosandcons-block',
-		plugins_url( 'dist/blocks.editor.build.css', dirname( __FILE__ ) )
-	);
-
 	/**
 	 * Register Gutenberg block on server-side.
 	 *
@@ -81,7 +56,7 @@ function prosandcons_cgb_block_assets() { // phpcs:ignore
 				'editor_script' => 'prosandcons-cgb-block-js',
 				// Enqueue blocks.editor.build.css in the editor only.
 				'editor_style'  => 'prosandcons-cgb-block-editor-css',
-
+				// Enables Dynamic Block
 				'render_callback' => 'render_proscons_block',
 			)
 		);
@@ -92,19 +67,11 @@ function prosandcons_cgb_block_assets() { // phpcs:ignore
 	}
 }
 
-function render_proscons_block( $attributes, $content ) {
-
-	// echo '<pre>';
-	// print_r($attributes);
-	// echo '<pre>';
-	// die();
-	// echo $content;
-	// die();
-
-	// echo isset($attributes['enableTitle']) ? 'yes' : 'no';
-	// echo "<br>";
-	// die('done');
-	// die(print_r(isset($attributes['enableButton'])));
+/**
+ * Renders the dynamic block at frond-end
+ *
+ */
+function render_proscons_block( $attributes ) {
 
 	$defaults = [
         "title" => isset( $attributes['title'] ) ? $attributes['title'] : "Your Title here..",
@@ -214,7 +181,7 @@ function render_proscons_block( $attributes, $content ) {
 }
 
 /**
- * Notice when Gutenberg Not found.
+ * Notice for Gutenberg Not found.
  */
 function admin_notice_require_gutenberg() {
 	if ( isset( $_GET['activate'] ) ) {
