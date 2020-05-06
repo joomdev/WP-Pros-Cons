@@ -54,10 +54,15 @@ function prosandcons_cgb_block_assets() { // phpcs:ignore
 
 	// Register block editor styles for backend.
 	wp_register_style(
-		'prosandcons-cgb-block-editor-css', // Handle.
-		plugins_url( 'dist/blocks.editor.build.css', dirname( __FILE__ ) ), // Block editor CSS.
-		array( 'wp-edit-blocks' ), // Dependency to include the CSS after it.
-		null // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.editor.build.css' ) // Version: File modification time.
+		'prosandcons-cgb-block-editor-css',
+		plugins_url( 'dist/blocks.editor.build.css', dirname( __FILE__ ) ),
+		array( 'wp-edit-blocks' ),
+		null
+	);
+
+	wp_enqueue_style(
+		'prosandcons-block',
+		plugins_url( 'dist/blocks.editor.build.css', dirname( __FILE__ ) )
 	);
 
 	/**
@@ -77,7 +82,6 @@ function prosandcons_cgb_block_assets() { // phpcs:ignore
 				// Enqueue blocks.editor.build.css in the editor only.
 				'editor_style'  => 'prosandcons-cgb-block-editor-css',
 
-
 				'render_callback' => 'render_proscons_block',
 			)
 		);
@@ -88,19 +92,125 @@ function prosandcons_cgb_block_assets() { // phpcs:ignore
 	}
 }
 
-function render_proscons_block( $attributes ) {
+function render_proscons_block( $attributes, $content ) {
 
 	// echo '<pre>';
 	// print_r($attributes);
 	// echo '<pre>';
 	// die();
+	// echo $content;
+	// die();
 
+	// echo isset($attributes['enableTitle']) ? 'yes' : 'no';
+	// echo "<br>";
+	// die('done');
+	// die(print_r(isset($attributes['enableButton'])));
 
+	$defaults = [
+        "title" => isset( $attributes['title'] ) ? $attributes['title'] : "Your Title here..",
+        "prosTitle" => isset( $attributes['prosTitle'] ) ? $attributes['prosTitle'] : "Pros",
+        "consTitle" => isset( $attributes['consTitle'] ) ? $attributes['consTitle'] : "Cons",
+        "prosValues" => isset( $attributes['prosValues'] ) ? $attributes['prosValues'] : "",
+        "consValues" => isset( $attributes['consValues'] ) ? $attributes['consValues'] : "",
+        "buttonText" => isset( $attributes['buttonText'] ) ? $attributes['buttonText'] : "Button text here..",
+        "buttonUrl" => isset( $attributes['buttonUrl'] ) ? $attributes['buttonUrl'] : "#",
+        "buttonBackgroundColor" => isset( $attributes['buttonBackgroundColor'] ) ? $attributes['buttonBackgroundColor'] : "black",
+        "buttonTextColor" => isset( $attributes['buttonTextColor'] ) ? $attributes['buttonTextColor'] : "white",
+        "boxBackgroundColor" => isset( $attributes['boxBackgroundColor'] ) ? $attributes['boxBackgroundColor'] : "#f9f9f9",
+        "buttonTarget" => isset( $attributes['buttonTarget'] ) ? $attributes['buttonTarget'] : false,
+        "buttonRel" => isset( $attributes['buttonRel'] ) ? $attributes['buttonRel'] : false,
+        "buttonSize" => isset( $attributes['buttonSize'] ) ? $attributes['buttonSize'] : "wp-btn-md",
+        "buttonShapeSize" => isset( $attributes['buttonShapeSize'] ) ? $attributes['buttonShapeSize'] : 18,
+        "boxBorder" => isset( $attributes['boxBorder'] ) ? $attributes['boxBorder'] : "None",
+        "borderColor" => isset( $attributes['borderColor'] ) ? $attributes['borderColor'] : "#28b914",
+        "pluginStyle" => isset( $attributes['pluginStyle'] ) ? $attributes['pluginStyle'] : "wp-pros-cons wppc-view1",
+        "titleTag" => isset( $attributes['titleTag'] ) ? $attributes['titleTag'] : "h3",
+        "contentTitleTag" => isset( $attributes['contentTitleTag'] ) ? $attributes['contentTitleTag'] : "h4",
+        "borderWidth" => isset( $attributes['borderWidth'] ) ? $attributes['borderWidth'] : 2,
+        "enableTitle" => isset( $attributes['enableTitle'] ) ? $attributes['enableTitle'] : false,
+        "enableVerdict" => isset( $attributes['enableVerdict'] ) ? $attributes['enableVerdict'] : false,
+        "verdictText" => isset( $attributes['verdictText'] ) ? $attributes['verdictText'] : "",
+        "verdictFontSize" => isset( $attributes['verdictFontSize'] ) ? $attributes['verdictFontSize'] : 18,
+        "verdictColor" => isset( $attributes['verdictColor'] ) ? $attributes['verdictColor'] : "black",
+        "enableButton" => isset( $attributes['enableButton'] ) ? $attributes['enableButton'] : false,
+        "iconSize" => isset( $attributes['iconSize'] ) ? $attributes['iconSize'] : 30,
+	];
+
+	ob_start();
+	?>
+	<div style="border-color: <?php echo $defaults['borderColor'] ?>; background-color: <?php echo $defaults['boxBackgroundColor'] ?>; border-style: <?php echo $defaults['boxBorder'] ?>; border-width: <?php echo $defaults['borderWidth'] . "px" ?>;" class="<?php echo $defaults['pluginStyle']; ?>">
+
+		<?php if( $defaults['enableTitle'] ) { ?>
+			<<?php echo $defaults['titleTag']; ?> class="wp-pros-cons-heading"> <?php echo $defaults['title'] ?> </<?php echo $defaults['titleTag'] ?>>
+		<?php } ?>
+
+		<div class="wppc-boxs">
+			<div class="wppc-box pros-content">		
+				<div class="wppc-header">
+
+					<?php if( $defaults['pluginStyle'] === "wp-pros-cons wppc-view1" ) { ?>
+						<div class="wppc-box-symbol">
+							<img style="width: <?php echo $defaults['iconSize'] . "px" ?>;" src="<?php echo MIGHTY_PROS_AND_CONS_PLG_URL . "assets/icons/thumbs-up-regular.svg"; ?>" />
+						</div>
+					<?php } ?>
+
+					<!-- Pros title -->
+					<<?php echo $defaults['contentTitleTag'] ?> class="wppc-content-title pros-title"> 
+						<?php echo $defaults['prosTitle'] ?> 
+					</<?php echo $defaults['contentTitleTag'] ?>>
+				</div>
+
+				<!-- Pros goes here -->
+				<ul class="wp-pros-cons-list wp-pros-list"> 
+					<?php echo $defaults['prosValues'] ?> 
+				</ul>
+			</div>
+			<div class="wppc-box cons-content">	
+				<div class="wppc-header">
+
+					<?php if( $defaults['pluginStyle'] === "wp-pros-cons wppc-view1" ) { ?>
+						<div class="wppc-box-symbol">
+							<img style="width: <?php echo $defaults['iconSize'] . "px" ?>;" src="<?php echo MIGHTY_PROS_AND_CONS_PLG_URL . "assets/icons/thumbs-down-regular.svg"; ?>" />
+						</div>
+					<?php } ?>
+
+					<!-- Cons title -->
+					<<?php echo $defaults['contentTitleTag'] ?> class="wppc-content-title cons-title"> 
+						<?php echo $defaults['consTitle'] ?> 
+					</<?php echo $defaults['contentTitleTag'] ?>>
+				</div>
+
+				<!-- Cons goes here -->
+				<ul class="wp-pros-cons-list wp-cons-list"> 
+					<?php echo $defaults['consValues'] ?> 
+				</ul>
+				
+			</div>
+		</div>
+
+		<?php if( $defaults['enableVerdict'] ) { ?>
+			<div class="wppc-verdict-wrapper" style="font-size: <?php echo $defaults['verdictFontSize'] . "px" ?>; color: <?php echo $defaults['verdictColor'] ?>;">
+				<?php echo $defaults['verdictText'] ?>
+			</div>
+		<?php } ?>
+
+		<?php if( $defaults['enableButton'] ) { ?>
+			<div class="wppc-btn-wrapper" style="font-size: <?php echo $defaults['verdictFontSize'] . "px" ?>; color: <?php echo $defaults['verdictColor'] ?>;">
+				<a
+					href="<?php echo $defaults['buttonUrl'] ?>"
+					style="background-color: <?php echo $defaults['buttonBackgroundColor'] ?>; color: <?php echo $defaults['buttonTextColor'] ?>; border-radius: <?php echo $defaults['buttonShapeSize'] . "px" ?>;"
+					rel="<?php echo $defaults['buttonRel'] ? 'nofollow noopener noreferrer' : 'noopener noreferrer' ?>"
+					class="wp-btn <?php echo $defaults['buttonSize'] ?>"
+					target="<?php echo $defaults['buttonTarget'] ? '_blank' : '' ?>"
+				>
+					<?php echo $defaults['buttonText'] ?>
+				</a>
+			</div>
+		<?php } ?>
+	</div>	
 	
-	$block_content = "<div class='test'>" . $attributes['title'] . "</div>";
-	
-    // Return the frontend output for our block 
-    return $block_content;
+	<?php
+	return ob_get_clean();
 }
 
 /**
@@ -130,8 +240,8 @@ function mightythemes_custom_category( $categories ) {
 		$categories,
 		array(
 			array(
-				'slug'  => 'mightythemes-blocks',
-				'title' => __( 'MightyThemes Blocks', 'mightythemes-blocks' ),
+				'slug'  => isset( $attributes['enableTitle'] ) ? $attributes['enableTitle'] : 'mightythemes-blocks',
+				'title' => isset( $attributes['enableTitle'] ) ? $attributes['enableTitle'] : __( 'MightyThemes Blocks', 'mightythemes-blocks' ),
 			),
 		)
 	);
