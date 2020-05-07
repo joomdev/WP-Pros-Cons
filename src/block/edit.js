@@ -73,13 +73,6 @@ export default function edit( props ) {
         })
     }
 
-    function updateTitle( value ) {
-        console.log(value);
-        props.setAttributes({
-            title: value
-        })
-    }
-
     return ([
         <InspectorControls>
 

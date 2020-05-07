@@ -4,8 +4,6 @@ import './editor.scss';
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
-const { IconButton, PanelBody, ToggleControl, SelectControl, RangeControl } = wp.components;
-const { RichText, URLInput, ColorPalette, InspectorControls } = wp.blockEditor;
 
 // Internal Dependencies
 import edit from './edit';
