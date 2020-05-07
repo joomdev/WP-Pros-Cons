@@ -93,14 +93,13 @@
     text-align: center;
     margin: 30px 0 0; }
     .wp-pros-cons .wppc-btn-wrapper .wp-btn {
-      background: #212121;
-      color: #fff;
       -webkit-box-shadow: none;
               box-shadow: none;
       font-size: 16px;
       line-height: 1.5;
       font-weight: 300;
-      display: inline-block; }
+      display: inline-block;
+      text-decoration: none; }
       .wp-pros-cons .wppc-btn-wrapper .wp-btn.wp-btn-sm {
         font-size: 14px;
         line-height: 1.5;
@@ -113,8 +112,7 @@
         font-size: 20px;
         line-height: 1.5;
         padding: 10px 24px; }
-      .wp-pros-cons .wppc-btn-wrapper .wp-btn:hover, .wp-pros-cons .wppc-btn-wrapper .wp-btn:focus {
-        color: #f00;
+      .wp-pros-cons .wppc-btn-wrapper .wp-btn:focus {
         background: #202020; }
   .wp-pros-cons.wppc-view1 .wppc-boxs {
     margin-top: calc(100px / 2); }

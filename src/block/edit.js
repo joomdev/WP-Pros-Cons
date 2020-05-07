@@ -7,7 +7,7 @@ export default function edit( props ) {
 
     const { attributes, className, setAttributes } = props;
 
-    const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, buttonSize, buttonShapeSize, borderWidth, boxBorder, borderColor, pluginStyle, titleTag, contentTitleTag, enableTitle, enableVerdict, verdictText, verdictFontSize, verdictColor, enableButton, iconSize } = attributes;
+    const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, buttonHoverColor, buttonHoverTextColor, boxBackgroundColor, buttonTarget, buttonRel, buttonSize, buttonShapeSize, borderWidth, boxBorder, borderColor, pluginStyle, titleTag, contentTitleTag, enableTitle, enableVerdict, verdictText, verdictFontSize, verdictColor, enableButton, iconSize } = attributes;
 
     // Box border type
     const boxBorderOptions = [
@@ -187,18 +187,32 @@ export default function edit( props ) {
                 >
                 </ToggleControl>
 
-                <p>Button Background color:</p>
+                <p>Button Background Color:</p>
                 <ColorPalette
                     value={ props.attributes.buttonBackgroundColor }
                     onChange={ ( color ) => props.setAttributes({ buttonBackgroundColor: color }) }
                     label={ __( 'Button Background Color', 'mightythemes-blocks' ) } 
                 />
                 
-                <p>Button Text color:</p>
+                <p>Button Text Color:</p>
                 <ColorPalette
                     value={ props.attributes.buttonTextColor }
                     onChange={ ( color ) => props.setAttributes({ buttonTextColor: color }) }
                     label={ __( 'Button Text Color', 'mightythemes-blocks' ) } 
+                />
+
+                <p>Button Hover Background Color:</p>
+                <ColorPalette
+                    value={ props.attributes.buttonHoverColor }
+                    onChange={ ( color ) => props.setAttributes({ buttonHoverColor: color }) }
+                    label={ __( 'Button Hover Background Color', 'mightythemes-blocks' ) } 
+                />
+                
+                <p>Button Hover Text Color:</p>
+                <ColorPalette
+                    value={ props.attributes.buttonHoverTextColor }
+                    onChange={ ( color ) => props.setAttributes({ buttonHoverTextColor: color }) }
+                    label={ __( 'Button Hover Text Color', 'mightythemes-blocks' ) } 
                 />
 
                 <SelectControl

@@ -143,13 +143,12 @@ $button-lg-lineheight: 1.5 !default;
 		text-align: center;
 		margin: 30px 0 0;
 		.wp-btn {
-			background: $btncolor;
-			color: #fff;
 			box-shadow: none;
 			font-size: $button-md-font;
 			line-height: $button-md-lineheight;
 			font-weight: 300;
 			display: inline-block;
+			text-decoration: none;
 			&.wp-btn-sm{
 				font-size: $button-sm-font;
 				line-height: $button-sm-lineheight;
@@ -165,9 +164,7 @@ $button-lg-lineheight: 1.5 !default;
 				line-height: $button-lg-lineheight;
 				padding: $button-lg-padding;
 			}
-			&:hover,
 			&:focus {
-				color: $red;
 				background: darken($btncolor, $amount: .5);
 			}
 		}

@@ -83,12 +83,14 @@ function render_proscons_block( $attributes ) {
         "buttonUrl" => isset( $attributes['buttonUrl'] ) ? $attributes['buttonUrl'] : "#",
         "buttonBackgroundColor" => isset( $attributes['buttonBackgroundColor'] ) ? $attributes['buttonBackgroundColor'] : "black",
         "buttonTextColor" => isset( $attributes['buttonTextColor'] ) ? $attributes['buttonTextColor'] : "white",
+        "buttonHoverColor" => isset( $attributes['buttonHoverColor'] ) ? $attributes['buttonHoverColor'] : $attributes['buttonBackgroundColor'],
+        "buttonHoverTextColor" => isset( $attributes['buttonHoverTextColor'] ) ? $attributes['buttonHoverTextColor'] : $attributes['buttonTextColor'],
         "boxBackgroundColor" => isset( $attributes['boxBackgroundColor'] ) ? $attributes['boxBackgroundColor'] : "#f9f9f9",
         "buttonTarget" => isset( $attributes['buttonTarget'] ) ? $attributes['buttonTarget'] : false,
         "buttonRel" => isset( $attributes['buttonRel'] ) ? $attributes['buttonRel'] : false,
         "buttonSize" => isset( $attributes['buttonSize'] ) ? $attributes['buttonSize'] : "wp-btn-md",
         "buttonShapeSize" => isset( $attributes['buttonShapeSize'] ) ? $attributes['buttonShapeSize'] : 18,
-        "boxBorder" => isset( $attributes['boxBorder'] ) ? $attributes['boxBorder'] : "None",
+        "boxBorder" => isset( $attributes['boxBorder'] ) ? $attributes['boxBorder'] : "none",
         "borderColor" => isset( $attributes['borderColor'] ) ? $attributes['borderColor'] : "#28b914",
         "pluginStyle" => isset( $attributes['pluginStyle'] ) ? $attributes['pluginStyle'] : "wp-pros-cons wppc-view1",
         "titleTag" => isset( $attributes['titleTag'] ) ? $attributes['titleTag'] : "h3",
@@ -165,7 +167,7 @@ function render_proscons_block( $attributes ) {
 			<div class="wppc-btn-wrapper" style="font-size: <?php echo $defaults['verdictFontSize'] . "px" ?>; color: <?php echo $defaults['verdictColor'] ?>;">
 				<a
 					href="<?php echo $defaults['buttonUrl'] ?>"
-					style="background-color: <?php echo $defaults['buttonBackgroundColor'] ?>; color: <?php echo $defaults['buttonTextColor'] ?>; border-radius: <?php echo $defaults['buttonShapeSize'] . "px" ?>;"
+					style="border-radius: <?php echo $defaults['buttonShapeSize'] . "px" ?>;"
 					rel="<?php echo $defaults['buttonRel'] ? 'nofollow noopener noreferrer' : 'noopener noreferrer' ?>"
 					class="wp-btn <?php echo $defaults['buttonSize'] ?>"
 					target="<?php echo $defaults['buttonTarget'] ? '_blank' : '' ?>"
@@ -174,8 +176,11 @@ function render_proscons_block( $attributes ) {
 				</a>
 			</div>
 		<?php } ?>
-	</div>	
-	
+	</div>
+	<style>
+	.wp-btn { color: <?php echo $defaults['buttonTextColor'] ?>; background-color: <?php echo $defaults['buttonBackgroundColor'] ?>; }
+	.wp-btn:hover { color: <?php echo $defaults['buttonHoverTextColor'] ?>; background-color: <?php echo $defaults['buttonHoverColor'] ?>; }
+	</style>
 	<?php
 	return ob_get_clean();
 }
