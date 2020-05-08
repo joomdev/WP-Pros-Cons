@@ -66,8 +66,6 @@
     padding: 0 20px; }
     .wp-pros-cons ul.wp-pros-cons-list li {
       position: relative;
-      display: -ms-flexbox;
-      display: flex;
       margin: 10px 0;
       width: 100%;
       word-break: break-word; }
