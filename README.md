@@ -86,8 +86,9 @@ FontAwesome Free is free, open source, and GPL friendly.
 = 1.2.4 =
 * Added: Icons size control
 * Added: Verdict Text Controls
-* Added: Hover effects on button
-* Updated: Static Block converted to Dynamic Block to remove block recovery issues.
+* Fixed: Edtiable Pros & Cons Disabled
+* Fixed: Aligned Tick and Times Icons with Text
+* Fixed: Underlined button text
 
 = 1.2.3 =
 * Fixed: Icons size issue

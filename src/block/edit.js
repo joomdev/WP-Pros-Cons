@@ -1,13 +1,10 @@
 /* WordPress Dependencies */
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { IconButton, PanelBody, ToggleControl, SelectControl, RangeControl } = wp.components;
-const { RichText, URLInput, ColorPalette, InspectorControls } = wp.blockEditor;
+const { RichText, URLInput, ColorPalette, InspectorControls } = wp.editor;
 
-export default function edit( props ) {
-
-    const { attributes, className, setAttributes } = props;
-
-    const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, buttonHoverColor, buttonHoverTextColor, boxBackgroundColor, buttonTarget, buttonRel, buttonSize, buttonShapeSize, borderWidth, boxBorder, borderColor, pluginStyle, titleTag, contentTitleTag, enableTitle, enableVerdict, verdictText, verdictFontSize, verdictColor, enableButton, iconSize } = attributes;
+export default function edit({attributes, setAttributes}) {
+    const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, buttonSize, buttonShapeSize, borderWidth, boxBorder, borderColor, pluginStyle, titleTag, contentTitleTag, enableTitle, enableVerdict, verdictText, verdictFontSize, verdictColor, enableButton, iconSize } = attributes;
 
     // Box border type
     const boxBorderOptions = [
@@ -44,31 +41,31 @@ export default function edit( props ) {
     ];
 
     function onChangeButtonTarget(changes) {
-        props.setAttributes({
+        setAttributes({
             buttonTarget: ! buttonTarget
         })
     }
 
     function onChangeButtonRel(changes) {
-        props.setAttributes({
+        setAttributes({
             buttonRel: ! buttonRel
         })
     }
 
-    function onChangeEnableTitle() {
-        props.setAttributes({
+    function onChangeEnableTitle(changes) {
+        setAttributes({
             enableTitle: !enableTitle
         })
     }
 
-    function onChangeEnableVerdict() {
-        props.setAttributes({
+    function onChangeEnableVerdict(changes) {
+        setAttributes({
             enableVerdict: !enableVerdict
         })
     }
     
-    function onChangeEnableButton() {
-        props.setAttributes({
+    function onChangeEnableButton(changes) {
+        setAttributes({
             enableButton: !enableButton
         })
     }
@@ -86,41 +83,41 @@ export default function edit( props ) {
 
                 <SelectControl
                     label={ __( 'Title tag', 'mightythemes-blocks' ) }
-                    value={ props.attributes.titleTag }
+                    value={ titleTag }
                     options={ titleHeadingTags.map( ({ value, label }) => ( {
                         value: value,
                         label: label,
                     } ) ) }
-                    onChange={ value => props.setAttributes({ titleTag: value }) }
+                    onChange={ value => setAttributes({ titleTag: value }) }
                 >
                 </SelectControl>
 
                 <SelectControl
                     label={ __( 'Content Title tag', 'mightythemes-blocks' ) }
-                    value={ props.attributes.contentTitleTag }
+                    value={ contentTitleTag }
                     options={ titleHeadingTags.map( ({ value, label }) => ( {
                         value: value,
                         label: label,
                     } ) ) }
-                    onChange={ value => props.setAttributes({ contentTitleTag: value }) }
+                    onChange={ value => setAttributes({ contentTitleTag: value }) }
                 >
                 </SelectControl>
 
                 <SelectControl
                     label={ __( 'Choose Style', 'mightythemes-blocks' ) }
-                    value={ props.attributes.pluginStyle }
+                    value={ pluginStyle }
                     options={ stylingOptions.map( ({ value, label }) => ( {
                         value: value,
                         label: label,
                     } ) ) }
-                    onChange={ value => props.setAttributes({ pluginStyle: value }) }
+                    onChange={ value => setAttributes({ pluginStyle: value }) }
                 >
                 </SelectControl>
                 
                 <p>Background color:</p>
                 <ColorPalette 
-                    value={ props.attributes.boxBackgroundColor }
-                    onChange={ ( color ) => props.setAttributes({ boxBackgroundColor: color }) }
+                    value={ boxBackgroundColor }
+                    onChange={ ( color ) => setAttributes( { boxBackgroundColor: color } ) }
                     label={ __( 'Background Color', 'mightythemes-blocks' ) } 
                 />
 
@@ -133,8 +130,8 @@ export default function edit( props ) {
 
                 <RangeControl
                     label={ __( 'Verdict Font Size', 'mightythemes-blocks' ) }
-                    value={ props.attributes.verdictFontSize }
-                    onChange={ ( value ) => props.setAttributes({ verdictFontSize: value }) }
+                    value={ verdictFontSize }
+                    onChange={ ( value ) => setAttributes( { verdictFontSize: value } ) }
                     min={ 1 }
                     max={ 50 }
                     step={ 1 }
@@ -142,15 +139,15 @@ export default function edit( props ) {
 
                 <p>Verdict color:</p>
                 <ColorPalette
-                    value={ props.attributes.verdictColor }
-                    onChange={ ( color ) => props.setAttributes({ verdictColor: color }) }
+                    value={ verdictColor }
+                    onChange={ ( color ) => setAttributes( { verdictColor: color } ) }
                     label={ __( 'Verdict Color', 'mightythemes-blocks' ) } 
                 />
 
                 <RangeControl
                     label={ __( 'Icon Font Size', 'mightythemes-blocks' ) }
-                    value={ props.attributes.iconSize }
-                    onChange={ ( value ) => props.setAttributes({ iconSize: value }) }
+                    value={ iconSize }
+                    onChange={ ( value ) => setAttributes( { iconSize: value } ) }
                     min={ 1 }
                     max={ 100 }
                     step={ 1 }
@@ -180,49 +177,35 @@ export default function edit( props ) {
                 >
                 </ToggleControl>
 
-                <p>Button Background Color:</p>
+                <p>Button Background color:</p>
                 <ColorPalette
-                    value={ props.attributes.buttonBackgroundColor }
-                    onChange={ ( color ) => props.setAttributes({ buttonBackgroundColor: color }) }
+                    value={ buttonBackgroundColor }
+                    onChange={ ( color ) => setAttributes( { buttonBackgroundColor: color } ) }
                     label={ __( 'Button Background Color', 'mightythemes-blocks' ) } 
                 />
                 
-                <p>Button Text Color:</p>
+                <p>Button Text color:</p>
                 <ColorPalette
-                    value={ props.attributes.buttonTextColor }
-                    onChange={ ( color ) => props.setAttributes({ buttonTextColor: color }) }
+                    value={ buttonTextColor }
+                    onChange={ ( color ) => setAttributes( { buttonTextColor: color } ) }
                     label={ __( 'Button Text Color', 'mightythemes-blocks' ) } 
-                />
-
-                <p>Button Hover Background Color:</p>
-                <ColorPalette
-                    value={ props.attributes.buttonHoverColor }
-                    onChange={ ( color ) => props.setAttributes({ buttonHoverColor: color }) }
-                    label={ __( 'Button Hover Background Color', 'mightythemes-blocks' ) } 
-                />
-                
-                <p>Button Hover Text Color:</p>
-                <ColorPalette
-                    value={ props.attributes.buttonHoverTextColor }
-                    onChange={ ( color ) => props.setAttributes({ buttonHoverTextColor: color }) }
-                    label={ __( 'Button Hover Text Color', 'mightythemes-blocks' ) } 
                 />
 
                 <SelectControl
                     label={ __( 'Button Size', 'mightythemes-blocks' ) }
-                    value={ props.attributes.buttonSize }
+                    value={ buttonSize }
                     options={ buttonSizeOptions.map( ({ value, label }) => ( {
                         value: value,
                         label: label,
                     } ) ) }
-                    onChange={ value => props.setAttributes({ buttonSize: value }) }
+                    onChange={ value => setAttributes({ buttonSize: value }) }
                 >
                 </SelectControl>
 
                 <RangeControl
                     label={ __( 'Button Shape', 'mightythemes-blocks' ) }
-                    value={ props.attributes.buttonShapeSize }
-                    onChange={ ( value ) => props.setAttributes({ buttonShapeSize: value }) }
+                    value={ buttonShapeSize }
+                    onChange={ ( value ) => setAttributes( { buttonShapeSize: value } ) }
                     min={ 1 }
                     max={ 50 }
                     step={ 1 }
@@ -232,19 +215,19 @@ export default function edit( props ) {
             <PanelBody title={ __( 'Border Options', 'mightythemes-blocks' ) } initialOpen={ false }>
                 <SelectControl
                     label={ __( 'Box Border Style', 'mightythemes-blocks' ) }
-                    value={ props.attributes.boxBorder }
+                    value={ boxBorder }
                     options={ boxBorderOptions.map( ({ value, label }) => ( {
                         value: value,
                         label: label,
                     } ) ) }
-                    onChange={ content => props.setAttributes({ boxBorder: content }) }
+                    onChange={ content => setAttributes({ boxBorder: content }) }
                 >
                 </SelectControl>
 
                 <RangeControl
                     label={ __( 'Border Width', 'mightythemes-blocks' ) }
-                    value={ props.attributes.borderWidth }
-                    onChange={ ( value ) => props.setAttributes({ borderWidth: value }) }
+                    value={ borderWidth }
+                    onChange={ ( value ) => setAttributes( { borderWidth: value } ) }
                     min={ 1 }
                     max={ 20 }
                     step={ 1 }
@@ -252,8 +235,8 @@ export default function edit( props ) {
 
                 <p>Border Color:</p>
                 <ColorPalette 
-                    value={ props.attributes.borderColor }
-                    onChange={ ( color ) => props.setAttributes({ borderColor: color }) }
+                    value={ borderColor }
+                    onChange={ ( color ) => setAttributes( { borderColor: color } ) }
                     label={ __( 'Border Color', 'mightythemes-blocks' ) } 
                 />
             </PanelBody>
@@ -265,8 +248,8 @@ export default function edit( props ) {
             {enableTitle ?
                 <RichText
                     tagName={ titleTag }
-                    onChange={ value => props.setAttributes({ title: value }) }						
-                    value={ props.attributes.title }
+                    onChange={ content => setAttributes({ title: content }) }
+                    value={ title }
                     placeholder="Title goes here.."
                     className="wp-pros-cons-heading"
                 />
@@ -290,8 +273,8 @@ export default function edit( props ) {
                         <RichText
                             tagName={ contentTitleTag }
                             className="wppc-content-title pros-title"
-                            value={ props.attributes.prosTitle }
-                            onChange={ value => props.setAttributes({ prosTitle: value }) }
+                            value={ prosTitle }
+                            onChange={ value => setAttributes({ prosTitle: value }) }
                             placeholder="Enter title here!"
                         />
                     </div>
@@ -302,9 +285,9 @@ export default function edit( props ) {
                         multiline="li"
                         placeholder={ __( 'Pros goes here...', 'mightythemes-blocks' ) }
                         keepPlaceholderOnFocus
-                        value={ props.attributes.prosValues }
+                        value={ prosValues }
                         className="wp-pros-cons-list wp-pros-list"
-                        onChange={ ( value ) => props.setAttributes({ prosValues: value }) }
+                        onChange={ ( value ) => setAttributes( { prosValues: value } ) }
                     />
                 </div>
                 <div className="wppc-box cons-content">	
@@ -322,8 +305,8 @@ export default function edit( props ) {
                         <RichText
                             tagName={ contentTitleTag }
                             className="wppc-content-title cons-title"
-                            value={ props.attributes.consTitle }
-                            onChange={ ( value ) => props.setAttributes({ consTitle: value }) }
+                            value={ consTitle }
+                            onChange={ ( value ) => setAttributes( { consTitle: value } ) }
                             placeholder="Enter title here!"
                         />
                     </div>
@@ -334,10 +317,10 @@ export default function edit( props ) {
                         multiline="li"
                         placeholder={ __( 'Cons goes here...', 'mightythemes-blocks' ) }
                         keepPlaceholderOnFocus
-                        value={ props.attributes.consValues }
-                        // formattingControls={ [ 'bold', 'italic', 'strikethrough', 'link' ] }
+                        value={ consValues }
+                        formattingControls={ [ 'bold', 'italic', 'strikethrough', 'link' ] }
                         className="wp-pros-cons-list wp-cons-list"
-                        onChange={ ( value ) => props.setAttributes({ consValues: value }) }
+                        onChange={ ( value ) => setAttributes( { consValues: value } ) }
                     />
                 </div>
             </div>
@@ -346,8 +329,8 @@ export default function edit( props ) {
                 <RichText
                     tagName="div"
                     style={{ fontSize: verdictFontSize, color: verdictColor }}
-                    value={ props.attributes.verdictText }
-                    onChange={ ( value ) => props.setAttributes({ verdictText: value }) }
+                    value={ verdictText }
+                    onChange={ ( value ) => setAttributes( { verdictText: value } ) }
                     placeholder="Enter verdict here!"
                     className="wppc-verdict-wrapper"
                 />
@@ -361,9 +344,9 @@ export default function edit( props ) {
                         tagName="a"
                         placeholder={ __( 'Button text...', 'mightythemes-blocks' ) }
                         keepPlaceholderOnFocus
-                        value={ props.attributes.buttonText }
+                        value={ buttonText }
                         className={ `wp-btn ${buttonSize}`}
-                        onChange={ (value) => props.setAttributes({ buttonText: value }) }
+                        onChange={ (value) => setAttributes( { buttonText: value } ) }
                         style={{ backgroundColor: buttonBackgroundColor, color: buttonTextColor, borderRadius: buttonShapeSize ? buttonShapeSize + 'px' : undefined }}
                     />
                     
@@ -374,8 +357,8 @@ export default function edit( props ) {
                         <URLInput
                             className="button-url btn-onclick-url"
                             style={{ display:'inline' }}
-                            value={ props.attributes.buttonUrl }
-                            onChange={ ( value ) => props.setAttributes({ buttonUrl: value }) }
+                            value={ buttonUrl }
+                            onChange={ ( value ) => setAttributes( { buttonUrl: value } ) }
                         />
                     
                         <IconButton

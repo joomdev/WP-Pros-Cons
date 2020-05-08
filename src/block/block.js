@@ -7,6 +7,7 @@ const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.b
 
 // Internal Dependencies
 import edit from './edit';
+import save from './save';
 import metadata from './attributes.json';
 const { attributes } = metadata;
 
@@ -24,7 +25,5 @@ registerBlockType( 'mightythemes/block-prosandcons', {
 
 	attributes,
 	edit,
-	save: function() {
-		return null;
-	},
+	save,
 } );

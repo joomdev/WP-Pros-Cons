@@ -1,29 +1,39 @@
 {
     "attributes": {
         "title": {
-            "type": "string",
+            "source": "text",
+            "selector": ".wp-pros-cons-heading",
             "default": "Your Title here.."
         },
         "prosTitle": {
-            "type": "string",
-            "default": "Pros"
+            "source": "text",
+            "default": "Pros",
+            "selector": "h4.pros-title"
         },
         "consTitle": {
+            "source": "text",
             "default": "Cons",
-            "type": "string"
+            "selector": "h4.cons-title"
         },
         "prosValues": {
-            "type": "string"
+            "type": "array",
+            "selector": ".wp-pros-list",
+            "source": "children"
         },
         "consValues": {
-            "type": "string"
+            "type": "array",
+            "selector": ".wp-cons-list",
+            "source": "children"
         },
         "buttonText": {
             "type": "string",
-            "default": "Button text here.."
+            "default": "Button text here..",
+            "selector": ".wp-btn"
         },
         "buttonUrl": {
             "type": "string",
+            "source": "attribute",
+            "selector": "a",
             "attribute": "href"
         },
         "buttonBackgroundColor": {
@@ -33,14 +43,6 @@
         "buttonTextColor": {
             "type": "string",
             "default": "white"
-        },
-        "buttonHoverColor": {
-            "type": "string",
-            "default": "grey"
-        },
-        "buttonHoverTextColor": {
-            "type": "string",
-            "default": "grey"
         },
         "boxBackgroundColor": {
             "type": "string",
@@ -64,7 +66,7 @@
         },
         "boxBorder": {
             "type": "string",
-            "default": "none"
+            "default": "None"
         },
         "borderColor": {
             "type": "string",
@@ -95,7 +97,8 @@
             "default": false
         },
         "verdictText": {
-            "type": "string"
+            "source": "text",
+            "selector": "div.wppc-verdict-wrapper"
         },
         "verdictFontSize": {
             "type": "number",
