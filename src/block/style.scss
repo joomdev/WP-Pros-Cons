@@ -110,6 +110,8 @@ $button-lg-lineheight: 1.5 !default;
 			margin: 10px 0;
 			width: 100%;
 			word-break: break-word;
+			display: block;
+			list-style-type: none;
 			ul {
 				margin-left: 20px;
 				display: block;
@@ -117,14 +119,15 @@ $button-lg-lineheight: 1.5 !default;
 			}
 		}
 	}
+	
 	ul.wp-pros-cons-list li:before {
 		content: '';
 		padding-right: 25px;
 		background-size: 20px 20px;
-		background-position: 0 5px;
+		background-position: 1px;
 		background-repeat: no-repeat;
-		margin-top: 6px;
 	}
+
 	.pros-content ul.wp-pros-cons-list li:before {
 		background-image: url('../assets/icons/check-solid.svg');
 	}

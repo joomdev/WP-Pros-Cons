@@ -68,7 +68,9 @@
       position: relative;
       margin: 10px 0;
       width: 100%;
-      word-break: break-word; }
+      word-break: break-word;
+      display: block;
+      list-style-type: none; }
       .wp-pros-cons ul.wp-pros-cons-list li ul {
         margin-left: 20px;
         display: block;
@@ -77,9 +79,8 @@
     content: '';
     padding-right: 25px;
     background-size: 20px 20px;
-    background-position: 0 5px;
-    background-repeat: no-repeat;
-    margin-top: 6px; }
+    background-position: 1px;
+    background-repeat: no-repeat; }
   .wp-pros-cons .pros-content ul.wp-pros-cons-list li:before {
     background-image: url("../assets/icons/check-solid.svg"); }
   .wp-pros-cons .cons-content ul.wp-pros-cons-list li:before {

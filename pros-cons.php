@@ -5,7 +5,7 @@
  * Description: Mighty Pros & Cons is a Gutenberg block which helps you to insert responsive Pros and Cons table within your blog post.
  * Author: Mighty Themes
  * Author URI: http://mightythemes.com
- * Version: 1.2.4
+ * Version: 1.2.5
  * License: GPL2+
  * License URI: #
  *

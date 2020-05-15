@@ -4,7 +4,7 @@ Donate link: https://mightythemes.com/
 Tags: pros & Cons, Pros, Cons, Table, Pros & Cons table, gutenberg, block, builder
 Requires at least: 5.0
 Tested up to: 5.3
-Stable tag: 1.2.4
+Stable tag: 1.2.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -83,10 +83,13 @@ FontAwesome Free is free, open source, and GPL friendly.
 * Source: https://fontawesome.com
 
 == Changelog ==
+= 1.2.5 =
+* Fixed: Icons Alignment Issues
+
 = 1.2.4 =
 * Added: Icons size control
 * Added: Verdict Text Controls
-* Fixed: Edtiable Pros & Cons Disabled
+* Fixed: Uneditable Pros & Cons
 * Fixed: Aligned Tick and Times Icons with Text
 * Fixed: Underlined button text
 
