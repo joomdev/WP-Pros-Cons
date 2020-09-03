@@ -40,6 +40,14 @@
             "type": "string",
             "default": "black"
         },
+        "iconPosition": {
+            "type": "string",
+            "default": "before"
+        },
+        "buttonIcon": {
+            "type": "string",
+            "default": "dashicons dashicons-cart"
+        },
         "buttonTextColor": {
             "type": "string",
             "default": "white"

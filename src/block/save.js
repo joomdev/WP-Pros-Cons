@@ -3,7 +3,7 @@ const { RichText } = wp.editor;
 
 export default function save({ attributes }) {
 		
-    const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, buttonSize, buttonShapeSize, boxBorder, borderWidth, borderColor, pluginStyle, titleTag, contentTitleTag, enableTitle, enableVerdict, verdictText, verdictFontSize, verdictColor, enableButton, iconSize } = attributes;
+    const { prosValues, consValues, title, prosTitle, consTitle, buttonText, buttonUrl, buttonBackgroundColor, buttonIcon, iconPosition, buttonTextColor, boxBackgroundColor, buttonTarget, buttonRel, buttonSize, buttonShapeSize, boxBorder, borderWidth, borderColor, pluginStyle, titleTag, contentTitleTag, enableTitle, enableVerdict, verdictText, verdictFontSize, verdictColor, enableButton, iconSize } = attributes;
     
     return (
         <div style={{ borderColor: borderColor, backgroundColor: boxBackgroundColor, borderStyle: boxBorder, borderWidth: borderWidth }} className={pluginStyle}>
@@ -90,12 +90,12 @@ export default function save({ attributes }) {
                 <div className="wppc-btn-wrapper">							
                     <a
                         href={ buttonUrl ? buttonUrl : '#' }
-                        style={{ backgroundColor: buttonBackgroundColor, color: buttonTextColor, borderRadius: buttonShapeSize ? buttonShapeSize + 'px' : undefined }}
                         rel={ buttonRel ? 'nofollow noopener noreferrer' : 'noopener noreferrer' }
-                        className={ `wp-btn ${buttonSize}`}
+                        className={ `wp-btn ${iconPosition} ${buttonSize}`}
                         target={ buttonTarget ? '_blank' : null }
+                        style={{ backgroundColor: buttonBackgroundColor, color: buttonTextColor, borderRadius: buttonShapeSize ? buttonShapeSize + 'px' : undefined }}
                     >
-                        <RichText.Content value={ buttonText } />
+                        <RichText.Content value={ `<span class="wppc-btn-icon ${buttonIcon}"></span> ${buttonText}` } />
                     </a>							
                 </div>
                 : 

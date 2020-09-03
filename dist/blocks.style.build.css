@@ -90,7 +90,15 @@
     text-justify: inter-word; }
   .wp-pros-cons .wppc-btn-wrapper {
     text-align: center;
-    margin: 30px 0 0; }
+    margin: 30px 0 0;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+        justify-content: center;
+    -ms-flex-flow: column;
+        flex-flow: column;
+    -ms-flex-align: center;
+        align-items: center; }
     .wp-pros-cons .wppc-btn-wrapper .wp-btn {
       -webkit-box-shadow: none;
               box-shadow: none;
@@ -113,6 +121,26 @@
         padding: 10px 24px; }
       .wp-pros-cons .wppc-btn-wrapper .wp-btn:focus {
         background: #202020; }
+    .wp-pros-cons .wppc-btn-wrapper .wppc-btn-icon {
+      vertical-align: middle; }
+    .wp-pros-cons .wppc-btn-wrapper .wp-btn.wppc-icon-before {
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-flow: row;
+          flex-flow: row;
+      -ms-flex-pack: center;
+          justify-content: center; }
+    .wp-pros-cons .wppc-btn-wrapper .wp-btn.wppc-icon-after {
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-flow: row-reverse;
+          flex-flow: row-reverse;
+      -ms-flex-pack: center;
+          justify-content: center; }
+    .wp-pros-cons .wppc-btn-wrapper .wp-btn.wppc-icon-before .wppc-btn-icon {
+      margin-right: 10px; }
+    .wp-pros-cons .wppc-btn-wrapper .wp-btn.wppc-icon-after .wppc-btn-icon {
+      margin-left: 10px; }
   .wp-pros-cons.wppc-view1 .wppc-boxs {
     margin-top: calc(100px / 2); }
     .wp-pros-cons.wppc-view1 .wppc-boxs .wppc-header {

@@ -135,6 +135,10 @@ $button-lg-lineheight: 1.5 !default;
 	.wppc-btn-wrapper {
 		text-align: center;
 		margin: 25px 0;
+		display: flex;
+		justify-content: center;
+		flex-flow: column;
+    	align-items: center;
 		.wp-btn {
 			box-shadow: none;
 			font-size: 24px;
@@ -160,6 +164,25 @@ $button-lg-lineheight: 1.5 !default;
 			&:focus {
 				background: darken($color: #212121, $amount: 0.5);
 			}
+		}
+		.wppc-btn-icon {
+			vertical-align: middle;
+		}
+		.wp-btn.wppc-icon-before {
+			display: flex;
+			flex-flow: row;
+			justify-content: center;
+		}
+		.wp-btn.wppc-icon-after {
+			display: flex;
+			flex-flow: row-reverse;
+			justify-content: center;
+		}
+		.wp-btn.wppc-icon-before .wppc-btn-icon {
+			margin-right: 10px;
+		}
+		.wp-btn.wppc-icon-after .wppc-btn-icon {
+			margin-left: 10px;
 		}
 	}
 	&.wppc-view1 {
