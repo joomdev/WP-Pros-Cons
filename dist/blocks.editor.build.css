@@ -17,6 +17,9 @@
     display: grid;
     word-break: break-all;
     grid-template-columns: 50% 50%; }
+    @media screen and (max-width: 767px) {
+      .wp-pros-cons .wppc-boxs {
+        display: block; } }
     .wp-pros-cons .wppc-boxs .wppc-box {
       background: #fff;
       margin: 0 15px;
